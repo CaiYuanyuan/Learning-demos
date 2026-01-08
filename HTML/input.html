@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<!--<meta charset="gbk">-->
+		<meta name="viewport"
+		      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>input tag test</title>
+		<style>
+        /* 禁用元素的样式 */
+        /*        input:disabled {
+										background-color: #f0f0f0;
+										border-color: #ddd;
+								}*/
+        .login-button {
+            width: 50px;
+        }
+
+        .margin-top {
+            margin-top: 300px;
+        }
+		
+		</style>
+		
+		<script>
+        function testExample() {
+            const input = document.getElementById('testInput').value; //获取文本框的值
+            const regex = /^abc/; //创建一个正则表达式
+            const result = regex.test(input); //检测字符串是否以 abc 开头
+            const resultDiv = document.getElementById('result1'); //获取 div 标签
+            resultDiv.textContent = `测试结果：${result}`;//设置 div 标签的内容,此处不是单引号，是反引号；
+            // 反引号（`）主要用于创建‌ 模板字符串 ‌（Template Literals），支持多行字符串和表达式插值功能。 通过${}语法嵌入变量或表达式，生成动态内容。
+
+            resultDiv.className = result ? 'success' : 'error';//设置 div 标签的样式
+
+        }
+		</script>
+	
+	</head>
+	<body>
+		<h1>测试 input 标签 type 属性</h1>
+		<form action="#" id="form-input-type">
+			<!--默认自动完成，需要设置 name 属性、提交按钮-->
+			<!--<label>用户名：<input type="text" name="username" id="username"></label>-->
+			
+			<!--提交文本方向值-->
+			<!--<label>用户名：<input type="text" name="username" id="username" dirname="username.dir"></label>-->
+			
+			<!--禁用文本框-->
+			<!--<label>用户名：<input type="text" name="username" id="username" disabled></label>-->
+			
+			<!--设置单行文本的初始值-->
+			<!--<label>用户名：<input type="text" name="username" id="username" value="我是初始值"></label>-->
+			
+			
+			<!--设置 单行文本的建议值列表-->
+			<!--<label>喜欢的水果：<input type="text" name="fav-fruits" id="fav-fruits" list="fruits"></label>-->
+			
+			<!--<datalist id="fruits">-->
+			<!--	<option value="apple">苹果</option>-->
+			<!--	<option value="banana">香蕉</option>-->
+			<!--	<option value="orange">橘子</option>-->
+			<!--	<option value="cherry">樱桃</option>-->
+			<!--	<option value="watermelon">西瓜</option>-->
+			<!--</datalist>-->
+			
+			<!--设置单行文本框的 最小字符数、最大字符数-->
+			<label>用户名（3-8 个字符）: <input type="text" name="username" id="username" minlength="3" maxlength="8" title="请输入3-8个字符"></label>
+			
+			<!--设置多行文本框的 最小行数、最大行数-->
+			<!--<label>用户名:<textarea name="username" id="username" rows="5" cols="10" minlength="3" maxlength="5"></textarea></label>-->
+			
+			<input type="submit" value="提交">
+			
+		</form>
+		<!--测试 input 的 form 属性-->
+		<!--<label for="">用户名：<input type="text" name="username" id="username" form="form-input-type"></label>-->
+		
+
+		
+		<h1 class="margin-top"> 测试 input 标签 size 属性</h1>
+		<form action="#">
+			
+			<input type="tel" name="tel" id="tel" size="10">
+			<!--<input type="text" name="username" id="username" size="10">-->
+			<!--<input type="search" name="" id="" size="10">-->
+			<!--<label for="username">用户名：（可见宽度用指定值 size="25"）</label><br />-->
+			<!--&lt;!&ndash;可见宽度用指定值 size="25"&ndash;&gt;-->
+			<!--<input id="username" name="username" type="text" size="25"/>-->
+			<!--<br />-->
+			
+			<!--&lt;!&ndash;可见宽度用默认值&ndash;&gt;-->
+			<!--<label for="password">密 &nbsp;&nbsp;&nbsp;码：（可见宽度用默认值）</label><br />-->
+			<!--<input id="password" name="password" type="password"/>-->
+			<!--<br />-->
+			<!--<br />-->
+			
+			<!--<label for="fruit">喜爱的水果：（可见宽度用默认值）</label><br />-->
+			<!--<select id="fruit" name="fruit">-->
+			<!--	<option value="orange">橘子</option>-->
+			<!--	<option value="banana">香蕉</option>-->
+			<!--	<option value="apple">苹果</option>-->
+			<!--</select>-->
+			<!--<br /><br />-->
+			
+			<!--<label for="fruit">喜爱的水果：（可见宽度用指定值 size="3"）</label><br />-->
+			<!--<select id="fruit" name="fruit" size="3">-->
+			<!--	<option value="orange">橘子</option>-->
+			<!--	<option value="banana">香蕉</option>-->
+			<!--	<option value="apple">苹果</option>-->
+			<!--	<option value="mango">芒果</option>-->
+			<!--</select>-->
+		</form>
+		<h1 class="margin-top">测试 input 标签 step 属性</h1>
+		<form action="#">
+			<!--<label for="game-number">比赛分数：<input type="number" id="game-number" min="3" value="4" step="2" max="20"></label>-->
+			<!--<input type="date" name="date-test" id="date-test" step="any">-->
+			<!--<input type="date" name="date-test" id="date-test">-->
+			<!--<input type="datetime-local" name="datetime-test" id="datetime-test" step="any">-->
+			<!--<input type="datetime-local" name="datetime-test" id="datetime-test" step="10">-->
+			<!--<input type="month" name="month-test" id="month-test">-->
+			<!--<input type="month" name="month-test" id="month-test" step="any">-->
+			<!--<input type="time" name="time-test" id="time-test" step="10">-->
+			<!--<input type="time" name="time-test" id="time-test" step="any">-->
+			<!--<input type="week" name="week-test" id="week-test" step="any">-->
+			<input type="week" name="week-test" id="week-test" step="2">
+			<input type="submit" value="提交">
+		</form>
+		
+		<h1 class="margin-top">input 标签 src 属性</h1>
+		<form action="#">
+			<label for="user-name">用户名:<input type="text" name="username" id="user-name"></label>
+			<input type="image" src="images/login-button.png" alt="登录按钮">
+		</form>
+		
+		<h1>测试 input 标签 popovertarget、popovertargetaction 属性</h1>
+		<!--<input type="button" value="打开说明" popovertarget="my-popover" popovertargetaction="toggle">-->
+		<!--&lt;!&ndash;<input type="button" value="打开说明" popovertarget="my-popover" popovertargetaction="show">&ndash;&gt;-->
+		<!--<div id="my-popover" popover="auto">-->
+		<!--&lt;!&ndash;<div id="my-popover" popover="manual">&ndash;&gt;-->
+		<!--	<p>这是一个基础弹出层内容。</p>-->
+		<!--	<p>点击外部或按 ESC 键可以关闭我。</p>-->
+		
+		<!--</div>-->
+		
+		<input type="button" popovertarget="hint" popovertargetaction="toggle" value="ℹ️ 查看提示">
+		<!--<div id="hint" popover class="tooltip">-->
+		<div id="hint" popover="manual" class="tooltip">
+			这里是相关的操作提示信息。
+		</div>
+		
+		<input type="button" popovertarget="info-card" popovertargetaction="show" value="显示详情">
+		<input type="button" popovertarget="info-card" popovertargetaction="hide" value="隐藏详情">
+		
+		<!--需要手动关闭的弹窗-->
+		<div id="info-card" popover="manual">
+			<!--<div id="info-card" >-->
+			<!--<div id="info-card" popover="">-->
+			<h3>详细信息</h3>
+			<p>这是一个手动控制的弹出层，不会因点击外部 或 按 ESC而关闭。</p>
+			<!-- 通常内部也会放置一个关闭按钮 -->
+			<input type="button" popovertarget="info-card" popovertargetaction="hide" value="关闭">
+		</div>
+		
+		<!--<h1> input 标签 required 属性</h1>-->
+		<!--<form action="#">-->
+		<!--测试单选、复选框 和 required 属性-->
+		<!--<label><input type="radio" name="sex" id="female" value="female" required>女</label>-->
+		<!--<label><input type="radio" name="sex" id="male" value="male">男</label>-->
+		
+		<!--	<label for=""><input type="checkbox" name="fruit" id="apple" value="apple" required>苹果</label>-->
+		<!--	<label for=""><input type="checkbox" name="fruit" id="banana" value="banana">香蕉</label>-->
+		<!--	<input type="submit" value="提交">-->
+		<!--	-->
+		<!--</form>-->
+		
+		<h1 class="margin-top">input 标签 placeholder 属性</h1>
+		
+		<form action="#">
+			<!--<input type="text" name="user-name" id="user-name" placeholder="请输入用户名">-->
+			<!--<input type="date" name="date-test" id="date-test" placeholder="请选择日期">-->
+			<!--<input type="text" name="disabled-test" id="" disabled value="disabled测试">-->
+			<!--<input type="text" name="readonly-test" id="" readonly value="readonly测试" required>-->
+			<!--<input type="text" name="readonly-test" id="" readonly required>-->
+			<input type="submit" value="提交">
+		
+		</form>
+		
+		<h1>input 标签</h1>
+		<h2>input 的 formenctype 属性</h2>
+		<!--编码类型：url 编码；HTTP 方法：get，默认值，表单数据放在 url 后面-->
+		<form action="#" method="get" enctype="multipart/form-data" id="test-enc">
+			<label>名字: <input type="text" name="first-name"/></label>
+			<!--<label>请选择文件：<input type="file" name="file_upload"></label>-->
+			<br/><br/>
+			<!--<input type="submit" value="url 编码提交">-->
+			
+			<!--编码类型：不编码，多部分表单数据；HTTP 方法：post ，表单数据放在请求体里-->
+			<input type="reset" name="reset" value="重置">
+			<input type="submit" value="不编码提交" formenctype="multipart/form-data" formmethod="post">
+		</form>
+		<input type="submit" name="submit" value="url 编码提交" form="test-enc">
+		
+		<form action="#" id="test-two">
+			<input type="text" name="first-name" form="test-one">
+			<input type="submit" value="提交数据">
+		</form>
+		<form action="#" id="test-one">
+			<input type="submit">
+		</form>
+		<form action="#" id="test-three">
+			<input type="submit">
+		</form>
+		
+		<!-- 使用 value，用户需要先删除“请输入...”才能输入 -->
+		<input type="text" value="请输入关键词">
+		
+		<!-- 使用 placeholder，更友好的体验 -->
+		<input type="text" placeholder="请输入关键词">
+		<div class="container">
+			<h1>正则表达式测试</h1>
+			<h2>测试字符串是否以"abc"开头</h2>
+			<label>输入文本：<input type="text" id="testInput" placeholder="请输入文本进行测试"> </label>
+			<button onclick="testExample()">测试</button>
+			<div id="result1" class="result"></div>
+		
+		</div>
+		
+		<form action="#" class="margin-top">
+			<h1>input 标签</h1>
+			<h2>input 标签的 pattern 属性</h2>
+			<!--&lt;!&ndash;只匹配 单个a字母&ndash;&gt;-->
+			<!--<input type="text" name="test-pattern" pattern="a">-->
+			<!--&lt;!&ndash;匹配以a开头的任意字符串，a后面可以是任意字符&ndash;&gt;-->
+			<!--<input type="text" name="test-pattern" pattern="a.*">-->
+			
+			<!--&lt;!&ndash;匹配以a结尾的任意字符串，a前面可以是任意字符&ndash;&gt;-->
+			<!--<input type="text" name="test-pattern" pattern=".*a">-->
+			<!--&lt;!&ndash;至少包含一个a&ndash;&gt;-->
+			<!--<input type="text" name="test-pattern" pattern=".*a.*">-->
+			
+			<!--&lt;!&ndash; 只匹配 abc			&ndash;&gt;-->
+			<!--<input type="text" name="test-pattern" pattern="abc">-->
+			
+			<!--&lt;!&ndash;匹配 4-8位数字&ndash;&gt;-->
+			<!--<input type="text" name="test-pattern" pattern="[0-9]{4,8}">-->
+			
+			<!--&lt;!&ndash;必须包含一位大写字母，大写字母前后可以是任意字符&ndash;&gt;-->
+			<!--<input type="text" name="test-pattern" pattern=".*[A-Z].*">-->
+			
+			<!--&lt;!&ndash;中国手机号码验证&ndash;&gt;-->
+			<!--<input type="tel" name="tel" id="tel" pattern="1[3-9][0-9]{9}">-->
+			
+			<!--			<label for="country-code">国家代码（2个字母）：
+							<input type="text" name="country" id="country-code" pattern="[A-Za-z]{2}" title="请输入两个字母">
+						</label>-->
+			
+			<button type="submit">提交</button>
+		</form>
+		
+		<form action="#" class="margin-top">
+			
+			<h2> input 标签的 name 属性</h2>
+			
+			<!--<input type="text" name="info">-->
+			<!--<input type="text" name="info">-->
+			
+			<!--<label for="nickname">请输入昵称：<input type="text" name="nick-name" id="nickname"></label>-->
+			<!--&lt;!&ndash;设置为禁用&ndash;&gt;-->
+			<!--<label for="nickname">请输入昵称：<input type="text" name="nick-name" id="nickname" disabled value="团团"></label>-->
+			<!--&lt;!&ndash;<label for="nickname">请输入昵称：<input type="text"  id="nickname" name=""></label>&ndash;&gt;-->
+			<!--<br/>-->
+			<!--请选择性别：-->
+			<!--<label for="female">女<input type="radio" name="sex" id="female" value="女"> </label>-->
+			<!--&lt;!&ndash;无 value 属性值&ndash;&gt;-->
+			<!--&lt;!&ndash;<label for="female">女<input type="radio" name="sex" id="female"> </label>&ndash;&gt;-->
+			<!--<label for="male">男<input type="radio" name="sex" id="male" value="男"></label>-->
+			<br>
+			请选择爱好：
+			<!--<label>跑步 <input type="checkbox" name="hobby" value="跑步"> </label>-->
+			<!--<label>跑步 <input type="checkbox" name="_charset_" value="跑步"> </label>-->
+			<!--无 value 属性-->
+			<!--<label>跑步 <input type="checkbox" name="hobby"> </label>-->
+			<label>游泳 <input type="checkbox" name="hobby[]" value="游泳"> </label>
+			<label>睡觉 <input type="checkbox" name="hobby[]" value="睡觉"> </label>
+			<label>读书 <input type="checkbox" name="hobby[]" value="读书"> </label>
+			<input type="submit" value="提交">
+			<br/>
+			<input type="hidden" name="_charset_" value="gbk">
+			<br>
+			<input type="reset" name="test" value="重置数据">
+			
+			<h2>input 的 multiple 属性</h2>
+			<!--允许上传多个图片文件-->
+			<label for="img-upload">请选择图片文件（按住 ctrl 键选择多个图片）：<input type="file" name="img" id="img-upload"
+			                                                                        accept="image/*" multiple></label>
+			<!--允许填写多个邮箱-->
+			<label for="email-address">请输入邮箱地址：<input type="email" name="email" id="email-address" multiple
+			                                                 placeholder="多个邮箱，用英文逗号分隔"></label>
+			
+			<h2 class="margin-top">input 的 maxlength 属性 和 minlength 属性</h2>
+			<!--设置最大长度和最小长度-->
+			<!--<label>名字: <input type="text" name="name" maxlength="6" minlength="2"></label>-->
+			<!--<label for="name">-->
+				<!--昵称： <input type="text" name="name" id="name" maxlength="6" minlength="2" required-->
+			<!--	             placeholder="请输入2-6个字符的昵称">-->
+			<!--</label>-->
+			<br/>
+			
+			<h2 class="margin-top">input 的 max、min 属性</h2>
+			
+			<h3>测试 type="number" 的 max、min 属性</h3>
+			<!--设置数字的范围，最小值为 1，最大值为 100-->
+			<!--<label>请输入数字: <input type="number" name="number" min="1" max="100"></label>-->
+			
+			<h3>测试 type="range" 的 max、min 属性</h3>
+			<!--设置数字滑块的范围值，最小值为 1，最大值为 10，默认值为 8-->
+			<label>请输入您的评分（1-10分）: <input type="range" name="range" min="1" max="10" value="8"></label>
+			
+			<h3>测试 type="date" 的 max、min 属性</h3>
+			<label> 请选择截止日期：<input type="date" name="date" min="2025-07-01" max="2025-07-07"></label>
+			
+			<h3>测试 type="time" 的 max、min 属性</h3>
+			<label> 请选择截止时间：<input type="time" name="time" min="07:00" max="23:59"></label>
+			
+			<h3> 测试 type="datetime-local" 的 max、min 属性</h3>
+			<label> 请选择截止日期和时间:<input type="datetime-local" name="datetime-local" min="2025-07-02T00:00:00"
+			                                    max="2025-07-07T00:00:00"></label>
+			<h3>测试 type="month" 的 max、min 属性</h3>
+			<label> 请选择截止月份：<input type="month" name="month" min="2025-07" max="2025-08"></label>
+			
+			<h3>测试 type="week" 的 max、min 属性"</h3>
+			<!--周号的 W 必须大写，否则值会无效-->
+			<label> 请选择截止周：<input type="week" name="week" min="2025-W28" max="2025-W29"></label>
+		
+		</form>
+		
+		<h2 class="margin-top">input 的 list 属性</h2>
+		
+		<h3>测试 type="time" 的 建议值列表</h3>
+		<label>请选择会议时间: <input type="time" name="meeting-time" list="meeting-time"></label>
+		<datalist id="meeting-time">
+			<!--<option value="9:00"></option>-->
+			<!--value 属性值 必须是合法的时间格式：HH:MM，否则不显示，下方 value = 9 点会不显示-->
+			<option value="9点"></option>
+			<option value="10:00"></option>
+			<option value="11:00"></option>
+			<option value="12:00"></option>
+		</datalist>
+		
+		<h3>测试 type="date" 的 建议值列表</h3>
+		<label>请选择会议日期: <input type="date" name="meeting-time" list="meeting-date"></label>
+		<datalist id="meeting-date">
+			
+			<!--<option value="2025-07-07"></option>-->
+			<!--value 属性值 必须是合法的日期格式：YYYY-MM-DD，否则不显示 -不能换成/ ,下方更换成/ 会变无效值，不显示-->
+			<option value="2025/07/07"></option>
+			<option value="2025-07-08"></option>
+			<option value="2025-07-09"></option>
+			<option value="2025-07-10"></option>
+		</datalist>
+		
+		<h3>测试 type="datetime-local" 的 建议值列表</h3>
+		<label>请选择会议日期: <input type="datetime-local" name="meeting-datetime" list="meeting-datetime"></label>
+		<datalist id="meeting-datetime">
+			
+			<!--value 属性值 必须是合法的日期时间格式：YYYY-MM-DD HH:MM，或者 YYYY-MM-DDTHH:MM，否则不显示 -不能换成/，会不显示-->
+			<option value="2025/07/07"></option>
+			
+			<option value="2025-07-07T09:00"></option>
+			<option value="2025-07-08T09:00"></option>
+			<option value="2025-07-09T09:00"></option>
+			<!--日期和时间的分隔符 可以是 T，也可以是空格，下方把T换成空格-->
+			<option value="2025-07-10 09:00"></option>
+		</datalist>
+		
+		<h3>测试 type="color" 的 建议值列表</h3>
+		<label>请选择喜欢的颜色: <input type="color" name="prefer-color" list="prefer-color"></label>
+		<datalist id="prefer-color">
+			
+			<!--value 属性值 必须是合法的颜色格式：#RRGGBB，否则不显示，#RGB，三位数不生效-->
+			<option value="#f00"></option>
+			<option value="#00ff00"></option>
+			<option value="#0000ff"></option>
+			<option value="#888888"></option>
+		</datalist>
+		
+		<!--	<label for="tick">Tip amount:</label>
+			<input type="range" list="tickmarks" min="0" max="100" id="tick" name="tick" />
+			&lt;!&ndash;<input type="range" list="tickmarks" />&ndash;&gt;
+			<datalist id="tickmarks">
+				<option value="0" label="0%"></option>
+				<option value="10"></option>
+				<option value="20"></option>
+				<option value="30"></option>
+				<option value="40"></option>
+				<option value="50" label="50%"></option>
+				<option value="60"></option>
+				<option value="70"></option>
+				<option value="80"></option>
+				<option value="90"></option>
+				<option value="100" label="100%"></option>
+			</datalist>-->
+		<!--
+		<label for="tick">Tip amount:</label>
+		<input type="range" list="tickmarks" min="0" max="100" id="tick" name="tick" />-->
+		<!--
+		<datalist id="tickmarks">
+			<option value="0" label="0%"></option>
+			<option value="10" label="Minimum Tip"></option>
+			<option value="20" label="Standard"></option>
+			<option value="30" label="Generous"></option>
+			<option value="50" label="Very Generous"></option>
+		</datalist>
+		-->
+		
+		<!--测试 1：option 只设置 value 属性值，谷歌、火狐建议值列表显示的都是 value 属性值-->
+		<h3 class="margin-top"> option 只设置 value 属性值</h3>
+		<label>请选择您喜欢的水果：
+			<input type="text" list="fruits-one" name="fruits-choice">
+		</label>
+		<datalist id="fruits-one">
+			<option value="apple"></option>
+			<option value="banana"></option>
+			<option value="orange"></option>
+			<option value="cherry"></option>
+			<option value="watermelon"></option>
+		</datalist>
+		
+		<!--测试 2：option 设置 value 值和 标签内容，谷歌：点击输入框， 建议值列表同时显示 value 属性值和标签内容；火狐：双击输入框， 只显示标签内容-->
+		<h3>option 设置 value 值和 标签内容</h3>
+		<label>请选择您喜欢的水果：
+			<input type="text" list="fruits-two" name="fruits-choice">
+		</label>
+		<datalist id="fruits-two">
+			<option value="apple">苹果</option>
+			<option value="banana">香蕉</option>
+			<option value="orange">橘子</option>
+			<option value="cherry">樱桃</option>
+			<option value="watermelon">西瓜</option>
+		</datalist>
+		
+		<!--测试 3：option 设置 value 值和 label 值，谷歌同时显示 value 和 label 值，火狐只显示 label 值-->
+		<h3>option 设置 value 值和 label 值</h3>
+		<label>请选择您喜欢的水果：
+			<input type="text" list="fruits-three" name="fruits-choice">
+		</label>
+		<datalist id="fruits-three">
+			<option value="apple" label="苹果果"></option>
+			<option value="banana" label="香蕉蕉"></option>
+			<option value="orange" label="橘子子"></option>
+			<option value="cherry" label="樱桃桃"></option>
+			<option value="watermelon" label="西瓜瓜"></option>
+		</datalist>
+		
+		<!--测试 4：option 同时设置 value 值、 label 值、标签内容；谷歌同时显示 value 和 label 值，火狐只显示label 值-->
+		<h3> option 同时设置 value 值、 label 值、标签内容</h3>
+		<label>请选择您喜欢的水果：
+			<input type="text" list="fruits-four" name="fruits-choice">
+		</label>
+		<datalist id="fruits-four">
+			<option value="apple" label="苹果果">苹果</option>
+			<option value="banana" label="香蕉蕉">香蕉</option>
+			<option value="orange" label="橘子子">橘子</option>
+			<option value="cherry" label="樱桃桃">樱桃</option>
+			<option value="watermelon" label="西瓜瓜">西瓜</option>
+		</datalist>
+		
+		<br/>
+		<h2 class="margin-top">input 的 height、width 属性</h2>
+		<form action="#">
+			<label>名字: <input type="text" name="first-name"/></label>
+			<label>密码: <input type="password" name="password"/></label>
+			<br/><br/>
+			<!--只设置宽度,测试效果后，同时在 css 中设置不一样的宽度，测试优先级-->
+			<input type="image" src="./images/login-button.png" alt="登录按钮" width="100" class="login-button">
+			
+			<!--只设置高度-->
+			<input type="image" src="./images/login-button.png" alt="登录按钮" height="30">
+			
+			<!--同时设置高度和宽度，宽度比例会改变-->
+			<input type="image" src="./images/login-button.png" alt="登录按钮" height="25" width="100">
+		
+		</form>
+		
+		<h2>input 的 formnovalidate 属性</h2>
+		<form action="#" method="get">
+			<label>E-mail: <input type="email" name="userid"/></label><br/>
+			<input type="submit" value="提交"/><br/>
+			<input type="submit" formnovalidate value="进行没有验证的提交"/>
+		</form>
+		
+		<br>
+		<h2>input 的 formenctype 属性</h2>
+		<!--编码类型：url 编码；HTTP 方法：get，默认值，表单数据放在 url 后面-->
+		<form action="#" enctype="application/x-www-form-urlencoded">
+			<label>名字: <input type="text" name="first-name"/></label>
+			<label>请选择文件：<input type="file" name="" id=""></label>
+			<br/><br/>
+			<input type="submit" value="url 编码提交">
+			<!--编码类型：不编码，多部分表单数据；HTTP 方法：post ，表单数据放在请求体里-->
+			<input type="submit" value="不编码提交" formenctype="multipart/form-data" formmethod="post">
+			<!--<input type="submit" value="不编码提交"  formmethod="post">-->
+		</form>
+		
+		<br/><br/><br/>
+		
+		<h2>input 的 formaction 属性</h2>
+		<!--测试使用，action 写了一个 html 页面的地址，会跳转。formaction= "#" 为空，默认在当前页面，不会跳转-->
+		<form action="./01-表单标签.html">
+			<label>名字: <input type="text" name="first-name"/></label>
+			<input type="submit" value="提交" formaction="#">
+		</form>
+		<br/><br/><br/>
+		<h2>input 的 form 属性</h2>
+		<form action="#" method="get" id="form-test">
+			<label>名字: <input type="text" name="first-name" formaction="./01-表单标签.html"/></label>
+			<input type="submit" value="提交"/>
+		</form>
+		
+		<p>下面的 "姓氏" 字段位于 form 元素之外，但仍然是 上方表单的一部分，因为通过 form 属性绑定了表单，因此可以被提交。</p>
+		
+		<label>姓氏: <input type="text" name="last-name" form="form-test"/></label>
+		
+		<br/><br/><br/>
+		<h2>input 的 disabled 属性</h2>
+		<form action="#">
+			<label>用户名: <input type="text" name="username" value="张三" disabled></label>
+			<!--<label>用户名: <input type="text" name="username2" value="张三" readonly></label>-->
+			<label>密码: <input type="password" name="password"></label>
+			<br/><br/>
+			<button type="submit">提交</button>
+		</form>
+		<br/><br/><br/>
+		<hr>
+		<h2>input 的 dirname 属性</h2>
+		
+		<form action="#">
+			<label>阿拉伯语搜索：<input type="search" name="arabic-search" dirname="arabic-search.dir" dir="auto"></label>
+			<button type="submit">搜索</button>
+		</form>
+		
+		<br/><br/><br/>
+		
+		<form action="#">
+			<label>用户名：<input type="text" name="username" dirname="username.dir"></label>
+			<label>请输入搜索词：<input type="search" name="search" dirname="search.dir"></label>
+			<!--测试 tel 类型是否有效，也发送 dirname了-->
+			<!--<label>请输入电话号：<input type="tel" name="tel" dirname="tel.dir"></label>-->
+			<button type="submit">提交</button>
+		</form>
+		
+		<hr>
+		<h2>input 的 checked 属性</h2>
+		<form action="#">
+			<h3>请选择您喜欢的水果：</h3>
+			<label><input type="checkbox" name="fruit" value="apple" checked>苹果</label>
+			<label><input type="checkbox" name="fruit" value="banana">香蕉</label>
+			<label><input type="checkbox" name="fruit" value="orange">橘子</label>
+			
+			<h3>请选择您的性别：</h3>
+			<label><input type="radio" name="gender" value="male"> 男</label>
+			<label><input type="radio" name="gender" value="female" checked> 女</label>
+			<br/>
+			<button type="submit">提交</button>
+		
+		</form>
+		
+		<br/><br/>
+		
+		<hr>
+		<h2> input 使用全局属性 autofocus </h2>
+		<!--<label>用户名: <input type="text" autocomplete="on" name="username" autofocus></label>-->
+		
+		<h2>input 的 autocomplete 属性</h2>
+		<!--启用自动填充-->
+		<form action="#" method="post">
+			<!--<label>用户名: <input type="text" autocomplete="name" name="username" ></label>-->
+			<!--<label>用户名: <input type="text" autocomplete="on" id="username"></label>-->
+			<label>密码: <input type="password" autocomplete="off" name="password"></label>
+			<button type="submit">登录</button>
+			<!--<input type="submit" value="登录">-->
+		</form>
+		
+		<br/><br/><br/>
+		
+		<!-- 启用自动填充，字段名不支持，所以没效果 -->
+		<form>
+			<label>用户名: <input type="text" autocomplete="username" name="username"></label>
+			<label>密码: <input type="password" autocomplete="current-password" name="password"></label>
+			<button type="submit">提交</button>
+		</form>
+		
+		<!-- 禁用自动填充 -->
+		<!--		<form>
+					<label>安全码: <input type="text" autocomplete="off"></label>
+				</form>-->
+		
+		<!-- 完整地址表单示例，字段名不支持，所以没效果 -->
+		<form>
+			<label>姓名: <input type="text" autocomplete="name" name="name"></label>
+			<label>电话: <input type="tel" autocomplete="tel" name="tel"></label>
+			<label>地址: <input type="text" autocomplete="street-address" name="address"></label>
+			<label>城市: <input type="text" autocomplete="address-level2" name="city"></label>
+			<label>邮编: <input type="text" autocomplete="postal-code" name="postal-code"></label>
+			<button type="submit">提交</button>
+		</form>
+		<hr>
+		<h2>input 的 alt 属性</h2>
+		<form action="01-表单标签.html" method="get">
+			<label>用户名：<input type="text"></label>
+			<label>密码：<input type="password" name=""></label>
+			<input type="image" src="./images/login-button.png" alt="提交按钮">
+		</form>
+		<h2>input 的 accept 属性</h2>
+		<form action="#">
+			<label>请选择要上传的文件：
+			       <!--限制图片类型为 gif 和 jpeg-->
+			       <!--<input type="file" name="pic" id="pic" accept="image/gif,image/jpeg">-->
+			       <!--不限制图片类型-->
+			       <!--<input type="file" name="pic" id="pic" accept="image/gif,image/*">-->
+			
+			       <!--限制图片类型为 gif-->
+			       <!--<input type="file" name="pic" id="pic" accept="image/gif,image/gif">-->
+			
+			       <!--	限制图片为 .png/.gif/.jpg 扩展名的文件-->
+			       <!--<input type="file" name="pic" id="pic" accept=".png,.gif,.jpg">-->
+			       <!-- MIME 类型 和 扩展名一起使用-->
+				<input type="file" name="pic" id="pic" accept="image/png,.gif">
+			
+			       <!--	-->
+			
+			</label>
+		</form>
+	
+	</body>
+</html>

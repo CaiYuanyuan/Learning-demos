@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+
+	<h1>表单标签</h1>
+	
+	<h2>form 的 method 属性</h2>
+	<!--get 方法：表单数据放在 url 后面，密码会暴露在地址栏里；url编码，-->
+	<!--<form action="#" method="get" enctype="application/x-www-form-urlencoded">-->
+	<!--	post 方法、表单数据放在请求体里，地址栏不会看到密码；url编码-->
+	<form action="#" method="post" enctype="multipart/form-data">
+		<label>名字: <input type="text" name="first-name" /></label>
+		<label>密码: <input type="password" name="password" /></label>
+		<br /><br />
+		<label>请选择头像： <input type="file" name="pic" id="" accept="image/*"></label>
+		<br /><br />
+		<input type="submit" value="提交">
+		
+
+	</form>
+	
+	<br />
+	<br />
+	<br />
+
+	
+	
+	
+	
+	<h2>form 的 rel 属性</h2>
+	<form action="/search" method="get" rel="search">
+		<label>请输入搜索词：<input type="text" name="q"></label>
+		<button type="submit">搜索</button>
+	</form>
+	<h2>表单标签的 name 属性</h2>
+	<!--表单标签的 name 属性-->
+	<form name="loginForm" action="/login" method="post">
+		<label>用户名：<input type="text" name="username"></label>
+		<label>密码：<input type="password" name="password"></label>
+		<button type="submit">登录</button>
+	</form>
+	
+	<script>
+      // 通过 name 访问表单
+      const form = document.forms['loginForm'];
+      // 或 document.loginForm
+
+      // 访问表单内的元素
+      const username = form.elements['username'];
+
+      // 表单提交前的验证
+      form.onsubmit = function() {
+          if(username.value === '') {
+              alert('请输入用户名');//用户名为空时，弹出对话框提示
+              return false;
+          }
+          return true;
+      };
+	</script>
+	
+	
+	<h2>表单的 novalidate 属性</h2>
+	<!--测试 novalidate 属性,不设置时，默认会验证表单。设置时，不验证表单，邮箱格式错误也能提交-->
+	<form action="#"  novalidate>
+	<!--<form action="#">-->
+		<label>E-mail: <input type="email" name="user_email"/></label>
+		<input type="submit" />
+	</form>
+	<h2>表单的 autocomplete 属性</h2>
+	<!--测试 autocomplete 属性-->
+	<form action="#" method="get" autocomplete="off">
+		<label>First name:<input type="text" name="firstname" /></label><br />
+		<label>Last name: <input type="text" name="lastname"/></label><br />
+		<label>E-mail: <input type="email" name="email" autocomplete="off"/></label><br />
+		<input type="submit" />
+	</form>
+	
+	<h2>表单 form 的 target 属性</h2>
+	
+	<!--<form action="#" target="_self">-->
+	<!--在新窗口、新标签页中加载-->
+	<!--<form action="#" target="_blank">-->
+	<!--<form action="#" target="_parent">-->
+	<!--<form action="#" target="_top">-->
+	<form action="#" target="frame01">
+		<label for="username">用户名：</label>
+		<input type="text" name="username" id="username">
+		<button type="submit">提交</button>
+		
+	</form>
+	
+	<!--<iframe src="#" frameborder="0" name="frame01"></iframe>-->
+
+</body>
+</html>

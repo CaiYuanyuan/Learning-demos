@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>测试 img 标签的 height 和 width 属性</title>
+	
+	<style>
+		/*只设置 img 的宽度，高度自适应，按照固有宽高比例 等比例缩放*/
+		.width-test1{
+				width: 400px;
+				height: auto;
+		}
+    /*只设置 img 的宽度，高度自适应，同时指定宽高比*/
+    .width-test2{
+        width: 300px;
+        height: auto;
+		    aspect-ratio: 1 / 1; /*宽高比 = width / height*/
+    }
+		/*测试 img 的宽高占位，通过容器的占位来实现*/
+    .image-wrapper {
+        width: 400px;
+        padding-bottom: 400px; /* 撑大容器的高度 */
+        position: relative;
+    }
+    .image-wrapper img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;/*如何填充在容器里*/
+    }
+    
+
+	</style>
+</head>
+<body>
+	
+	<!--只设置 img 的宽度，高度自适应，按照等比例缩放-->
+	<img src="images/sun.gif" alt="太阳" width="70">
+	<br>
+	
+	<!--设置宽高，把小图片放大-->
+	<img src="images/1px-bgimg.gif" alt="green background image" width="200" height="30">
+	<br>
+	
+	<!--测试 img 仅在 CSS 中设置 width 属性，高度自适应-->
+	<img src="images/mercury.gif" alt="水星" class="width-test1">
+	
+	<!--测试 img 仅在 CSS 中设置 width 属性，高度自适应,同时设置宽高比-->
+	<img src="images/mercury.gif" alt="水星" class="width-test2">
+	
+	<!--测试 img 的宽高占位，通过容器的占位来实现-->
+	<div class="image-wrapper">
+		<img src="images/venus.gif" alt="金星">
+	</div>
+	
+	<!--<img src="images/rabbit-dream.png" alt="兔子" loading="lazy">-->
+	<img src="images/rabbit-dream.png" alt="兔子" fetchpriority="high">
+	
+</body>
+</html>

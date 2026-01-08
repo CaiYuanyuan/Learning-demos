@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+		      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>Regular Expression Tests</title>
+		<style>
+
+        .container {
+            /*设置容器的宽度*/
+            width: 400px;
+        }
+
+        .success {
+            /*设置成功时的样式，背景颜色为淡绿色*/
+            background-color: lightgreen;
+        }
+
+        .error {
+            /*设置失败时的样式，背景颜色为粉红色*/
+            background-color: lightpink;
+        }
+		</style>
+		
+		<script>
+        //定义一个方法，用于测试正则表达式相关的 modifiers
+        function regexModifiers() {
+
+
+            // 问题可能在于对称差集运算符的位置或格式
+            // try {
+            //     // 正确的对称差集语法
+            //     const correct1 = /[[a-c]~~[b-d]]/v;
+            //     console.log("正确语法1: OK");
+            // } catch (e) {
+            //     console.log("正确语法1错误:", e.message);
+            // }
+            //
+            // try {
+            //     const correct2 = /[[abc]&&[bcd]]/v;  // 先测试交集
+            //     console.log("交集语法: OK");
+            // } catch (e) {
+            //     console.log("交集语法错误:", e.message);
+            // }
+
+            //v 标志
+            // const setA = /[abc]/v;        // 集合 A: {a, b, c}
+            // const setB = /[bcd]/v;        // 集合 B: {b, c, d}
+
+            // 并集: A ∪ B = {a, b, c, d}
+            // const regex = /[abcd]/gv;      // 或者 /[[abc][bcd]]/v
+            // const regex = /[[abc][bcd]]/gv;      // 或者 /[[abc][bcd]]/v
+
+            // 差集: A - B = {a}
+            // const regex = /[[abc]--[bcd]]/gv;
+
+            // 交集: A ∩ B = {b, c}
+            // const regex = /[[abc]&&[bcd]]/gv;
+
+            // 对称差集: A Δ B = {a, d}
+            // const regex = /[[abc]~~[bcd]]/v;
+            // const regex = /\p{Invalid_Property}/u; // 会抛出 SyntaxError
+            // const regex = /\p{Emoji_Test=Yes}/v; // 会抛出 SyntaxError
+            //
+            // const str = "a,b,c,d,e,f,g";
+
+
+            // const regex = /\d+/g;
+            // const regex = /\d+/gd;
+            // const regex = /\d+/d;
+            // const regex = /\d+/y;
+            // const regex = /\d/y;
+            // const regex = /\d/gy;
+            // const regex = /\d+/gy;
+            // const regex1 = /\d+/gd;
+            // const regex2 = new RegExp("\\d+","ig");
+            // const str = "2025年10月30日";
+		        
+
+            // const matchResult = str.match(regex);
+            // const matchResult = regex.exec(str);
+            // console.log("正则表达式 1：", regex1);
+            // console.log("正则标志 flags：",regex1.flags)
+		        // console.log("正则源文本 source：",regex1.source)
+            // console.log("正则表达式 2：", regex2);
+            // console.log("正则标志 flags：",regex2.flags)
+						// console.log("正则源文本 source：",regex2.source)
+            // console.log("原始字符串：", str);
+
+            // console.log("正则表达式：", regex);
+            // console.log("原始字符串：", str);
+            // //修改 lastIndex，手动控制匹配开始的位置
+            // // regex.lastIndex = 10;
+            // // console.log("手动修改的下一次匹配的开始位置 lastIndex：",regex.lastIndex);
+            // console.log("匹配结果 1：", regex.exec(str));//第1次调用 exec()方法，，从 lastIndex位置开始搜索，未手动设置时，默认 lastIndex = 0
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//更新 lastIndex = 4
+            // console.log("匹配结果 2：", regex.exec(str));//第2次调用 exec()方法，从lastIndex = 4 开始搜索
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//更新 lastIndex = 7
+            // console.log("匹配结果 3：", regex.exec(str));//第3次调用 exec()方法，从lastIndex = 7 开始搜索
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);// lastIndex = 10
+            // console.log("匹配结果 4：", regex.exec(str));//第4次调用 exec()方法，从lastIndex =10 开始搜索，无匹配项 返回 null
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//无匹配结果，更新 lastIndex = 0
+            // console.log("匹配结果 5：", regex.exec(str));//第5次调用 exec()方法，从lastIndex = 0 开始搜索，即 从开头开始搜索
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//lastIndex = 4
+		        
+		        
+
+						// //多次调用 test()方法
+            // console.log("正则表达式：", regex);
+            // console.log("原始字符串：", str);
+            // //修改 lastIndex，手动控制匹配开始的位置
+            // regex.lastIndex = 10;
+            // console.log("手动修改的下一次匹配的开始位置 lastIndex：",regex.lastIndex);
+            // console.log("匹配结果 1：", regex.test(str));//第1次调用 test()方法，，从 lastIndex位置开始搜索，未手动设置时，默认 lastIndex = 0
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//更新 lastIndex = 4
+		        // //修改 lastIndex，手动控制匹配开始的
+		        // //regex.lastIndex = 10;
+            // // console.log("手动修改的下一次匹配的开始位置 lastIndex：",regex.lastIndex);
+            // console.log("匹配结果 2：", regex.test(str));//第2次调用 test()方法，从lastIndex = 4 开始搜索
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//更新 lastIndex = 7
+            // console.log("匹配结果 3：", regex.test(str));//第3次调用 test()方法，从lastIndex = 7 开始搜索
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);// lastIndex = 10
+            // console.log("匹配结果 4：", regex.test(str));//第4次调用 test()方法，从lastIndex =10 开始搜索，无匹配项 返回 null
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//无匹配结果，更新 lastIndex = 0
+            // console.log("匹配结果 5：", regex.test(str));//第5次调用 test()方法，从lastIndex = 0 开始搜索，即 从开头开始搜索
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//lastIndex = 4
+
+
+            //测试 match()方法中的 g、y 标志
+            // const regex = /\d+/g;
+            // const regex = /\d+/y;
+            // const regex = /\d/y;
+            // // const regex = /\d+/gy;
+            // // const regex = /\d/gy;
+            // const str = "2025年10月30日";
+            // // // const str = "年月日";
+            // console.log("正则表达式：", regex);
+            // console.log("原始字符串：", str);
+            // // //修改 lastIndex，手动控制匹配开始的
+            // regex.lastIndex = 5;
+            // console.log("手动修改的下一次匹配的开始位置 lastIndex：",regex.lastIndex);
+            // console.log("匹配结果 1：", str.match(regex));//第1次调用方法，从开头开始搜索lastIndex = 0
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//更新 lastIndex = 4
+            // //修改 lastIndex，手动控制匹配开始的
+            // // regex.lastIndex = 5;
+            // // console.log("手动修改的下一次匹配的开始位置 lastIndex：",regex.lastIndex);
+            // console.log("匹配结果 2：", str.match(regex));//第2次调用方法，从lastIndex = 4 开始搜索
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//更新 lastIndex
+            // console.log("匹配结果 3：", str.match(regex));//第3次调用方法
+
+
+
+
+
+
+            //测试 matchAll()方法中的 g、y、gy 标志
+            // const regex = /\d+/g;
+            // const regex = /\d+/y;
+            // const regex = /\d/y;
+            // const regex = /\d+/gy;
+            // const regex = /\d/gy;
+            // const str = "2025年10月30日";
+            // // // const str = "年月日";
+            // console.log("正则表达式：", regex);
+            // console.log("原始字符串：", str);
+            // //修改 lastIndex，手动控制匹配开始的
+            // regex.lastIndex = 5;
+            // console.log("手动修改的下一次匹配的开始位置 lastIndex：",regex.lastIndex);
+            // console.log("匹配结果 1：", Array.from(str.matchAll(regex)));//第1次调用方法，从开头开始搜索lastIndex = 0
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//更新 lastIndex
+            // //修改 lastIndex，手动控制匹配开始的
+            // // regex.lastIndex = 5;
+            // // console.log("手动修改的下一次匹配的开始位置 lastIndex：",regex.lastIndex);
+            // console.log("匹配结果 2：", Array.from(str.matchAll(regex)));//第2次调用方法，从lastIndex 开始搜索
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//更新 lastIndex
+            // console.log("匹配结果 3：", Array.from(str.matchAll(regex)));//第3次调用方法
+
+
+
+            //测试 replace()方法中的 g、y 标志
+            // const regex = /\d+/g;
+            // const regex = /\d/g;
+            // const regex = /\d+/y;
+            // const regex = /\d/y;
+            // // const regex = /\d+/gy;
+            // const regex = /\d/gy;
+            // const str = "2025年10月30日";
+            // // // const str = "年月日";
+            // console.log("正则表达式：", regex);
+            // console.log("原始字符串：", str);
+            // // //修改 lastIndex，手动控制匹配开始的
+            // // regex.lastIndex = 5;
+            // // console.log("手动修改的下一次匹配的开始位置 lastIndex：",regex.lastIndex);
+            // console.log("匹配结果 1：", str.replace(regex,"8"));//第1次调用方法，从开头开始搜索lastIndex = 0
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//更新 lastIndex
+            // //修改 lastIndex，手动控制匹配开始的
+            // // regex.lastIndex = 5;
+            // // console.log("手动修改的下一次匹配的开始位置 lastIndex：",regex.lastIndex);
+            // console.log("匹配结果 2：", str.replaceAll(regex,"8"));//第2次调用方法，从lastIndex  开始搜索
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//更新 lastIndex
+            // console.log("匹配结果 3：", str.replaceAll(regex,"8"));//第3次调用方法
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//更新 lastIndex
+            // console.log("匹配结果 4：", str.replaceAll(regex,"8"));//第4次调用方法
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//更新 lastIndex
+            // console.log("匹配结果 5：", str.replaceAll(regex,"8"));//第5次调用方法
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//更新 lastIndex
+            // console.log("匹配结果 6：", str.replaceAll(regex,"8"));//第6次调用方法
+
+            // //多次调用 search()方法 的返回结果和 g、y标志之间的关系
+            // const regex = /\d+/g;
+            // const regex = /\d/g;
+            // const regex = /\d+/y;
+            // const regex = /\d/y;
+            // // // const regex = /\d+/gy;
+            // const regex = /\d/gy;
+            // const str = "2025年10月30日";
+            // // const str = "年月日";
+            // console.log("正则表达式：", regex);
+            // console.log("原始字符串：", str);
+            // //修改 lastIndex，手动控制匹配开始的位置
+            // regex.lastIndex = 5;
+            // console.log("手动修改的下一次匹配的开始位置 lastIndex：",regex.lastIndex);
+            // console.log("匹配结果 1：", str.search(regex));//第1次调用方法，，从 lastIndex位置开始搜索，未手动设置时，默认 lastIndex = 0
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//更新 lastIndex = 4
+            // //修改 lastIndex，手动控制匹配开始的
+            // //regex.lastIndex = 10;
+            // // console.log("手动修改的下一次匹配的开始位置 lastIndex：",regex.lastIndex);
+            // console.log("匹配结果 2：", str.search(regex));//第2次调用 test()方法，从lastIndex开始搜索
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//更新 lastIndex
+            // console.log("匹配结果 3：", str.search(regex));//第3次调用 test()方法，从lastIndex开始搜索
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);// 更新lastIndex
+            // console.log("匹配结果 4：", str.search(regex));//第4次调用 test()方法，从lastIndex开始搜索
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//无匹配结果，更新 lastIndex = 0
+            // console.log("匹配结果 5：", str.search(regex));//第5次调用 test()方法，从lastIndex = 0 开始搜索，即 从开头开始搜索
+            // console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//lastIndexsplit
+
+            // //多次调用 search()方法 的返回结果和 g、y标志之间的关系
+            // const regex = /\d+/g;
+            // const regex = /\d/g;
+            // const regex = /\d+/y;
+            const regex = /\d/y;
+            // // const regex = /\d+/gy;
+            // const regex = /\d/gy;
+            const str = "2025年10月30日";
+            // const str = "年月日";
+            console.log("正则表达式：", regex);
+            console.log("原始字符串：", str);
+            //修改 lastIndex，手动控制匹配开始的位置
+            // regex.lastIndex = 5;
+            // console.log("手动修改的下一次匹配的开始位置 lastIndex：",regex.lastIndex);
+            console.log("匹配结果 1：", str.split(regex));//第1次调用方法，，从 lastIndex位置开始搜索，未手动设置时，默认 lastIndex = 0
+            console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//更新 lastIndex = 4
+            //修改 lastIndex，手动控制匹配开始的
+            //regex.lastIndex = 10;
+            // console.log("手动修改的下一次匹配的开始位置 lastIndex：",regex.lastIndex);
+            console.log("匹配结果 2：", str.split(regex));//第2次调用 test()方法，从lastIndex开始搜索
+            console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//更新 lastIndex
+            console.log("匹配结果 3：", str.split(regex));//第3次调用 test()方法，从lastIndex开始搜索
+            console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);// 更新lastIndex
+            console.log("匹配结果 4：", str.split(regex));//第4次调用 test()方法，从lastIndex开始搜索
+            console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//无匹配结果，更新 lastIndex = 0
+            console.log("匹配结果 5：", str.split(regex));//第5次调用 test()方法，从lastIndex = 0 开始搜索，即 从开头开始搜索
+            console.log("下一次匹配的开始位置 lastIndex：",regex.lastIndex);//lastIndex = 4
+		        
+
+            // const supportsVFlag = () => {
+            //     try {
+            //         new RegExp('', 'v');
+            //         return true;
+            //     } catch (e) {
+            //         return false;
+            //     }
+            // };
+            // console.log("支持 v 标志：", supportsVFlag());
+            //
+
+            // 匹配表情符号 - 新语法只有 v 支持
+            // const regex = /[\p{Letter}]/v;
+            // const regex = /[[\p{Letter}]||[\p{Number}]]/v;
+            // const regexU = /\p{Emoji}/u; // 这种语法在 u 标志下可能不支持
+
+            // console.log("😊".match(regexV)); // ✅ 匹配
+            // console.log("😊".match(regexU)); // ❌ 可能不匹配或报错
+
+
+            // const str = "A";
+            // const str = "汉";
+            // const str = "😊";
+            // const str = "𠮷";
+            // const str = "Ⅰ, Ⅱ, Ⅲ,一二三，ⅰ, ⅱ, ⅲ";
+            // const result = regex.exec(str);
+            // // const codeNum = str.charCodeAt(0);
+
+
+            // console.log("字符编码(十进制)：", str.charCodeAt(0));
+            // console.log("字符编码(十六进制/ 2个码元时 默认为第一个码元值)：", str.charCodeAt(0).toString(16));//十六进制
+            // console.log("码点：", str.codePointAt(0).toString(16)); //"1f60a"，获取完整的码点
+            // console.log("第一个码元：", str.charCodeAt(0).toString(16)); // "d836" (第一个码元，高位代理)
+            // console.log("第二个码元：", str.charCodeAt(1).toString(16)); // "de0a" (第二个码元，低位代理)
+            // console.log("码元数目（字符串长度）：", str.length);
+            // console.log("长度是否为2（正则 = /^.{2}$/）：", /^.{2}$/.test(str)); // true,代理对，默认长度为2的字符串
+            // console.log("长度是否为2（正则 = /^.{2}$/u）：", /^.{2}$/u.test(str)); // false，长度不为2的字符串，因为有 u 标志，代理对被作为一个整体处理了
+        }
+
+        //定义一个方法，用于测试正则表达式相关的 split() 方法
+        function regexSplit() {
+            // const str = "you are what you read";
+            // const str = ",cat,dog,bird,fish,";
+            const str = "cat,dog,bird";
+            // const str = "color:red;border:1px solid red;";
+            // const str = "hello Coder";
+            // const splWords = " ";//字符串内容 =  一个空格
+            // const splWords = ",";//字符串内容 =  一个逗号
+            const splWords = /(,)/;// 正则表达式，含捕获组
+            // const splWords = /[,:;]/;
+            const splArray = str.split(splWords);
+            // const splArray = str.split("");//分割值为空
+            // const splArray = str.split(splWords,4);//设置最多分割4次，数组的最大长度为4
+            // const splArray = str.split(splWords,7);//设置最多分割7次，数组的最大长度为7
+            // const splArray = str.split(splWords,0);//设置最多分割0次，数组的最大长度为0，返回一个空数组
+            // const splArray = str.split();//无参数，无分割值
+
+            console.log("原始字符串：", str);
+            console.log("分割值：", splWords);
+            // console.log("split(splWords,7)返回值：", splArray);
+            // console.log("split(splWords,0)返回值：", splArray);
+            console.log("split()返回值：", splArray);
+            console.log('𠮷'.length); // 2
+            const regex = /𠮷/u;
+            console.log(regex.length); // 2
+        }
+
+        function regexSearch() {
+            const str = "I love CAT,cat is cute";
+            // const regex = /cat/;
+            // const regex = /cat/i;//i = 忽略大小写
+            const regex = /kitten/i;//i = 忽略大小写
+            const pos = str.search(regex);
+            console.log("原始字符串：", str);
+            console.log("正则表达式：", regex);
+            // console.log("第一匹配项的索引位置：", pos);
+            console.log("search()返回值：", pos);
+        }
+
+        //定义一个方法，用于测试正则表达式相关的 replaceAll() 方法
+        function regexReplaceAll() {
+            // const str = "原价: 100元，现价：50元";
+            // const newStr = str.replaceAll("元", "美元");
+            // const str = "I love cat,cat is cute";
+            // const str = "1234567!";
+            // const newStr = str.replaceAll(/cat/g, "dog");
+            // const newStr = str.replaceAll("", "dog");
+            const str = "项目开始日期：2025-09-08，项目结束日期：2025-10-09";
+            const newStr = str.replace(/(\d{4})-(\d{2})-(\d{2})/g, "$3-$2-$1");
+            console.log("原始字符串：", str);
+            console.log("新字符串：", newStr);
+
+        }
+
+        //定义一个方法，用于测试正则表达式相关的 replace() 方法
+        function regexReplace() {
+            // const str = "1,2,4,4,5,6";
+            // const str = "hello world!";
+            // const str = "项目开始日期：2025-09-08，项目结束日期：2025-10-09";
+            // const newStr = str.replace("world", "Coder");//声明一个常量 名为 newStr，值为 str 执行 replace 方法后的返回值
+            // const newStr = str.replace(/world/,"Coder");//声明一个常量 名为 newStr，值为 str 执行 replace 方法后的返回值
+            // const newStr = str.replace("","Coder");//声明一个常量 名为 newStr，值为 str 执行 replace 方法后的返回值
+            // const str = "￥200，￥100";
+            // const newStr = str.replace(/\d+/g, "$&$`");
+            // const newStr = str.replace("world", "$`");
+            // const newStr = str.replace("world", "$'");
+            // const newStr = str.replace(/(\d{4})-(\d{2})-(\d{2})/g, "$3-$2-$1");
+            // const newStr = str.replace(/(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/g, "$<day>-$<month>-$<year>");
+
+
+            // const str = "原价: 100元，现价：50元";//声明一个常量（不可重新赋值）
+            const str = "<div class=\"test\">Hello world！</div>";
+            // const newStr = str.replace(/[<>&"]/g, function (match) {
+            const newStr = str.replaceAll(/[<>&"]/g, function (match) {
+                // return parseInt(match)*2;
+                // const escapeMap = {
+		            const escapeMap = {
+                    // "<": "&lt;",
+				            "<":"&lt;",
+                    // ">": "&gt;",
+				            ">":"&gt;",
+                    // "&": "&amp;",
+				            "&":"&amp;",
+                    // '"': "&quot;"
+				            '"':"&quot;"
+                }
+                // return escapeMap[match];
+		            return escapeMap[match];
+            });
+            // console.log(newStr); // "价格: 200元"
+            console.log("原始字符串：", str);
+            console.log("新字符串：", newStr);
+
+
+            //替换函数的第二参数 = 回调函数,返回值 = 替换值，替换匹配项
+
+            // const str = "cat, bat, sat, cute";
+            // // const newStr = str.replace(/.(at)/g, function () {
+            // const newStr = str.replace(/.(?<at>at)/g, function () {
+            //     console.log(arguments);
+            //     console.log("完整匹配项：", arguments[0]);
+            //     console.log("第一个捕获组 对应的子匹配项:", arguments[1]);//无捕获组时，[1]为索引位置；
+            //     console.log("匹配项索引位置：", arguments[2]);////无捕获组时，[2]为原始字符串；
+            //     console.log("原始字符串：", arguments[3]);
+            //     return "dog";//返回值 = 替换值，有g时，会替换所有匹配项，无g时，只替换第一个匹配项
+            // });
+            // console.log("新字符串：", newStr);
+
+        }
+
+        function regexTest() {
+            //定义一个方法，用于测试正则表达式
+            const str = "时间：2025-09-09；天气：晴;时间：2025-10-10；天气：小雨";
+            const regex = /(\d{4})-(\d{2})-(\d{2})/g;//3个() ⇒   有3个捕获组,g = 全局标志
+            // const regex = /(\d{4})-(\d{2})-(\d{2})/;//3个() ⇒   有3个捕获组，无全局标志
+            // const result = regex.test(str);//声明一个常量 名为 result，值为 regex 执行 test 方法后的返回值；测试是否有匹配项
+            // const result = regex.exec(str);//声明一个常量 名为 result，值为 regex 执行 exec方法后的返回值；
+            console.log("原始字符串：", str);
+            console.log("正则表达式：", regex);
+            //test()方法用于测试字符串是否匹配正则表达式，多次调用 test()方法，查看返回匹配结果
+            // console.log("test（）匹配结果 1：", regex.test(str));
+            // console.log("上次匹配的结束位置 （regex.lastIndex：）", regex.lastIndex);//上一次匹配的结束位置
+            // console.log("test（）匹配结果 2：", regex.test(str));
+            // console.log("上一次匹配的结束位置 （regex.lastIndex：）", regex.lastIndex);//上一次匹配的结束位置
+            // console.log("test（）匹配结果 3：", regex.test(str));
+            // console.log("上一次匹配的结束位置 （regex.lastIndex：）", regex.lastIndex);//上一次匹配的结束位置
+            // console.log("test（）匹配结果 4：", regex.test(str));
+            // console.log("上一次匹配的结束位置 （regex.lastIndex：）", regex.lastIndex);//上一次匹配的结束位置
+
+
+            // exec()方法用于查找字符串中的匹配项；返回匹配项及其详细信息
+            // console.log("exec（）匹配结果 1：", regex.exec(str));//第一次调用 exec()方法，从开头开始搜索lastIndex = 0
+            // console.log("regex.lastIndex：", regex.lastIndex);//第一次匹配的结束位置 lastIndex = 13
+            // console.log("exec（）匹配结果 2：", regex.exec(str));//第二次调用 exec()方法，从上一次匹配的结束位置开始搜索
+            // console.log("regex.lastIndex：", regex.lastIndex);//第二次匹配的结束位置 lastIndex = 32
+            // console.log("exec（）匹配结果 3：", regex.exec(str));//第三次调用 exec()方法，从上一次匹配的结束位置开始搜索
+            // console.log("regex.lastIndex：", regex.lastIndex);//没有匹配结果，lastIndex = 0；重置为 0
+            // console.log("exec（）匹配结果 4：", regex.exec(str));//第四次调用 exec()方法，从上一次匹配的结束位置开始搜索lastIndex = 0，从头开始搜索
+
+            // match()方法用于查找字符串中的匹配项，并返回匹配项
+            // console.log("match（）匹配结果 1：", str.match(regex));
+            // console.log("match（）匹配结果 2：", str.match(regex));
+            // console.log("match（）匹配结果 3：", str.match(regex));
+
+
+            //matchAll()方法用于查找字符串中的匹配项，并返回匹配项
+            // console.log("matchAll（）匹配结果 = 一个迭代器：", str.matchAll(regex));
+            // console.log("matchAll（）迭代器转数组：", Array.from(str.matchAll(regex)));
+            // console.log("matchAll（）迭代器转数组：", Array.from(str.matchAll(regex)));
+            // console.log("matchAll（）迭代器转数组：", Array.from(str.matchAll(regex)));
+
+
+        }
+
+        function showMatchResult() {
+            //定义一个方法，在浏览器的控制台中显示匹配结果
+            const str = "时间：2025-09-09；天气：晴;时间：2025-10-10；天气：小雨";
+            // const regex = /(\d{4})-(\d{2})-(\d{2})/g;//3个() ⇒   有3个捕获组,g = 全局标志
+            // const regex = /(\d{4})-(\d{2})-(\d{2})/;//3个() ⇒   有3个捕获组，无全局标志
+            // const regex = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/;// 3个命名捕获组 = 捕获组带名称,不带全局标志 g
+            const regex = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/g;// 3个命名捕获组 = 捕获组带名称;g = 全局标志
+            // const matchResult = str.match(regex);
+            const matchAllResult = str.matchAll(regex);
+            // const matchResult = str.match();
+            console.log("原始字符串：", str);
+            console.log("正则表达式：", regex);//不使用参数
+            console.log("matchAll()匹配结果信息 = 一个迭代器：", matchAllResult);//在控制台输出一条日志,查看匹配结果的迭代器本身
+            // console.log("迭代器转换为数组 Array.from(matchAllResult) 1：", Array.from(matchAllResult));//正常工作
+            // console.log("迭代器转换为数组 Array.from(matchAllResult) 2 ：", Array.from(matchAllResult));//空数组，迭代器已经遍历完了
+
+
+            // const matchAllResultArray = Array.from(matchAllResult);//将迭代器转换为数组,存放在常量中，便于后续使用
+            // console.log("迭代器转换为数组 matchAllResultArray 1：", matchAllResultArray);//正常工作
+            // console.log("迭代器转换为数组 matchAllResultArray 2：", matchAllResultArray);//正常工作
+
+            // console.log("—————— 命名捕获组 匹配结果:matchAllResult.groups.name ————— ——————");
+            //
+            // console.log(`年（groups.year）: ${matchAllResult.groups.year}`);
+
+            //手动使用迭代器
+            // console.log("—————— 通过迭代器的 next()方法 手动获取每个匹配项信息 ————— ——————");
+            // const  firstMatch = matchAllResult.next();
+            // console.log("第一个匹配结果信息：", firstMatch);
+            //
+            // const secondMatch = matchAllResult.next();
+            // console.log("第二个匹配结果信息：", secondMatch);
+            //
+            // const thirdMatch = matchAllResult.next();
+            // console.log("第三个匹配结果信息：", thirdMatch);
+
+
+            //遍历迭代器
+            // console.log("——————— 遍历迭代器 for...of...，获取每个匹配项信息 ————————")
+            // for (const match of matchAllResult) {
+            //     console.log("匹配结果信息：", match);
+            // }
+
+
+        }
+
+        function showRegexResult() {
+            //定义一个方法，在浏览器的控制台中显示结果
+            // const str = "时间：2025-09-24；天气：晴";
+            const str = "2025年10月30日";
+            // const regex = /\d/;
+            // const regex = /\d/gy;
+            // const regex = /\d/y;
+            // const regex = new RegExp(/\d/,"y");
+            const regex = new RegExp(/\d/y);
+            // const regex = new RegExp("\\d","y");
+            // const regex = RegExp("\\d","y");
+            
+            // const regex = /(\d{4})-(\d{2})-(\d{2})/gd;//3个() ⇒   有3个捕获组,g = 全局标志，d = 带匹配文本的索引信息
+            // const regex = /\d{4}-\d{2}-\d{2}/gd;//3个() ⇒   有3个捕获组,g = 全局标志，d = 带匹配文本的索引信息
+            // const regex = /\d{4}-\d{2}-\d{2}/gd;//3个() ⇒   无捕获组，g = 全局标志，d = 带匹配文本的索引信息
+            // const regex = /(?<year>\d{4})-(?<month>\d{2})-(?<day>\d{2})/g;// 3个命名捕获组 = 捕获组带名称
+            console.log("原始字符串：", str);
+            console.log("正则表达式：", regex);
+            // const result = regex.exec(str);
+            // console.log("匹配结果的数组信息：", result);
+            // console.log("匹配结果的数组信息[0] = 完整匹配文本：", result[0]);
+
+            // console.log("匹配结果的数组信息[0] = 完整匹配文本的索引：", result.indices[0]);
+            // console.log("匹配文本的索引：", result.indices);
+            // console.log("匹配结果的数组信息[1] = 第一个捕获组匹配文本：", result[1]);
+            // console.log("匹配结果的数组信息[2] = 第二个捕获组匹配文本：", result[2]);
+            // console.log("匹配结果的数组信息[3] = 第三个捕获组匹配文本：", result[3]);
+            // console.log("匹配结果的数组信息 index = 匹配文本的开始索引：", result.index);
+            // console.log("匹配结果的数组信息 input = 匹配文本的原始字符串：", result.input);
+            // console.log("匹配结果的数组信息 groups = 命名捕获组：", result.groups);
+
+            // console.log("匹配结果的数组信息 groups.year = 命名捕获组的值：", result.groups.year);
+            // console.log("匹配结果的数组信息 groups.month = 命名捕获组的值：", result.groups.month);
+            // console.log("匹配结果的数组信息 groups.day = 命名捕获组的值：", result.groups.day);
+            //第一次调用 exec()方法，从开头开始搜索，即 索引 0 的位置 （lastIndex = 0 的位置）；
+            console.log("——————第一次调用 exec() 方法——————")
+            console.log("匹配结果的数组信息：", regex.exec(str));
+            console.log("匹配结束的下一个索引（lastIndex）：", regex.lastIndex); //lastIndex = 6
+
+            //第二次调用 exec()方法，从索引 6 的位置 （lastIndex = 6 的位置）开始搜索；
+            console.log("——————第二次调用 exec() 方法——————")
+            console.log("匹配结果的数组信息：", regex.exec(str));
+            console.log("匹配结束的下一个索引（lastIndex）：", regex.lastIndex);//lastIndex = 13
+
+            //第三次调用 exec()方法，从索引 13 的位置 （lastIndex = 13 的位置）开始搜索；
+            console.log("——————第三次调用 exec() 方法——————")
+            console.log("匹配结果的数组信息：", regex.exec(str));//字符串中没有匹配项，返回 null
+            console.log("匹配结束的下一个索引（lastIndex）：", regex.lastIndex);//lastIndex = 0
+
+            //第四次调用 exec()方法，从开头开始搜索，即 索引 0 的位置 （lastIndex = 0 的位置）；
+            console.log("——————第四次调用 exec() 方法——————")
+            console.log("匹配结果的数组信息：", regex.exec(str));
+            console.log("匹配结束的下一个索引（lastIndex）：", regex.lastIndex); //lastIndex = 6
+
+        }
+
+        //定义一个方法，在浏览器的控制台中显示结果
+        function showResult() {
+
+            //测试 test()方法
+            // const str = "ABC、abc、123abcccc";//声明一个常量 名为str，值为字符串，放在双引号中
+            const str = "123abc456def";//声明一个常量 名为str，值为字符串，放在双引号中
+            const regex = /(\d+)([a-z]+)/gd;//声明一个常量 名为 regex，值为正则表达式字面量  = 一个带全局标志 g 的正则，匹配数字 \d
+            // const regex = /[abc]/g;//声明一个常量 名为 regex，值为正则表达式字面量  = 一个带全局标志 g 的正则，匹配数字 \d
+            // const testResult = regex.test(str);//声明一个常量 名为 testResult，值为 regex 执行 test 方法后的返回值
+            console.log("原始字符串：", str);//在控制台输出一条日志
+            console.log("正则表达式：", regex);
+						//手动设置 regex.lastIndex
+		        // regex.lastIndex = 4;
+            //     console.log("手动设置的 regex.lastIndex 值：", regex.lastIndex);
+            //第一次调用 test()方法，从开头开始搜索，即 索引 0 的位置 （lastIndex = 0 的位置）；
+            // console.log("——————第一次调用 test() 方法——————")
+            console.log("——————第一次调用 exec() 方法——————")
+            // console.log("是否匹配：", regex.test(str));//在控制台输出一条日志；是否有匹配项；有 返回 true；无 返回 false；找到 匹配项 数字 1，test()方法返回 true
+            console.log("匹配项：",regex.exec(str));
+            console.log("匹配结束的下一个索引（lastIndex）：", regex.lastIndex);//在控制台输出一条日志；显示 匹配结束的下一个索引，lastIndex = 1
+
+            //第二次调用 test()方法，从 索引 1 的位置（lastIndex = 1 的位置）开始查找;
+            // console.log("——————第二次调用 test() 方法——————")
+            console.log("——————第二次调用 exec() 方法——————")
+            // console.log("是否匹配：", regex.test(str));//找到 匹配项 数字 2，test()方法返回 true
+            console.log("匹配项：",regex.exec(str));
+            console.log("匹配结束的下一个索引（lastIndex）：", regex.lastIndex);//匹配结束的下一个索引，lastIndex = 2
+
+            //第三次调用 test()方法，从 索引 2 的位置（lastIndex = 2 的位置）开始查找;
+            console.log("——————第三次调用 test() 方法——————")
+            console.log("是否匹配：", regex.test(str));//找到 匹配项 数字 3，test()方法返回 true
+            console.log("匹配结束的下一个索引（lastIndex）：", regex.lastIndex);//匹配结束的下一个索引
+
+            //第四次调用 test()方法，从 索引 3 的位置（lastIndex = 3 的位置）开始查找;没有找到 匹配项
+            console.log("——————第四次调用 test() 方法——————")
+            console.log("是否匹配：", regex.test(str));// 先找到字母 a ，不匹配数字，没有匹配项，test()方法返回 false
+            console.log("匹配结束的下一个索引（lastIndex）：", regex.lastIndex);//匹配结束的下一个索引，lastIndex = 0；test()方法返回 false，则 lastIndex 被重置为 0，lastIndex = 0
+
+            //第五次调用 test()方法，从索引 0 的位置（ lastIndex = 0）开始查找；因为 test()上次返回 false，lastIndex 被自动重置为 0，所以从头开始搜索
+            console.log("——————第五次调用 test() 方法——————")
+            console.log("是否匹配：", regex.test(str));//找到 匹配项 数字 1，返回 true
+            console.log("匹配结束的下一个索引（lastIndex）：", regex.lastIndex);//匹配结束的下一个索引，lastIndex = 1
+
+
+            //使用构造函数 创建正则对象
+
+            // const str = "ABC、abc、123abcccc";//声明一个常量 名为str，值为字符串，放在双引号中
+            // // const regex = /abc/i;//声明一个常量 名为regex，值为正则表达式字面量
+            // const regex = new RegExp(/abc/,"i");
+            // // const regex = new RegExp("abc","i");
+            // console.log("原始字符串：", str);//在控制台输出一条日志
+            // console.log("正则表达式：", regex);
+            // const result = regex.exec(str);//声明一个常量 名为 result，值为 regex 执行 exec 方法后的返回值
+            // console.log("匹配结果信息：", result);//在// 控制台输出一条日志
+
+
+            //年月日的匹配结果和位置索引
+            // const str = "今天是 2025-09-21，天气晴。";//声明一个常量 名为str，值为字符串，放在双引号中，"今天是 2025-09-21，天气晴"；
+            //
+            // const regex = RegExp("(\\d{4})-(\\d{2})-(\\d{2})","d");
+            // // const regex = /(\d{4})-(\d{2})-(\d{2})/d; //声明一个常量 名为regex，值为正则表达式字面量，/(\d{4})-(\d{2})-(\d{2})/;  d 标志在匹配结果中生成索引信息 indices 属性，指示每个捕获组 在原始字符串中的起始和结束位置。
+            // console.log("原始字符串：", str);//在控制台输出一条日志；日志内容：一个字符串，放在双引号中，一个常量的值，常量名放在逗号后面；
+            // console.log("正则表达式：", regex);
+            // const result = regex.exec(str);//声明一个常量 名为 result，值为 regex 执行 exec 方法后的返回值；在字符串 str 中执行搜索匹配；exec 方法返回一个数组（匹配成功）或 null（匹配失败），数组包含完整匹配结果，每个捕获组的匹配结果；
+            //
+            // if (result) {//条件判断，result 值为真时，执行代码块{}内的语句；匹配成功 result 的值为一个数组时，值为真，匹配失败 值为null，值为假;
+            //     console.log("—————————匹配结果—————————");//在控制台输出一条日志;日志内容：一个字符串，放在双引号中，字符串内容是分隔符效果，让日志结构更清晰;
+            //     console.log("完整匹配结果：", result[0]);//在控制台输出一条日志;日志内容：一个字符串，放在双引号中，一个数组的值，放在逗号后面;result[0] = 数组的第 0 个元素，存放的是“完整匹配结果”;
+            //     console.log("年：", result[1]);//一个数组的值，放在逗号后面;result[1]= 数组的第 1 个元素 ，第一个捕获组的匹配结果，里面存放的是“年”;
+            //     console.log("月：", result[2]);//一个数组的值，放在逗号后面;result[2] = 数组的第 2 个元素，第二个捕获组的匹配结果， 里面存放的是“月”;
+            //     console.log("日：", result[3]);//一个数组的值，放在逗号后面;result[3] = 数组的第 3 个元素，第三个捕获组的匹配结果，里面存放的是“日”;
+            //
+            //     console.log("—————————索引信息—————————");//在控制台输出一条日志;日志内容：一个字符串，放在双引号中，字符串内容是分隔符效果，让日志结构更清晰;
+            //     console.log("完整匹配的索引：", result.indices[0]);//result.indices 是一个数组；因为 正则表达式使用了 d 标志而产生；result.indices[0] = 两个数字 的数组；表示 完整匹配 result[0] 在字符串 str 中的起始和结束位置 [起始位置,结束位置];
+            //     console.log("年的索引：", result.indices[1]);// 表示 第一个捕获组 年 result[1] 在字符串 str 中的起始和结束位置 [起始位置,结束位置];
+            //     console.log("月的索引：", result.indices[2]);// 表示 第二个捕获组 月 result[2] 在字符串 str 中的起始和结束位置 [起始位置,结束位置];
+            //     console.log("日的索引：", result.indices[3]);// 表示 第三个捕获组 日 result[3] 在字符串 str 中的起始和结束位置 [起始位置,结束位置];
+            //
+            // }
+            // else{
+            // 		console.log("没有匹配到内容");
+            // }
+
+
+            // const str = "姓名：张三，年龄：30";
+            // const regex = /姓名：(?<name>.*)，年龄：(?<age>\d+)/d;
+            //
+            // const result = regex.exec(str);
+            //
+            // if (result) {
+            //     console.log("是否使用了 d 标志：",regex.hasIndices);//在控制台输出一条日志;日志内容：一个布尔值，表示 正则表达式是否使用了 d 标志;
+            //     console.log("完整匹配:", result[0]); // "姓名：张三，年龄：30"
+            //     console.log("姓名:", result.groups.name); // "张三"
+            //     console.log("年龄:", result.groups.age); // "30"
+            //
+            //     console.log("——————索引信息——————");
+            //     console.log("完整匹配索引:", result.indices[0]); // [0, 11]
+            //     console.log("姓名组索引:", result.indices.groups.name); // [3, 5]
+            //     console.log("年龄组索引:", result.indices.groups.age); // [9, 11]
+            // }
+            // else{
+            // 		console.log("没有匹配到内容");
+            // }
+
+        }
+
+        function showResults() {
+            // 完整的可运行示例
+            const str = "今天是 2023-10-27，天气晴";
+            const regex = /(\d{4})-(\d{2})-(\d{2})/d;
+
+            console.log("原始字符串:", str);
+            console.log("正则表达式:", regex);
+
+            const result = regex.exec(str);
+
+            if (result) {
+                console.log("=== 匹配结果 ===");
+                console.log("完整匹配结果:", result[0]); // "2023-10-27"
+                console.log("年:", result[1]); // "2023" ← 这就是你要找的输出！
+                console.log("月:", result[2]); // "10"
+                console.log("日:", result[3]); // "27"
+
+                console.log("\n=== 索引信息 ===");
+                console.log("完整匹配的索引:", result.indices[0]);
+                console.log("年的索引:", result.indices[1]);
+                console.log("月的索引:", result.indices[2]);
+                console.log("日的索引:", result.indices[3]);
+
+                console.log("\n=== 验证索引 ===");
+                console.log("年的文本验证:", str.slice(result.indices[1][0], result.indices[1][1]));
+            } else {
+                console.log("没有匹配到内容");
+            }
+        }
+
+        function testExample() {
+            const input = document.getElementById("testInput").value; //获取文本框的值
+            const regex = /^abc/; //创建一个正则表达式，匹配以"abc"开头的字符串
+            // const regex = /abc$/; //创建一个正则表达式，匹配以"abc"结尾的字符串
+            // const regex = /[^abc]/;//创建一个正则表达式，匹配"abc"之外的字符
+            // const regex = /^\d/m;// 创建一个正则表达式，匹配每一行行首是否是数字
+            // const regex = /world$/;// 创建一个正则表达式，匹配每一行行尾是否是world
+            // const regex = /$/;// 创建一个正则表达式，匹配任何字符串结尾位置
+            // const regex = /^$/;//匹配空字符串
+            // const regex = /\.pdf$/;//匹配以.pdf结尾的字符串/
+            // const regex = /团团$/;//匹配以团团结尾的字符串/
+            // const regex = /end$/m;//匹配每行以end结尾的字符串
+            // const regex = /end$/;//匹配行尾以end结尾的字符串，而不是每一行
+            // const regex = /\d$/;//匹配行尾是否是数字
+            // const regex = /\bhello/; //匹配以hello开头的字符串
+            // const regex = /world\b/; //匹配以world结尾的字符串
+            // const regex = /\bhello\b/; //匹配以hello开始和结尾的字符串，即单词hello
+            // const regex = /\b/;//匹配单词字符的边界，即单词的开始和结束位置
+            // const regex = /\B/;//匹配非单词字符的边界，即非单词的开始和结束位置
+            // const regex = /\Bcat/;//匹配单词字符+单词字符；同类字符中间的位置；
+            // const regex = /\Bcat\B/;//匹配单词字符+非单词字符+单词字符；单词字符中间的位置；
+            // const regex = /\B-\B/;
+            // const regex = /[abcd]/;
+            // const regex = /[a-d]/;
+            // const regex = /[^x-z]/;
+            // const regex = /[^ace]/;
+            // const regex = /a.b/;//匹配 ab之间含有任意一个字符的字符串
+            // const regex = /a.b/s;//匹配 ab之间含有任意一个字符的字符串，含有换行符
+            // const regex = /[a.b]/;
+            // const regex = /a\.b/;
+            // const regex = /\d/;//匹配数字
+            // const regex = /[0-9]/;//匹配数字
+            // const regex = /\D/;//匹配非数字
+            // const regex = /\w/;//匹配单词字符
+            // const regex = /\W/;//匹配非单词字符
+            // const  regex = /\s/;//匹配空白字符
+            // const  regex = /[\s]/;//匹配空白字符
+            // const  regex = /[\S]/;//匹配非空白字符，即空白字符之外的字符
+            // const  regex = /\S/;//匹配空白字符之外的字符
+            // const regex = /\t/;//匹配水平制表符
+            // const regex = /[\t,]/;//匹配水平制表符
+            // const regex = /[\r\n]/;//匹配回车符或换行符
+            // const regex = /[\r]/;//匹配回车符
+            // const regex = /[\n]/;//匹配换行符
+            // const regex = /\n/;//匹配换行符
+            // const regex = /\cj/;//匹配换行符
+            // const regex = /\v/;//匹配垂直制表符
+            // const regex = /\v/;//匹配垂直制表符
+            // const regex = /[\b]/;//匹配退格符
+            // const text = "hello\bworld";//带退格符的字符串
+            // const result = regex.test(text);//检测字符串是否匹配正则表达式，返回 true 或 false
+
+            // const regex = /\x24/;//匹配$符号
+            // const regex = /\$/;//匹配$符号
+            // const regex = /\u3002/;//匹配中文句号
+            // const regex = /\u4e2d/;//匹配中文的“中”字
+            // const regex = /[\u4e00-\u9fff]/;//匹配中文字符
+            // const regex = /\u{a}/u;//匹配 Unicode 标准中的换行符
+            // const regex = /\u{0a}/u;//匹配 Unicode 标准中的换行符
+            // const regex = /\u{00a}/u;//匹配 Unicode 标准中的换行符
+            // const regex = /\u{00000a}/u;//匹配 Unicode 标准中的换行符
+            // const regex = /\u{41}/u;//匹配 Unicode 标准中的大写字母 A
+            // const regex = /\u{0041}/u;//匹配 Unicode 标准中的大写字母 A
+            // const regex = /\u{00041}/u;//匹配 Unicode 标准中的大写字母 A
+            // const regex = /\u{1f600}/u;//匹配 Unicode 标准中的笑脸符号
+            // const regex = /\u{1D11E}/u;//匹配 Unicode 标准中的高音符号
+            // const regex = /\p{Script=Latin}/u;//匹配 Unicode 属性中的拉丁字母
+            // const regex = /\./;//匹配点.
+            // const regex = /^a|b$/;//匹配以a开头，或者以b结尾的字符串
+            // const regex = /^(a|b)$/;//匹配以a或b开头，或者以a或b结尾的字符串
+            // const regex = /ab*c/;//匹配a后面可以有0个或多个b,1个c
+            // const regex = /ab+c/;//匹配a后面可以有1个或多个b,1个c
+            // const regex = /[abc]/; //创建一个正则表达式，匹配含有 abc 中任意一个字符的字符串；更换正则表达式，可以测试其他正则表达式
+            // const regex = /ab?c/;//匹配 a 后面可以有0个或1个b,1个c
+            const result = regex.test(input); //检测字符串是否匹配正则表达式，返回 true 或 false
+            const resultDiv = document.getElementById("result1"); //获取 div 标签，用于显示测试结果
+            resultDiv.textContent = `测试结果：${result}`;//设置 div 标签的内容,此处不是单引号，是反引号；
+            // 反引号（`）主要用于创建‌ 模板字符串 ‌（Template Literals），支持多行字符串和表达式插值功能。 通过${}语法嵌入变量或表达式，生成动态内容。
+
+            resultDiv.className = result ? "success" : "error";//设置 div 标签的样式
+
+
+        }
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<!--<h1>正则表达式测试</h1>-->
+			<!--<label>输入文本：<input type="text" id="testInput" placeholder="请输入文本进行测试"> </label>-->
+			<!--&lt;!&ndash;<label for="testInput">测试多行：</label><textarea name="" id="testInput" cols="30" rows="10"></textarea>&ndash;&gt;-->
+			<!--<button onclick="testExample()">测试</button>-->
+			<!--<div id="result1" class="result"></div>-->
+			
+			<!--调用 测试正则表达式的函数-->
+			<!--<button onclick="showResult()">测试正则表达式</button>-->
+			<!--<button onclick="showRegexResult()">测试正则表达式</button>-->
+			<!--<button onclick="regexTest()">测试正则表达式</button>-->
+			<!--<button onclick="regexReplaceAll()">测试正则表达式</button>-->
+			<button onclick="regexReplace()">测试正则表达式（输出在控制台，按 F12 查看）</button>
+			<!--<button onclick="regexSearch()">测试正则表达式</button>-->
+			<!--<button onclick="regexSplit()">测试正则表达式</button>-->
+			<!--<button onclick="regexModifiers()">测试正则表达式</button>-->
+		
+		</div>
+	
+	</body>
+</html>

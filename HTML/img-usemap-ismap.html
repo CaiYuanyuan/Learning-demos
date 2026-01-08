@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+		      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>img 标签 的 usemap 属性</title>
+	</head>
+	<body>
+		<!--测试 img 标签的 usemap 属性-->
+		<p>请点击图像上的星球，把它们放大。</p>
+		
+		<img src="images/eg_planets.jpg" usemap="#planet-map"
+		     alt="Planets"/>
+		
+		<map name="planet-map">
+			<!-- 圆形：圆心坐标(cx,cy) 半径r -->
+			<area shape="circle" coords="180,139,14" href="images/venus.gif" target="_blank" alt="Venus"/>
+			<area shape="circle" coords="129,161,10" href="images/mercury.gif" target="_blank" alt="Mercury"/>
+			
+			<!-- 矩形：左上角坐标(x1,y1) 右下角坐标(x2,y2) -->
+			<area shape="rect" coords="0,0,110,260" href="images/sun.gif" target="_blank" alt="Sun"/>
+		
+		</map>
+		
+		<!--测试 ismap 属性-->
+		<a href="#">
+			<img src="images/eg_planets.jpg" alt="星球" ismap>
+		</a>
+		
+		<a href="http://www.w3school.com.cn/example/html/form_action.asp">
+			<img src="http://www.w3school.com.cn/i/eg_tulip.jpg" ismap />
+		</a>
+		
+		<p>点击这幅图像，点击坐标会以 URL 查询字符串发送到服务器。</p>
+	
+	</body>
+</html>
