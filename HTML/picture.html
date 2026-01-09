@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+		      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>picture 标签</title>
+	</head>
+	<body>
+		
+		<!--测试不同屏幕尺寸下，加载不同尺寸的图片-->
+		<picture>
+			<source media="(max-width:767px)" srcset="images/witch-320x250.png">
+			<source media="(min-width:768px)" srcset="images/witch-1024x500.png">
+			<img src="images/witch-640x300.png" alt="魔女宅急便里的巫女">
+		</picture>
+		<br/>
+		
+		<!--同时提供三种格式的图片，让浏览器选择最适合的-->
+		<picture>
+			<source srcset="images/user-avatar.avif" type="image/avif">
+			<source srcset="images/user-avatar.webp" type="image/webp">
+			<img src="images/user-avatar.jpg" alt="用户头像">
+		</picture>
+	</body>
+	
+	<!--测试 source 标签 srcset 属性，不同的视口宽度下，加载不同尺寸的图片-->
+	
+	<picture>
+		<source media="(min-width:1024px)"
+		        srcset="images/witch-1600x770.png 1600w,images/witch-640x300.png 640w"
+		        sizes="100vw">
+		<source media="min-width:768px"
+		        srcset="images/witch-1024x500.png 1024w,images/witch-640x300.png 640w"
+		        sizes="100vw">
+		<img src="images/witch-default-888x450.png"
+		     srcset="images/witch-640x300.png 640w,images/witch-320x250.png 320w"
+		     sizes="100vw"
+		     alt="动漫《魔女宅急便》中的巫女琪琪">
+	</picture>
+
+</html>
