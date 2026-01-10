@@ -6,6 +6,18 @@
 		      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
 		<title>picture 标签</title>
+		<script>
+        function dprAlert() {
+            // 获取设备像素比
+            const dpr = window.devicePixelRatio;
+            alert("本设备的设备像素比是:" + dpr);
+        }
+		</script>
+		<style>
+			.source-width-test{
+					width: 600px;
+			}
+		</style>
 	</head>
 	<body>
 		
@@ -25,19 +37,49 @@
 		</picture>
 	</body>
 	
-	<!--测试 source 标签 srcset 属性，不同的视口宽度下，加载不同尺寸的图片-->
 	
+	<button type="button" onclick="dprAlert()">显示设备像素比</button>
+	
+	<h1>测试 source 标签 的 sizes、srcset 属性</h1>
 	<picture>
+		<source srcset="images/witch-320x250.png 320w,
+					    images/witch-640x300.png 640w,
+					    images/witch-1024x500.png 1024w,
+	            images/witch-1600x770.png 1600w"
+		        sizes="(max-width: 599px) 100vw, (max-width: 1023px) 700px, (max-width: 1599px) 1000px,1200px">
+		<!-- 默认回退到<img> -->
+		<img src="images/witch-default-888x450.png" alt="动漫《魔女宅急便》中的巫女琪琪">
+	</picture>
+	
+	<h1>测试 source 标签 的 width 属性</h1>
+	<picture>
+		<source srcset="images/witch-640x300.png" media="(max-width: 800px)" width="700">
+		<img src="images/witch-default-888x450.png"
+		     alt="动漫《魔女宅急便》中的巫女琪琪"
+		     width="500"
+		     class="source-width-test">
+	</picture>
+	
+	
+	<!--测试 同时提供媒体查询 media 和 srcset、sizes属性-->
+	<!--放大、缩小浏览器窗口，图片也会相应地在 大、中、小 三个尺寸间切换-->
+	<picture>
+		<!-- 条件1：视口宽度大于等于 1024px时，加载桌面端图片 -->
 		<source media="(min-width:1024px)"
-		        srcset="images/witch-1600x770.png 1600w,images/witch-640x300.png 640w"
+		        srcset="images/witch-1600x770.png 1600w"
 		        sizes="100vw">
-		<source media="min-width:768px"
-		        srcset="images/witch-1024x500.png 1024w,images/witch-640x300.png 640w"
+		
+		<!-- 条件2：视口宽度大于等于 768px 时，加载平板端图片 -->
+		<source media="(min-width:768px)"
+		        srcset="images/witch-1024x500.png 1024w"
 		        sizes="100vw">
+		
+		<!-- 默认（手机端及不支持的浏览器）：加载手机端图片，并提供高分辨率回退 -->
 		<img src="images/witch-default-888x450.png"
 		     srcset="images/witch-640x300.png 640w,images/witch-320x250.png 320w"
 		     sizes="100vw"
 		     alt="动漫《魔女宅急便》中的巫女琪琪">
 	</picture>
+
 
 </html>
