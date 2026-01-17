@@ -1,104 +1,156 @@
 <!doctype html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport"
-	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>audio 标签</title>
-	<script>
-      // // 解决浏览器自动播放限制
-      // document.addEventListener('click', function() {
-      //     const audio = document.querySelector('audio');
-			//
-      //     // 检查是否已暂停（因自动播放被阻止）
-      //     if (audio.paused) {
-      //         audio.play()
-      //             .then(() => console.log('音频开始播放'))
-      //             .catch(e => console.log('播放错误:', e));
-      //     }
-      // });
-	</script>
-</head>
-<body>
-	<h2>1. 仅 src 属性，JS 自定义播放和暂停</h2>
-	<!--仅 src 属性，页面不显示音频的播放控件，用 js 自定义播放和暂停-->
-	<audio src="media/laughter.mp3" id="player"></audio>
-	<button onclick="document.getElementById('player').play()">播放</button>
-	<button onclick="document.getElementById('player').pause()">暂停</button>
-	
-	<h2>2. 显示默认播放控件</h2>
-	
-	<!--使用 controls 属性，让页面显示音频的默认播放控件-->
-	<audio src="media/laughter.mp3" controls></audio>
-	
-	<h2>3. 提供多种格式的音频</h2>
-	<!--提供多种格式的音频-->
-	<audio controls>
-		<source src="media/laughter.ogg" type="audio/ogg">
-		<source src="media/laughter.mp3" type="audio/mpeg">
-		<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器。</p>
-	</audio>
-	
-	<h2>4. 自动播放音频 autoplay</h2>
-	<audio controls autoplay>
-		<!--<source src="media/laughter.ogg" type="audio/ogg">-->
-		<!--<source src="media/laughter.mp3" type="audio/mpeg">-->
-		<!--<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器播放。</p>-->
-	</audio>
-	
-	
-	<h2>5. 循环播放音频 loop</h2>
-	<audio controls loop>
-		<source src="media/laughter.ogg" type="audio/ogg">
-		<source src="media/laughter.mp3" type="audio/mpeg">
-		<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器。</p>
-	</audio>
-	
-	<h2>6. 自动播放 autoplay +循环播放音频 loop</h2>
-	<audio controls loop autoplay>
-		<!--<source src="media/twitter.opus" type="audio/opus">-->
-		<!--<source src="media/twitter.mp3" type="audio/mpeg">-->
-		<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器。</p>
-	</audio>
-	
-	<h2>7. 静音 muted </h2>
-	<audio controls muted>
-		<source src="media/twitter.opus" type="audio/opus">
-		<source src="media/twitter.mp3" type="audio/mpeg">
-		<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器。</p>
-	</audio>
-	
-	<h2>8. 音频预加载策略</h2>
-	<h3>8.1 音频预加载策略 不预加载 none</h3>
-	<!--用户访问时不会下载音频，直到点击播放时才下载音频。-->
-	<audio controls preload="none">
-		<source src="media/laughter.ogg" type="audio/ogg">
-		<source src="media/laughter.mp3" type="audio/mpeg">
-		<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器。</p>
-	</audio>
-	<h3>8.2 音频预加载策略 只加载音频元数据 metadata</h3>
-	<audio controls preload="metadata">
-		<source src="media/laughter.ogg" type="audio/ogg">
-		<source src="media/laughter.mp3" type="audio/mpeg">
-		<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器。</p>
-	</audio>
-	<h3>8.3 音频预加载策略 自动预加载 auto</h3>
-	<audio controls preload="auto">
-		<source src="media/laughter.ogg" type="audio/ogg">
-		<source src="media/laughter.mp3" type="audio/mpeg">
-		<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器。</p>
-	</audio>
-	
-	<h3>8.4 音频预加载策略 不预加载 和 自动播放</h3>
-	<audio controls preload="none" autoplay>
-		<!-- 这个可能不被所有浏览器识别 ,audio/opus - 不是标准 MIME 类型（虽然有时能工作，但不是标准）-->
-		<!--<source src="media/twitter.opus" type="audio/opus">-->
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+		      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>audio 标签</title>
+		<script>
+        // // 解决浏览器自动播放限制
+        // document.addEventListener('click', function() {
+        //     const audio = document.querySelector('audio');
+        //
+        //     // 检查是否已暂停（因自动播放被阻止）
+        //     if (audio.paused) {
+        //         audio.play()
+        //             .then(() => console.log('音频开始播放'))
+        //             .catch(e => console.log('播放错误:', e));
+        //     }
+        // });
+		</script>
+	</head>
+	<body>
+		<h2>1. 仅 src 属性，JS 自定义播放和暂停</h2>
+		<!--仅 src 属性，页面不显示音频的播放控件，用 js 自定义播放和暂停-->
+		<audio src="media/laughter.mp3" id="player"></audio>
+		<button onclick="document.getElementById('player').play()">播放</button>
+		<button onclick="document.getElementById('player').pause()">暂停</button>
 		
-		<!-- 正确的 Opus 格式声明:这个告诉浏览器,这是 OGG 容器，里面是 Opus 编解码器 -->
-		<source src="media/twitter.opus" type="audio/ogg;codecs=opus">
-		<source src="media/twitter.mp3" type="audio/mpeg">
-		<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器。</p>
-	</audio>
-</body>
+		<h2>2. 显示默认播放控件</h2>
+		
+		<!--使用 controls 属性，让页面显示音频的默认播放控件-->
+		<audio src="media/laughter.mp3" controls></audio>
+		
+		<h2>3. 提供多种格式的音频</h2>
+		<!--提供多种格式的音频-->
+		<audio controls>
+			<source src="media/laughter.ogg" type="audio/ogg">
+			<source src="media/laughter.mp3" type="audio/mpeg">
+			<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器。</p>
+		</audio>
+		
+		<h2>4. 自动播放音频 autoplay</h2>
+		<!--<audio controls autoplay>-->
+		<!--自动播放的同时，静音-->
+		<audio controls autoplay muted>
+			<source src="media/laughter.ogg" type="audio/ogg">
+			<source src="media/laughter.mp3" type="audio/mpeg">
+			<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器播放。</p>
+		</audio>
+		
+		<h2>5. 循环播放音频 loop</h2>
+		<audio controls loop>
+			<source src="media/laughter.ogg" type="audio/ogg">
+			<source src="media/laughter.mp3" type="audio/mpeg">
+			<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器。</p>
+		</audio>
+		
+		<h2>6. 自动播放 autoplay +循环播放音频 loop</h2>
+		<audio controls loop autoplay>
+			<!--<source src="media/twitter.opus" type="audio/ogg;codecs=opus">-->
+			<!--<source src="media/twitter.mp3" type="audio/mpeg">-->
+			<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器。</p>
+		</audio>
+		
+		<h2>7. 静音 muted </h2>
+		<audio controls muted>
+			<source src="media/twitter.opus" type="audio/ogg;codecs=opus">
+			<source src="media/twitter.mp3" type="audio/mpeg">
+			<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器。</p>
+		</audio>
+		
+		<h2>8. 音频预加载策略</h2>
+		<h3>8.1 音频预加载策略 不预加载 none</h3>
+		<!--用户访问时不会下载音频，直到点击播放时才下载音频。-->
+		<audio controls preload="none">
+			<source src="media/laughter.ogg" type="audio/ogg">
+			<source src="media/laughter.mp3" type="audio/mpeg">
+			<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器。</p>
+		</audio>
+		<h3>8.2 音频预加载策略 只加载音频元数据 metadata</h3>
+		<audio controls preload="metadata">
+			<source src="media/laughter.ogg" type="audio/ogg">
+			<source src="media/laughter.mp3" type="audio/mpeg">
+			<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器。</p>
+		</audio>
+		<h3>8.3 音频预加载策略 自动预加载 auto</h3>
+		<audio controls preload="auto">
+			<source src="media/laughter.ogg" type="audio/ogg">
+			<source src="media/laughter.mp3" type="audio/mpeg">
+			<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器。</p>
+		</audio>
+		
+		<h3>8.4 音频预加载策略 不预加载 和 自动播放</h3>
+		<audio controls preload="none" autoplay>
+			<!-- 这个可能不被所有浏览器识别 ,audio/opus - 不是标准 MIME 类型（虽然有时能工作，但不是标准）-->
+			<!--<source src="media/twitter.opus" type="audio/opus">-->
+			
+			<!-- 正确的 Opus 格式声明:这个告诉浏览器,这是 OGG 容器，里面是 Opus 编解码器 -->
+			<!--<source src="media/twitter.opus" type="audio/ogg;codecs=opus">-->
+			<!--<source src="media/twitter.mp3" type="audio/mpeg">-->
+			<p>您的浏览器不支持 HTML5 音频，请使用现代浏览器。</p>
+		</audio>
+		
+		<h2>9. 音频的文本轨道</h2>
+		<h3>9.1 默认音频的文本轨道</h3>
+		<audio controls>
+			<source src="media/laughter.ogg" type="audio/ogg">
+			<source src="media/laughter.mp3" type="audio/mpeg">
+			<track src="media/laughter_en.vtt" kind="subtitles" srclang="en" label="English">
+		</audio>
+		<h3>9.2 自定义显示音频的字幕</h3>
+		<audio id="myAudio" controls>
+			<source src="media/laughter.mp3" type="audio/mpeg">
+			<track kind="subtitles" src="media/laughter_en.vtt" srclang="en" label="English">
+			<track kind="subtitles" src="media/laughter_zh.vtt" srclang="zh-CN" label="中文字幕">
+		</audio>
+		<!--显示字幕的容器-->
+		<div id="customSubtitleDisplay"
+		     style="margin-top: 10px; padding: 10px; border: 1px solid #ccc; min-height: 2em;background-color: lightgray;">
+			<!-- 字幕将在这里动态显示 -->
+		</div>
+		<script>
+        // 通过HTML元素的ID myAudio，在 JavaScript 中找到页面中对应的 <audio> 播放器对象。
+        const audio = document.getElementById("myAudio");
+        // 通过ID，找到页面上我们准备好的、用于显示自定义字幕的那个空<div>容器。
+        const displayDiv = document.getElementById("customSubtitleDisplay");
+
+        // audio.textTracks： <audio> 元素的一个属性，包含所有 <track> 轨道的数组。
+        // 添加了两个 <track> 标签时
+        // textTracks[0] = 列表里的第一个 track 标签对象（索引为 0）。如果有多个轨道，可以通过索引或循环访问。
+        // textTracks[1]：第二个 track 标签对象（索引为 1）
+        // 隐藏原生轨道（如果存在） = 设置文本轨道模式为‘hidden’
+        audio.textTracks[0].mode = "hidden";
+        // 监听字幕 cue 的变化事件
+        audio.textTracks[0].oncuechange = function () {
+            // 清空字幕显示区域里的内容
+            displayDiv.innerHTML = "";
+            // 检查 当前是否有活动的字幕片段
+            if (this.activeCues) {
+                // 遍历所有当前活动的 字幕片段 cue
+                for (let cue of this.activeCues) {
+                    // 创建新的段落元素并填充字幕文本
+                    const cueText = document.createElement("p");
+                    cueText.textContent = cue.text;
+
+                    // 将新创建的字幕元素添加到显示区域
+                    displayDiv.appendChild(cueText);
+                }
+            }
+        };
+		
+		</script>
+	
+	</body>
 </html>

@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+		      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>video 标签</title>
+		<style>
+        /*设置视频的高度、宽高比、宽度根据宽高比自动计算*/
+        .video-aspect-ratio {
+            height: 300px;
+            aspect-ratio: 4 / 3;
+            width: auto;
+        }
+		</style>
+	</head>
+	<body>
+		<h1>video 标签</h1>
+		
+		<h2>1. video 标签 src 属性</h2>
+		<h3>1.1 video 标签 src 属性（放视频），只有一张图片，无播放控件</h3>
+		<video src="media/friday.mp4"></video>
+		<h3>1.2 video 标签 src 属性（放音频），一片空白，无播放控件</h3>
+		<video src="media/laughter.mp3"></video>
+		
+		<h2>2. video 标签 controls 属性，显示视频的播放控件</h2>
+		<h3>2.1 video 标签 controls 属性，显示视频的播放控件</h3>
+		<video src="media/friday.mp4" controls></video>
+		<h3>2.2 video 标签 controls 属性，显示音频的播放控件</h3>
+		<video src="media/laughter.mp3" controls></video>
+		
+		<h2> 3. video 标签 搭配 source 标签，提供多种格式的视频文件</h2>
+		<video controls>
+			<!-- 1.优先提供高质量的 WebM 格式 -->
+			<source src="media/friday.webm" type="video/webm">
+			<!-- 2.提供兼容性最强的 MP4 作为后备 -->
+			<source src="media/friday.mp4" type="video/mp4">
+			<!-- 最终后备方案：提示文本 -->
+			<p>您的浏览器不支持 HTML5 视频。请尝试使用 Chrome、Firefox 或 Edge 等现代浏览器。</p>
+			<a href="media/friday.mp4" download>点击此处，自动下载视频</a>
+		</video>
+		
+		<h2>4. video 标签不使用 controls 属性，自定义播放和暂停</h2>
+		<video id="customVideo">
+			<source src="media/friday.webm" type="video/webm">
+			<source src="media/friday.mp4" type="video/mp4">
+			<p>您的浏览器不支持 HTML5 视频。请尝试使用 Chrome、Firefox 或 Edge 等现代浏览器。</p>
+			<a href="media/friday.mp4" download>点击此处，自动下载视频</a>
+		</video>
+		<div class="custom-controls">
+			<!--播放、暂停按钮-->
+			<button onclick="playPause()">播放/暂停</button>
+			<!--调节音量-->
+			<label for="volume">调节音量：</label>
+			<input type="range" id="volume" min="0" max="1" step="0.1" onchange="setVolume(this.value)">
+		</div>
+		
+		<script>
+        // 获取 video 对象
+        const video = document.getElementById("customVideo");
+
+        // 设置视频的播放、暂停
+        function playPause() {
+            // 视频暂停则播放，视频播放则暂停
+            video.paused ? video.play() : video.pause();
+
+        }
+
+        // 设置视频的音量
+        function setVolume(val) {
+            // 视频的音量 = 获取的值
+            video.volume = val;
+        }
+		</script>
+		
+		<h2>5. video 标签: 设置视频的封面 poster </h2>
+		<video controls poster="images/friday-poster.jpg">
+			<source src="media/friday.webm" type="video/webm">
+			<source src="media/friday.mp4" type="video/mp4">
+			<p>您的浏览器不支持 HTML5 视频。请尝试使用 Chrome、Firefox 或 Edge 等现代浏览器。</p>
+			<a href="media/friday.mp4" download>点击此处，自动下载视频</a>
+		</video>
+		
+		<h2>6. video 标签: 设置视频的宽度 width、高度 height </h2>
+		<h3>6.1 video 标签: 只设置视频的宽度 width </h3>
+		<!--视频原本宽高：640*480，设置宽度为 400px，高度按视频的固有比例缩放-->
+		<video controls width="400">
+			<source src="media/friday.webm" type="video/webm">
+			<source src="media/friday.mp4" type="video/mp4">
+			<p>您的浏览器不支持 HTML5 视频。请尝试使用 Chrome、Firefox 或 Edge 等现代浏览器。</p>
+			<a href="media/friday.mp4" download>点击此处，自动下载视频</a>
+		</video>
+		
+		<h3>6.2 video 标签: 通过 CSS 设置视频的高度和宽高比 </h3>
+		<!--视频原本宽高：640*480，设置宽度为 400px，高度按视频的指定比例缩放-->
+		<video controls class="video-aspect-ratio">
+			<source src="media/friday.webm" type="video/webm">
+			<source src="media/friday.mp4" type="video/mp4">
+			<p>您的浏览器不支持 HTML5 视频。请尝试使用 Chrome、Firefox 或 Edge 等现代浏览器。</p>
+			<a href="media/friday.mp4" download>点击此处，自动下载视频</a>
+		</video>
+		
+		<h2>7. 设置视频的预加载方式 preload</h2>
+		<h3>7.1 设置视频的预加载方式为不预加载： preload="none"</h3>
+		<video controls preload="none">
+			<source src="media/friday.webm" type="video/webm">
+			<source src="media/friday.mp4" type="video/mp4">
+			<p>您的浏览器不支持 HTML5 视频。请尝试使用 Chrome、Firefox 或 Edge 等现代浏览器。</p>
+			<a href="media/friday.mp4" download>点击此处，自动下载视频</a>
+		</video>
+		
+		<h3>7.2 设置视频的预加载方式为 预加载元数据： preload="metadata"</h3>
+		<video controls preload="metadata">
+			<source src="media/friday.webm" type="video/webm">
+			<source src="media/friday.mp4" type="video/mp4">
+			<p>您的浏览器不支持 HTML5 视频。请尝试使用 Chrome、Firefox 或 Edge 等现代浏览器。</p>
+			<a href="media/friday.mp4" download>点击此处，自动下载视频</a>
+		</video>
+		
+		<h3>7.3 设置视频的预加载方式为 浏览器决定（全量加载）： preload="auto"</h3>
+		<video controls preload="auto">
+			<source src="media/friday.webm" type="video/webm">
+			<source src="media/friday.mp4" type="video/mp4">
+			<p>您的浏览器不支持 HTML5 视频。请尝试使用 Chrome、Firefox 或 Edge 等现代浏览器。</p>
+			<a href="media/friday.mp4" download>点击此处，自动下载视频</a>
+		</video>
+		
+		<h2>8. 视频的自动播放 autoplay</h2>
+		<video controls autoplay>
+			<source src="media/friday.webm" type="video/webm">
+			<source src="media/friday.mp4" type="video/mp4">
+			<p>您的浏览器不支持 HTML5 视频。请尝试使用 Chrome、Firefox 或 Edge 等现代浏览器。</p>
+			<a href="media/friday.mp4" download>点击此处，自动下载视频</a>
+		</video>
+		<h2>9. 视频的自动播放 autoplay、静音 muted</h2>
+		<video controls autoplay muted>
+			<source src="media/friday.webm" type="video/webm">
+			<source src="media/friday.mp4" type="video/mp4">
+			<p>您的浏览器不支持 HTML5 视频。请尝试使用 Chrome、Firefox 或 Edge 等现代浏览器。</p>
+			<a href="media/friday.mp4" download>点击此处，自动下载视频</a>
+		</video>
+		
+		<h2>10. 视频的循环播放 loop</h2>
+		<video controls loop>
+			<source src="media/friday.webm" type="video/webm">
+			<source src="media/friday.mp4" type="video/mp4">
+			<p>您的浏览器不支持 HTML5 视频。请尝试使用 Chrome、Firefox 或 Edge 等现代浏览器。</p>
+			<a href="media/friday.mp4" download>点击此处，自动下载视频</a>
+		</video>
+		
+		<h2>11. 视频的内联播放 playsinline</h2>
+		<video controls playsinline>
+			<source src="media/friday.webm" type="video/webm">
+			<source src="media/friday.mp4" type="video/mp4">
+			<p>您的浏览器不支持 HTML5 视频。请尝试使用 Chrome、Firefox 或 Edge 等现代浏览器。</p>
+			<a href="media/friday.mp4" download>点击此处，自动下载视频</a>
+		</video>
+		
+		<h2>12. 禁用视频的画中画功能 disablepictureinpicture</h2>
+		<video controls disablepictureinpicture>
+			<source src="media/friday.webm" type="video/webm">
+			<source src="media/friday.mp4" type="video/mp4">
+			<p>您的浏览器不支持 HTML5 视频。请尝试使用 Chrome、Firefox 或 Edge 等现代浏览器。</p>
+			<a href="media/friday.mp4" download>点击此处，自动下载视频</a>
+		</video>
+		
+		<h2>13. 隐藏原生的控件</h2>
+		<h3>13.1 隐藏下载按钮</h3>
+		<video controls controlslist="nodownload">
+			<source src="media/friday.mp4" type="video/mp4">
+		</video>
+		
+		<h3>13.2 隐藏/禁用全屏按钮</h3>
+		<video controls controlslist="nofullscreen">
+			<source src="media/friday.mp4" type="video/mp4">
+		</video>
+		
+		<h3>13.3 禁用远程播放</h3>
+		<video controls controlslist="noremoteplayback">
+			<source src="media/friday.mp4" type="video/mp4">
+		</video>
+		
+		<h2> 14. video 标签: 搭配 track 标签</h2>
+		<video controls>
+			<source src="media/friday.mp4" type="video/mp4">
+			<track src="media/friday_en.vtt" kind="subtitles" srclang="en" label="English">
+			<!--设置默认字幕 = 中文字幕-->
+			<track src="media/friday_zh.vtt" kind="subtitles" srclang="zh-CN" label="中文字幕" default>
+		</video>
+		
+		<h3> 14.1 video 标签（放视频）: 搭配 track 标签的 kind 类型</h3>
+		<video controls id="myVideo">
+			<source src="media/friday.mp4" type="video/mp4">
+			<track src="media/friday_en.vtt" kind="subtitles" srclang="en" label="English">
+			<!--设置默认字幕 = 中文字幕，会显示名称，让用户选择-->
+			<track src="media/friday_zh.vtt" kind="subtitles" srclang="zh-CN" label="中文字幕" default>
+			<!--设置说明性字幕，会显示名称，让用户选择-->
+			<track src="media/friday_captions_zh.vtt" kind="captions" srclang="zh-CN" label="中文（含音效）">
+			
+			<!--为视力障碍的用户设置视频描述的文本，不会显示，屏幕阅读器会读出来-->
+			<track src="media/friday_descriptions_zh.vtt" kind="descriptions" srclang="zh-CN" label="视频描述">
+			
+			<!-- 视频的章节导航，视频进度条，谷歌、Firefox 默认的原生播放器不显示进度条	-->
+			<track src="media/friday_chapters_zh.vtt" kind="chapters" srclang="zh-CN" label="视频章节导航">
+			
+			<!--元数据，不会显示-->
+			<track src="media/friday_metadata.vtt" kind="metadata" srclang="en" label="元数据">
+			
+			<!--不支持 video 标签的浏览器，会显示的回退文本-->
+			<p>您的浏览器不支持 HTML5 video 标签，请使用现代浏览器。</p>
+		</video>
+		
+		<h3>14.2 video 标签（放音频）: 搭配 track 标签的 kind 类型</h3>
+		<video controls>
+			<source src="media/laughter.mp3" type="audio/mpeg">
+			<track src="media/laughter_en.vtt" kind="subtitles" srclang="en" lang="English">
+		</video>
+	
+	</body>
+</html>
