@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+		      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>ul 标签</title>
+		<style>
+        /*重置 ul 的默认样式，删除列表的默认项目符号、内外边距*/
+        .main-nav ul {
+            list-style: none; /* 删除默认的项目符号 */
+            margin: 0;
+            padding: 0;
+
+            background-color: #155038; /* 设置导航栏背景色 */
+        }
+
+        /*设置一级菜单 （第一层 ul）的样式，设置为水平布局*/
+        .main-nav > ul {
+            display: flex; /* 弹性盒模型，实现水平排列 */
+            justify-content: flex-start; /* 菜单项左对齐*/
+
+        }
+
+        /*设置一级菜单 （第一层 ul）的菜单项 li 的样式*/
+        .main-nav > ul > li {
+            position: relative; /* 为下拉菜单（第二层 ul）提供基准*/
+
+        }
+
+        /*设置一级菜单的链接 a 的样式*/
+        .main-nav > ul > li > a {
+            display: block; /* 链接变成块元素 db，充满整个 li 的区域，增大点击面积*/
+            color: white; /* 链接文字的颜色 c */
+            text-decoration: none; /* 删除链接默认的下划线 tdn*/
+            padding: 18px 25px; /* 链接的上下内边距、左右内边距*/
+            font-family: 'Microsoft YaHei', sans-serif; /* 设置链接的字体*/
+            font-size: 16px; /* 设置字体大小*/
+            transition: all 0.3s ease; /* 为所有属性添加过渡动画 */
+        }
+
+        /*设置一级菜单的链接 a 的悬停和激活时的样式*/
+        .main-nav > ul > li > a:hover,
+        .main-nav > ul > li > a:active {
+            background-color: #0cc988; /* 悬停和激活时的背景颜色*/
+            color: #e4f1eb;
+        }
+
+        /*下拉菜单容器的样式，默认隐藏*/
+
+        .main-nav .dropdown-menu {
+            position: absolute; /* 绝对定位，脱离文档流*/
+            top: 100%;
+            left: 0;
+            min-width: 100px; /* 最小宽度*/
+            background-color: #0f723c;
+            border: 2px dotted #91b7a2; /* 下拉菜单的边框*/
+            transform: translateY(3px); /* 初始位置下移 3px*/
+            opacity: 0; /* 不透明度为0 = 完全透明*/
+            visibility: hidden; /* 不可见，隐藏但占据空间*/
+            z-index: 999; /* 确保下拉菜单在最上层*/
+
+        }
+
+        /*有下拉菜单的列表项悬停时 显示下拉菜单*/
+        .main-nav li.has-dropdown:hover .dropdown-menu {
+            opacity: 1; /* 完全不透明*/
+            visibility: visible;
+        }
+		
+		</style>
+	</head>
+	<body>
+		<h1>无序列表 ul</h1>
+		<h2>1. 默认样式的无序列表 ul</h2>
+		<!--ul>li{列表项目$}*4-->
+		<ul>
+			<li>苹果</li>
+			<li>香蕉</li>
+			<li>梨子</li>
+			<li>葡萄</li>
+		</ul>
+		
+		<h2>2. 用于网站导航的无序列表</h2>
+		<ul style="list-style-type: none">
+			<li><a href="https://developer.mozilla.org/zh-CN/">首页</a></li>
+			<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML">HTML</a></li>
+			<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS">CSS</a></li>
+			<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript">JavaScript</a></li>
+		</ul>
+		
+		<h2>3. 展示功能、特点的无序列表</h2>
+		<p>本产品主要特点：</p>
+		<ul>
+			<li>高性能处理器</li>
+			<li>超长续航时间</li>
+			<li>高清视网膜屏幕</li>
+			<li>轻薄便携设计</li>
+		</ul>
+		
+		<h2>4. 多级的无序列表：li 中嵌套 ul</h2>
+		<ul>
+			<li><a href="https://developer.mozilla.org/zh-CN/">首页</a>
+			</li>
+			<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML">HTML</a>
+				<ul>
+					<li>元素</li>
+					<li>属性</li>
+					<li>全局属性</li>
+					<li>更多...</li>
+				</ul>
+			</li>
+			<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS">CSS</a>
+				<ul>
+					<li>属性</li>
+					<li>选择器</li>
+					<li>@规则</li>
+					<li>更多...</li>
+				</ul>
+			</li>
+			<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript">JavaScript</a>
+				<ul>
+					<li>表达式和运算符</li>
+					<li>函数</li>
+					<li>语句和声明</li>
+					<li>更多...</li>
+				</ul>
+			</li>
+		</ul>
+		
+		<h2>5. 多级的无序列表：li 中嵌套 ul，使用 CSS 美化样式</h2>
+		<!--用 nav 标签包裹，表面是页面的主导航区域，添加类名 加以区分-->
+		<nav class="main-nav">
+			<ul>
+				<li>
+					<a href="https://developer.mozilla.org/zh-CN/">首页</a>
+				</li>
+				<!--li 中有下拉菜单，添加类名加以区分-->
+				<li class="has-dropdown">
+					<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML">HTML</a>
+					<!--嵌套的 ul 是下拉菜单，添加类名，方便 CSS 设置样式-->
+					<ul class="dropdown-menu">
+						<li>元素</li>
+						<li>属性</li>
+						<li>全局属性</li>
+						<li>更多...</li>
+					</ul>
+				</li>
+				<li class="has-dropdown">
+					<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS">CSS</a>
+					<ul class="dropdown-menu">
+						<li>属性</li>
+						<li>选择器</li>
+						<li>@规则</li>
+						<li>更多...</li>
+					</ul>
+				</li>
+				<li class="has-dropdown">
+					<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript">JavaScript</a>
+					<ul class="dropdown-menu">
+						<li>表达式和运算符</li>
+						<li>函数</li>
+						<li>语句和声明</li>
+						<li>更多...</li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		
+		<p>nav 兄弟</p>
+	
+	</body>
+</html>
