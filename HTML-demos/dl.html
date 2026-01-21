@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+		      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>dl 标签</title>
+	</head>
+	<body>
+		<h1>dl 标签</h1>
+		<h2>1. 使用 dl 创建术语表</h2>
+		<!--dl>(dt+dd)*3-->
+		<dl>
+			<dt><dfn>HTML</dfn></dt>
+			<dd>超文本标记语言（Hypertext Markup Language），定义了网页内容的含义和结构。</dd>
+			<dt><dfn>CSS</dfn></dt>
+			<dd>层叠样式表（Cascading Style Sheets，缩写为 CSS）是一种样式表语言，用来描述 HTML 或 XML（包括如 SVG、MathML 或 XHTML
+			    之类的 XML 分支语言）文档的呈现方式。
+			</dd>
+			<dt><dfn>JavaScript</dfn></dt>
+			<dd>JavaScript（JS）是一种具有函数优先特性的轻量级、解释型或者说即时编译型的编程语言。</dd>
+		</dl>
+		
+		<h2>2. 使用 dl 展示元数据（产品参数）</h2>
+		<!--dl>(dt+dd)*3-->
+		<!--dl 元素中的每个组（dt + dd）都可以被包裹在 div 元素中。这不会改变 dl 元素的语义。-->
+		<dl>
+			<div style="color:green">
+				<dt>型号</dt>
+				<dd>S-2026 Pro</dd>
+			</div>
+			<dt>颜色</dt>
+			<dd>深空灰</dd>
+			<dt>电池续航</dt>
+			<dd>最长 20 小时</dd>
+		</dl>
+		
+		<h2>3. 使用 dl 创建问答列表（FAQ）</h2>
+		<dl>
+			<dt>是否退货包运费？</dt>
+			<dd>支持。</dd>
+			<dt>是否支持七天无理由退款？</dt>
+			<dd>支持。</dd>
+			<dt>是否有售后服务？</dt>
+			<dd>有售后服务。收到货后联系客服，提供一对一教学服务。</dd>
+		</dl>
+		
+		<h2>4. 使用 dl 展示商城最下方的相关链接</h2>
+		
+		<div class="footer-links">
+			<dl class="col-links">
+				<dt>帮助中心</dt>
+				<dd><a rel="nofollow" href="#" target="_blank">账户管理</a></dd>
+				<dd><a rel="nofollow" href="#" target="_blank">购物指南</a></dd>
+				<dd><a rel="nofollow" href="#" target="_blank">订单操作</a></dd>
+			</dl>
+			
+			<dl class="col-links">
+				<dt>服务支持</dt>
+				<dd><a rel="nofollow" href="#" target="_blank">售后政策</a></dd>
+				<dd><a rel="nofollow" href="#" target="_blank">自助服务</a></dd>
+				<dd><a rel="nofollow" href="#" target="_blank">相关下载</a></dd>
+			</dl>
+		</div>
+		
+		<h2>5. 定义列表的嵌套</h2>
+		<dl>
+			<dt><dfn>前端开发</dfn></dt>
+			<dd>
+				<dl>
+					<dt><dfn>HTML</dfn></dt>
+					<dd>网页结构标记语言</dd>
+					
+					<dt><dfn>CSS</dfn></dt>
+					<dd>样式设计语言</dd>
+				</dl>
+			</dd>
+		</dl>
+	
+	</body>
+</html>
