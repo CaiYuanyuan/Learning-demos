@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+		      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>ol标签</title>
+	</head>
+	<body>
+		<h1>ol 标签</h1>
+		<h2>1. ol 基础用法</h2>
+		<h3>赛跑比赛前三名</h3>
+		<ol>
+			<li>团团</li>
+			<li>琪琪</li>
+			<li>贝贝</li>
+		</ol>
+		
+		<h3>完成任务的基础步骤</h3>
+		<ol>
+			<li>下载文件</li>
+			<li>找到错误信息</li>
+			<li>修改错误信息</li>
+			<li>提交修改后的文件</li>
+			<li>等待审核</li>
+		</ol>
+		
+		<h2>2. 嵌套的多层列表 ol</h2>
+		<!--ol>(li>p+ol>li*2)*2-->
+		<ol style="list-style:none">
+			<li>
+				<p>第一章：HTML 基础</p>
+				<ol style="list-style:none">
+					<li>1.1 什么是 HTML</li>
+					<li>1.2 基本标签</li>
+				</ol>
+			</li>
+			<li>
+				<p>第二章：CSS入门</p>
+				<ol style="list-style:none">
+					<li>2.1 选择器</li>
+					<li>2.2 盒模型</li>
+				</ol>
+			</li>
+		</ol>
+		
+		<h2>3. ol 的 reversed 属性：编号倒序，从高到低</h2>
+		<ol reversed>
+			<li>下载文件</li>
+			<li>找到错误信息</li>
+			<li>修改错误信息</li>
+			<li>提交修改后的文件</li>
+			<li>等待审核</li>
+		</ol>
+		
+		<h2>4. ol 的 start 属性：编号的开始数字 6</h2>
+		
+		<ol start="6">
+			<li>下载文件</li>
+			<li>找到错误信息</li>
+			<li>修改错误信息</li>
+			<li>提交修改后的文件</li>
+			<li>等待审核</li>
+		</ol>
+		
+		<h2>5. ol 的 start 属性：编号的开始数字 6 和 倒序，从起始值开始往下减</h2>
+		
+		<ol start="6" reversed>
+			<li>下载文件</li>
+			<li>找到错误信息</li>
+			<li>修改错误信息</li>
+			<li>提交修改后的文件</li>
+			<li>等待审核</li>
+		</ol>
+		
+		<h2>6. ol 的 type 属性</h2>
+		<!--<ol type="1">-->
+		<ol type="a">
+		<!--<ol type="A">-->
+		<!--<ol type="i">-->
+		<!--<ol type="I">-->
+			<li>下载文件</li>
+			<li>找到错误信息</li>
+			<li>修改错误信息</li>
+			<li>提交修改后的文件</li>
+			<li>等待审核</li>
+		</ol>
+		
+		<h2>7. ol 的 li 中指定编号的序号：li 的 value 属性</h2>
+		<ol>
+			<li>下载文件</li>
+			<li>找到错误信息</li>
+			<li>修改错误信息</li>
+			<li value="7">提交修改后的文件</li>
+			<li>等待审核</li>
+		</ol>
+
+	
+	</body>
+</html>

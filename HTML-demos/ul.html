@@ -169,6 +169,50 @@
 		</nav>
 		
 		<p>nav 兄弟</p>
+		<h2>6. 工具栏菜单：使用 menu、ul 创建</h2>
+		<!--使用 menu 标签创建工具栏菜单（不推荐）-->
+		<menu>
+			<li>
+				<button onclick="copy()">复制</button>
+			</li>
+			<li>
+				<button onclick="cut()">剪切</button>
+			</li>
+			<li>
+				<button onclick="paste()">粘贴</button>
+			</li>
+		</menu>
+		
+		<!--使用 ul 标签创建工具栏菜单（推荐）-->
+		<ul>
+			<li><button onclick="copy()">复制</button></li>
+			<li><button onclick="cut()">剪切</button></li>
+			<li><button onclick="paste()">粘贴</button></li>
+		</ul>
+		
+		<nav aria-label="主导航">
+			<ul>
+				<li><a href="/">首页</a></li>
+				<li><a href="/news">新闻</a></li>
+				<li><a href="/about">关于我们</a></li>
+			</ul>
+		</nav>
+		
+		
+		<div class="dropdown">
+			<!-- 菜单触发按钮 -->
+			<button aria-expanded="false" aria-haspopup="true">操作菜单</button>
+			<!-- 隐藏的菜单项列表 -->
+			<ul class="dropdown-menu" role="menu">
+				<li role="menuitem"><button>新建文件</button></li>
+				<li role="menuitem"><button>保存</button></li>
+				<li role="menuitem"><button>退出</button></li>
+			</ul>
+		</div>
+		<script>
+        // 需要用 JavaScript 来控制显示/隐藏，并动态更新 aria-expanded 状态
+		</script>
+		
 	
 	</body>
 </html>
