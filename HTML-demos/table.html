@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport"
+		      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<title>table 标签</title>
+		<style>
+        /*给类名为 styled-table 的表格和内部单元格加边框*/
+        table.styled-table, .styled-table caption, .styled-table th, .styled-table td {
+            border: 1px solid black; /* 表格的边框：1px 粗，实线，黑色*/
+            border-collapse: collapse; /* 表格的边框合并*/
+        }
+
+        /*设置表格标题为加粗字体*/
+        .styled-table caption {
+            font-weight: bold;
+            color: brown;
+
+        }
+
+        /*测试替代废弃属性的 CSS 属性*/
+        .css-replace-old-attributes {
+            /*1. 表格的水平对齐方式*/
+            /*表格显示在文档的右侧*/
+            /*margin-left: auto;*/
+
+            /*表格显示在文档的左侧*/
+            /*margin-right: auto;*/
+
+            /*表格显示在文档的中间*/
+            /*margin: 0 auto;*/
+
+            /*测试表格的背景颜色*/
+            /*background-color: #ddd; !* 背景颜色设为灰色*!*/
+
+            /*设置单元格的外边距（单元格边框之间的距离）*/
+            /*border-spacing: 10px;*/
+
+
+            /*表格的左边框、右边框、上边框、下边框*/
+            /*border-left: 1px solid black;*/
+
+            /*表格的右边框*/
+            /*border-right: 1px solid black;*/
+
+            /*表格的上边框*/
+            /*border-top: 1px solid black;*/
+
+            /*表格的下边框*/
+            /*border-bottom: 1px solid black;*/
+
+            /*表格四周的边框*/
+            /*border: 1px solid black;*/
+
+            /*设置表格的宽度*/
+            width: 800px;
+            /*text-align: left; !* 单元格文本的水平对齐方式，左对齐 *!*/
+        }
+
+        .css-replace-old-attributes td, .css-replace-old-attributes th {
+
+            padding: 10px; /*单元格的内边距*/
+            /*padding: 30px; !*加大单元格的内边距，测试垂直方向对齐*!*/
+            /*vertical-align: bottom; !* 垂直方向 底部对齐*!*/
+        }
+
+        .css-replace-old-attributes tr {
+
+            /*vertical-align: top; !* 垂直方向 底部对齐*!*/
+        }
+
+
+        /*给行和行组设置边框，table 中必须设置 合并边框（border-collapse:collapse），否则边框不生效*/
+        .css-replace-old-attributes thead,
+        .css-replace-old-attributes tbody,
+        .css-replace-old-attributes tfoot, tr {
+
+            /*border: 1px solid black;*/
+            /*border-bottom: 1px solid black;*/
+        }
+		</style>
+	</head>
+	<body>
+		<h1>table 标签</h1>
+		<h2>1. 基本的 table 标签（无样式）： 一个简单的课程表</h2>
+		<table>
+			<caption>2026 第一学期课程表</caption>
+			<thead>
+				<tr>
+					<th scope="col">时间</th>
+					<th scope="col">星期一</th>
+					<th scope="col">星期二</th>
+					<th scope="col">星期三</th>
+					<th scope="col">星期四</th>
+					<th scope="col">星期五</th>
+				
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">上午 9:00-10:30</th>
+					<td>高数</td>
+					<td>英语</td>
+					<td>计算机网络</td>
+					<td>计算机组成原理</td>
+					<td>体育</td>
+				</tr>
+				<tr>
+					<th scope="row">下午 13:00-14:30</th>
+					<td>英语</td>
+					<td>音乐</td>
+					<td>体育</td>
+					<td>单片机</td>
+					<td>数据结构</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="6">注：具体上课地点参见班群通知。</td>
+				</tr>
+			</tfoot>
+		</table>
+		
+		<h2>2. 基本的 table 标签（设置基础样式）： 一个简单的课程表</h2>
+		<!--给 table 添加类名，方便针对性设置样式-->
+		<table class="styled-table">
+			<caption>2026 第一学期课程表</caption>
+			<thead>
+				<tr>
+					<th scope="col">时间</th>
+					<th scope="col">星期一</th>
+					<th scope="col">星期二</th>
+					<th scope="col">星期三</th>
+					<th scope="col">星期四</th>
+					<th scope="col">星期五</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">上午 9:00-10:30</th>
+					<td>高数</td>
+					<td>英语</td>
+					<td>计算机网络</td>
+					<td>计算机组成原理</td>
+					<td>体育</td>
+				</tr>
+				<tr>
+					<th scope="row">下午 13:00-14:30</th>
+					<td>英语</td>
+					<td>音乐</td>
+					<td>体育</td>
+					<td>单片机</td>
+					<td>数据结构</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="6">注：具体上课地点参见班群通知。</td>
+				</tr>
+			</tfoot>
+		</table>
+		
+		<h2>3. table 标签：财务数据报表</h2>
+		<table class="financial-report styled-table">
+			<thead>
+				<tr>
+					<th scope="col">项目</th>
+					<th scope="col">第一季度</th>
+					<th scope="col">第二季度</th>
+					<th scope="col">总计</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">产品收入</th>
+					<td>$100,000</td>
+					<td>$200,000</td>
+					<td>$300,000</td>
+				</tr>
+				<tr>
+					<th scope="row">服务收入</th>
+					<td>$40,000</td>
+					<td>$50,000</td>
+					<td>$60,000</td>
+				</tr>
+				<tr>
+					<th scope="row">总收入</th>
+					<td>$140,000</td>
+					<td>$250,000</td>
+					<td>$360,000</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<h2>4. table 标签： 产品功能对比</h2>
+		<table class="feature-comparison styled-table">
+			<thead>
+				<tr>
+					<th scope="col">功能特性</th>
+					<th scope="col">基础版</th>
+					<th scope="col">专业版</th>
+					<th scope="col">企业版</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">存储空间</th>
+					<td>10GB</td>
+					<td>500GB</td>
+					<td>无限</td>
+				</tr>
+				<tr>
+					<th scope="row">用户数量</th>
+					<td>1人</td>
+					<td>10人</td>
+					<td>不限</td>
+				</tr>
+				<tr>
+					<th scope="row">客服支持</th>
+					<td>邮箱</td>
+					<td>优先</td>
+					<td>24 小时专属客服</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<h2>5. table 的废弃属性和替代的 css 属性</h2>
+		<!--table 旧属性已废弃，添加一个类名 css-replace-old-attributes 专门用于 测试替代的 CSS 属性-->
+		<!--样式设置在 style 标签中-->
+		<table class="styled-table css-replace-old-attributes">
+			<caption>2026 第一学期课程表</caption>
+			<!--给列分组-->
+			<colgroup>
+				<col/>
+				<col span="5" class="weekdays"/>
+				<col span="2" class="weekend"/>
+			</colgroup>
+			<thead>
+				<tr>
+					<th scope="col">时间</th>
+					<th scope="col">星期一</th>
+					<th scope="col">星期二</th>
+					<th scope="col">星期三</th>
+					<th scope="col">星期四</th>
+					<th scope="col">星期五</th>
+					<th scope="col">星期六</th>
+					<th scope="col">星期日</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">上午 9:00-10:30</th>
+					<td>高数</td>
+					<td>英语</td>
+					<td>计算机网络</td>
+					<td>计算机组成原理</td>
+					<td>体育</td>
+					<td>无</td>
+					<td>无</td>
+				</tr>
+				<tr>
+					<th scope="row">下午 13:00-14:30</th>
+					<td>英语</td>
+					<td>音乐</td>
+					<td>体育</td>
+					<td>单片机</td>
+					<td>数据结构</td>
+					<td>无</td>
+					<td>无</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="8">注：具体上课地点参见班群通知。</td>
+				</tr>
+			</tfoot>
+		</table>
+	
+	</body>
+</html>
