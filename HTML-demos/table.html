@@ -8,20 +8,24 @@
 		<title>table 标签</title>
 		<style>
         /*选择所有偶数序号的 tr 元素,设置背景颜色为灰色*/
-				tr:nth-of-type(even){
-					/*background-color: #eee;*/
-				}
-        /*给行标题、列标题设置背景色*/
-        tr th[scope="row"], tr th[scope="col"]{
-						/*background-color: #9fc2a9;*/
-		        /*padding: 10px;*/
+        tr:nth-of-type(even) {
+            /*background-color: #eee;*/
         }
-        caption{
+
+        /*给行标题、列标题设置背景色*/
+        tr th[scope="row"], tr th[scope="col"] {
+            /*background-color: #9fc2a9;*/
+            /*padding: 10px;*/
+        }
+
+        caption {
             /*background-color: #aaa;*/
         }
-        th{
+
+        th {
             /*background-color: #bbb;*/
         }
+
         /*给类名为 styled-table 的表格和内部单元格加边框*/
         table.styled-table, .styled-table caption, .styled-table th, .styled-table td {
             border: 1px solid black; /* 表格的边框：1px 粗，实线，黑色*/
@@ -95,6 +99,21 @@
             /*border: 1px solid black;*/
             /*border-bottom: 1px solid black;*/
         }
+
+        /*给列组设置不同的背景颜色 */
+        .col-style .time {
+            background-color: #c4c2c2;
+        }
+
+        .col-style .weekdays {
+            background-color: #abefe1;
+
+        }
+
+        .col-style .weekend {
+            background-color: #03bb96;
+        }
+		
 		</style>
 	</head>
 	<body>
@@ -394,7 +413,62 @@
 			</tr>
 		</table>
 		
+		<h2>3. col、colgroup 标签：给列分组</h2>
+		<table class="styled-table col-style">
+			<caption>2026 第一学期课程表</caption>
+			<!--给列分组方式1：大分组内小分组，添加类名，方便设置样式-->
+			<!--<colgroup>-->
+				<!--<col class="time"/>-->
+				<!--<col span="5" class="weekdays"/>-->
+				<!--<col span="2" class="weekend"/>-->
+			<!--</colgroup>-->
+			
+			<!--给列分组方式2：直接 3 个大分组-->
+			<colgroup span="1" style="background-color: #d2cbcb"></colgroup>
+			<colgroup span="5" style="background-color: #f1b8d8"></colgroup>
+			<colgroup span="2" style="background-color: #d1aff5"></colgroup>
+			
+			<thead>
+				<tr>
+					<th scope="col">时间</th>
+					<th scope="col">星期一</th>
+					<th scope="col">星期二</th>
+					<th scope="col">星期三</th>
+					<th scope="col">星期四</th>
+					<th scope="col">星期五</th>
+					<th scope="col">星期六</th>
+					<th scope="col">星期日</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope="row">上午 9:00-10:30</th>
+					<td>高数</td>
+					<td>英语</td>
+					<td>计算机网络</td>
+					<td>计算机组成原理</td>
+					<td>体育</td>
+					<td>无</td>
+					<td>无</td>
+				</tr>
+				<tr>
+					<th scope="row">下午 13:00-14:30</th>
+					<td>英语</td>
+					<td>音乐</td>
+					<td>体育</td>
+					<td>单片机</td>
+					<td>数据结构</td>
+					<td>无</td>
+					<td>无</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="8">注：具体上课地点参见班群通知。</td>
+				</tr>
+			</tfoot>
+		</table>
 	
 	</body>
-	
+
 </html>
