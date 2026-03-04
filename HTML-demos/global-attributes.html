@@ -1,9 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- 页面的语言，中文 -->
+<html lang="zh-CN">
 <head>
+    <!-- 1.页面的字符编码 -->
     <meta charset="UTF-8">
+    <!-- 2.视口设置（移动端适配必备）：页面宽度 = 设备的屏幕宽度。页面初始的缩放比例为 1:1。 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 3.指定 IE 使用最新渲染引擎来渲染页面，避免进入“兼容性视图”。 -->
+    <meta http-equiv="X-UA-compatible" content="IE=edge">
+
+    <!-- 4.告诉 360 浏览器等国产双核浏览器 强制使用极速内核（Webkit）打开页面，而不是兼容内核（IE） -->
+    <meta name="render" content="webkit">
+
+    <!-- 5.页面的 SEO 优化：页面关键词、页面描述 -->
+    <meta name="keywords" content="页面的关键词，逗号分隔">
+    <meta name="description" content="页面的描述">
+
+    <!-- 6.社交媒体优化，分享时显示标题、描述、图片，Open Graph 协议，og: 前缀 -->
+    <meta property="og:title" content="分享时显示的标题">
+    <meta property="og:description" content="分享时显示的描述">
+    <meta property="og:image" content="图片的url">
+    <meta property="og:url" content="网址">
+
     <title>全局属性</title>
     <style>
+        h2{
+            background-color: #aeaeae;
+        }
         /*紧急内容的样式*/
         .urgent {
             color: red;
@@ -14,15 +38,59 @@
         .normal {
             font-weight: bold;
         }
+
         /*类名和自定义属性结合，限制范围，只在特定区域查找*/
-        .product-card[data-category="headphones"]
-        {
+        .product-card[data-category="headphones"] {
             color: #0f723c;
         }
+
+        .table-dir, td, th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        /*自定义组件的样式*/
+        /*通过::part()修改内部原生的样式*/
+        my-dialog::part(title) {
+            color: red;
+            font-size: 20px;
+        }
+
+        my-dialog::part(button) {
+            background-color: green;
+            border-radius: 4px;
+            padding: 8px 16px;
+        }
+
+        my-dialog::part(content) {
+            color: blue;
+        }
+
+        h3.card {
+            background-color: #dedede;
+        }
+
+        card-wrapper, card-component {
+            border: 1px solid green;
+        }
+
+        ::part(header) {
+            color: red;
+        }
+
+        ::part(body) {
+            color: green;
+        }
+
+        ::part(footer) {
+            color: blue;
+        }
+
+
     </style>
-    
+
 </head>
-<body>
+<body style="width: 80%;margin: 0 auto;">
     <h1>全局属性</h1>
     <h2>1.accesskey 属性：设置键盘快捷键</h2>
     <h3>1.1 按键盘快捷键聚焦到用户名的输入框，可以直接打字</h3>
@@ -146,8 +214,233 @@
         });
 
     </script>
-    
-    <h2>dir 属性：</h2>
+
+    <h2>8. dir 属性：设置文本的方向</h2>
+    <h3>8.1 设置文本方向：从左到右 ltr（默认方向，中文、英文等的书写方向）</h3>
+    <p dir="ltr">Hello,world！</p>
+    <p dir="ltr">你好，世界！</p>
+
+    <h3>8.2 设置文本方向：从右到左 rtl（阿拉伯语、希伯来语等的书写方向）</h3>
+    <p dir="rtl">Hello,world！</p>
+    <p dir="rtl">你好，世界！</p>
+    <p dir="rtl">مرحبا بالعالم</p>
+    <p dir="rtl">שלום עולם</p>
+    <p dir="rtl">阿拉伯语：مرحبا بالعالم</p>
+    <p dir="rtl">希伯来语：שלום עולם</p>
+
+
+    <h3>8.3 dir 属性影响表格的列的顺序</h3>
+    <h4>⑴ 表格列的默认顺序：未设置 dir 属性</h4>
+    <table class="table-dir">
+        <tr>
+            <th>1.年级</th>
+            <th>2.性别</th>
+            <th>3.人数</th>
+        </tr>
+        <tr>
+            <td>一年级</td>
+            <td>男</td>
+            <td>55</td>
+        </tr>
+        <tr>
+            <td>二年级</td>
+            <td>女</td>
+            <td>33</td>
+        </tr>
+    </table>
+    <h4>⑵ 表格设置 dir="rtl" 后的顺序：表格的列从右往左排列</h4>
+    <table class="table-dir" dir="rtl">
+        <tr>
+            <th>1.年级</th>
+            <th>2.性别</th>
+            <th>3.人数</th>
+        </tr>
+        <tr>
+            <td>一年级</td>
+            <td>男</td>
+            <td>55</td>
+        </tr>
+        <tr>
+            <td>二年级</td>
+            <td>女</td>
+            <td>33</td>
+        </tr>
+    </table>
+
+    <h3>8.4 显式指定“由浏览器自动决定文本的方向”：dir="auto"</h3>
+
+    <!-- 内容以英文开头，浏览器会判断为 ltr -->
+    <p dir="auto">Hello, world! 这是一段中英文混合的文本。</p>
+
+    <!-- 内容以阿拉伯语开头，浏览器会判断为 rtl -->
+    <p dir="auto">مرحبا بالعالم 这是一段阿拉伯语和中文混合的文本。</p>
+    <p>مرحبا بالعالم 这是一段阿拉伯语和中文混合的文本。</p>
+
+
+    <h2>9. draggable 属性：设置元素是否可拖拽</h2>
+    <h3>让默认不可拖拽的段落变得可拖拽</h3>
+    <p>我是不可拖拽的段落，只有选中文字后才能拖拽。</p>
+    <p draggable="true">我是可拖拽的段落，不必选中文字，按住鼠标左键就可以拖拽。</p>
+
+
+    <h2>10. enterkeyhint 属性：虚拟键盘的 Enter 键的视觉提示</h2>
+    <h3>Enter 键 = 搜索相关 search</h3>
+    <label for="search-keywords">搜索关键词：</label>
+    <input type="search" name="search" id="search-keywords" placeholder="请输入搜索内容..." enterkeyhint="search">
+    <h3>Enter 键 = 插入新行 enter</h3>
+    <textarea name="comments" id="comments" cols="30" rows="10" placeholder="请输入评论..." aria-label="评论区"
+              enterkeyhint="enter"></textarea>
+
+    <h3>Enter 键 = 输入完成，关闭键盘（输入法） done </h3>
+    <input type="text" name="done" id="done" enterkeyhint="done" aria-label="done">
+    <h3>Enter 键 = 跳转到目标位置 go</h3>
+    <input type="text" name="go" id="go" enterkeyhint="go" aria-label="go">
+
+    <h3>Enter 键 = 下一个输入框 next</h3>
+    <input type="text" name="next" id="next" enterkeyhint="next" aria-label="next">
+    <h3>Enter 键 = 上一个输入框 previous</h3>
+    <input type="text" name="previous" id="previous" enterkeyhint="previous" aria-label="previous">
+    <h3>Enter 键 = 发送 send</h3>
+    <input type="text" name="send" id="send" enterkeyhint="send" aria-label="send">
+
+    <h2>11. exportparts 属性：导出 part，使用外部 CSS ，对 web component 的 Shadow DOM 中嵌套的 Shadow DOM 设置样式</h2>
+
+    <!-- 1. 第一个 HTML 模板： 基础卡片组件模板 -->
+    <template id="card-component-template">
+        <style>
+            /*专门用于选择 Shadow DOM 的宿主元素（即自定义元素本身）*/
+            :host {
+                display: block; /* 设置宿主元素为块级显示，独占一行，能设置宽高、宽度= 父容器100%，有上下外边距*/
+            }
+
+        </style>
+        <!-- part 属性：用于 ::part() 选择器，允许外部样式话内部元素 -->
+        <div class="base" part="base">
+            <!-- 头部区域：内有具名插槽 = 可插入内容的区域 -->
+            <div part="header">
+                <!-- 插槽 slot 元素：允许插入外部内容 -->
+                <slot name="header-slot"></slot>
+            </div>
+            <!-- 主体区域：内有具名插槽= 可插入内容的区域 -->
+            <div part="body">
+                <slot name="body-slot"></slot>
+            </div>
+            <!-- 底部区域：内有具名插槽= 可插入内容的区域 -->
+            <div part="footer">
+                <slot name="footer-slot"></slot>
+            </div>
+        </div>
+    </template>
+
+    <!-- 2. 第二个 HTML 模板：卡片的包装器 -->
+    <template id="card-wrapper">
+        <style>
+            :host {
+                display: block; /* 宿主元素显示为块级元素*/
+            }
+        </style>
+        <!-- 自定义元素 card-component，导出部分元素的 part 名，让外部 CSS 可以对其设置样式 -->
+        <!-- 只导出了 base、header 和 body 这三个部分，没有导出 footer。 -->
+        <card-component exportparts="base,header,body">
+            <!-- 内有 3个具名插槽 slot 元素 = 可插入内容的区域，同时具有 slot 属性 = 本身内容应插入到哪个插槽 = 插入到上一个模板的 slot 元素中-->
+
+            <!-- slot.name="H"：接收 slot="H" 的元素的内容；slot="header-slot"：自身内容 插入到name = "header-slot" 的 slot 元素中-->
+            <slot name="H" slot="header-slot"></slot>
+            <slot name="B" slot="body-slot"></slot>
+            <slot name="F" slot="footer-slot"></slot>
+        </card-component>
+    </template>
+
+    <!-- 3.自定义组件部分 -->
+    <h3 class="card">卡片包装器</h3>
+    <!-- 自定义元素 -->
+    <card-wrapper>
+        <!-- slot="H"：元素的内容插入到 slot.name="H" 的 slot 元素中-->
+        <p slot="H">包装器头部</p>
+        <p slot="B">包装器主体</p>
+        <p slot="F">包装器底部</p>
+    </card-wrapper>
+
+    <h3 class="card">卡片组件</h3>
+    <!-- 自定义元素 -->
+    <card-component>
+        <!-- slot="header-slot"：元素的内容插入到 slot.name="header-slot" 的 slot 元素中-->
+        <p slot="header-slot">卡片头部</p>
+        <p slot="body-slot">卡片主体</p>
+        <p slot="footer-slot">卡片底部</p>
+    </card-component>
+
+    <script>
+        <!-- 定义 card-component 自定义元素，通过 customElements.define() 注册新元素  -->
+        customElements.define(
+            "card-component", //元素名称，必须含连字符
+            class extends HTMLElement { //继承自 HTMLElement
+                constructor() {
+                    super();
+                    //  获取模板元素
+                    const template = document.getElementById("card-component-template");
+                    //创建 Shadow DOM，封装组件的内部结构和样式，与主 DOM 隔离
+                    const shadowRoot = this.attachShadow({
+                        mode: "open",//可以通过 js 访问
+                    });
+                    // 克隆模板 card-component-template 的内容，并添加到 Shadow DOM
+                    shadowRoot.appendChild(document.importNode(template.content, true));
+                }
+            }
+        );
+
+        // 定义 card-wrapper 自定义元素
+        customElements.define(
+            "card-wrapper",
+            class extends HTMLElement {
+                constructor() {
+                    super();
+
+                    // 获取第二个模板
+                    const template = document.getElementById("card-wrapper");
+
+                    // 创建Shadow DOM
+                    const shadowRoot = this.attachShadow({
+                        mode: "open",
+                    });
+
+                    // 克隆模板 card-wrapper 的内容，并添加到Shadow DOM
+                    shadowRoot.appendChild(document.importNode(template.content, true));
+                }
+            },
+        );
+    </script>
+
+    <h2>12. hidden 属性：隐藏元素、不显示内容</h2>
+    <p hidden="hidden">我是被隐藏的段落，我的内容不会被显示。</p>
+    <p hidden="">我是被隐藏的段落，我的内容不会被显示。</p>
+    <p hidden>我是被隐藏的段落，我的内容不会被显示。</p>
+    <p>我是正常显示的段落，在几个被隐藏段落的下方。</p>
+    <p hidden="hidden" style="display: block">我是被隐藏的段落，但同时设置了 display: block;我的内容会被显示出来。</p>
+    <p hidden="until-found" id="hidden-nav1"
+       style="border: 1px solid black;padding: 5px 10px;background-color: #0cc988">
+        我是被隐藏的段落，我的背景色、内边距等会显示，但我的内容不会被显示，直到通过搜索或导航找到它，就会显示。</p>
+    <p hidden="until-found" id="hidden-nav2"
+       style="border: 1px solid black;padding: 5px 10px;background-color: #0cc988;display: none">
+        我是被隐藏的段落，我的背景色、内边距等会显示，但我的内容不会被显示，通过搜索或导航也找不到它，也不会显示，因为设置了
+        display:none。</p>
+    <p>我是正常显示的段落，在被隐藏段落的下方。</p>
+    <a href="#hidden-nav1">点击我，可以导航到被隐藏的段落，并让它显示出来。</a>
+    <br>
+    <a href="#hidden-nav2">点击我，无法导航到被隐藏的段落，或让它显示出来，因为 hidden="until-found" 上设置了display: none
+        。</a>
+
+    <div hidden="hidden">
+        <p>我是隐藏元素 div 的后代 p 元素的内容， 我不会显示。</p>
+        <script>
+
+            // alert("我是隐藏元素 div 的后代 script 中的代码,我仍然会被执行");
+        </script>
+        <form action="#">
+            <input type="text" aria-label="测试 hidden 属性使用">
+            <button type="submit">提交</button>
+        </form>
+    </div>
 
 
 </body>
