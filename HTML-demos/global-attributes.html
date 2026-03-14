@@ -25,9 +25,10 @@
 
     <title>全局属性</title>
     <style>
-        h2{
+        h2 {
             background-color: #aeaeae;
         }
+
         /*紧急内容的样式*/
         .urgent {
             color: red;
@@ -86,11 +87,29 @@
             color: blue;
         }
 
+        /* 使用 id 选择器，给特殊元素设置专属样式 */
+        #special-p {
+            color: #0f723c; /* 绿色文字 */
+            font-weight: bold; /* 文字加粗 */
+        }
+
+        .inert-test-container {
+            border: 1px solid black;
+            margin: 10px 0;
+            padding: 10px 5px;
+        }
+
+        [inert] {
+            opacity: 0.5; /* 设置不透明度，视觉提示元素不可用，值越小，越透明 */
+        }
+
 
     </style>
 
 </head>
-<body style="width: 80%;margin: 0 auto;">
+<body id="document-start" style="width: 80%;margin: 0 auto;">
+    <!-- <div style="height: 1000px;background-color: #91b7a2">我是文档开始处，最下方有文字。</div> -->
+    辅助：<a href="#document-end">跳转到文档最下方</a>
     <h1>全局属性</h1>
     <h2>1.accesskey 属性：设置键盘快捷键</h2>
     <h3>1.1 按键盘快捷键聚焦到用户名的输入框，可以直接打字</h3>
@@ -443,5 +462,211 @@
     </div>
 
 
+    <h2>13. id 属性：元素的唯一标识符，身份证号</h2>
+    <h3>页面内锚点导航</h3>
+    <!-- id="document-start" 写在 body 上 -->
+    <a href="#document-start">辅助：跳转到文档的开始处</a>
+
+    <h3>使用 id 选择器，给特定元素设置专属样式</h3>
+    <p id="special-p">我是特殊的一段文字，需要特殊的样式。</p>
+    <p>我是普通的段落。</p>
+
+    <h3>js 中通过 id 获取元素、操作元素</h3>
+    <p id="origin-p">原内容：我是默认的段落内容。</p>
+    <label for="user-input">请输入内容，替换上方内容：</label>
+    <br>
+    <textarea name="user-input" id="user-input" cols="30" rows="10" placeholder="请输入修改内容..."></textarea>
+    <button type="button" onclick="changeText()">替换段落内容</button>
+    <script>
+        function changeText() {
+            // 通过 id 获取元素
+            const originPara = document.getElementById("origin-p");
+            const newContent = document.getElementById("user-input");
+            originPara.textContent = newContent.value;
+            originPara.style.color = "green";
+        }
+    </script>
+    <h3>表单标签关联：label.for = "id"，点击 label 标签内容，元素自动聚焦</h3>
+    <label for="nickname">昵称：</label>
+    <input type="text" id="nickname" name="nickname">
+
+    <h2>14. inert 属性：禁用整片区域，不可聚焦、不可点击、不可选中、不可被搜索、不可被屏幕阅读器朗读</h2>
+    <!-- 未加 inert 的正常区域 -->
+    <div class="inert-test-container">
+        <h3>可交互区域：未被 inert 禁用</h3>
+        <button type="button" onclick="alert('可点击区域！')">可点击按钮</button>
+        <a href="https://www.baidu.com">可跳转链接（百度）</a>
+        <input type="text" placeholder="请输入内容..." aria-label="测试输入内容">
+    </div>
+    <!-- 加 inert 的禁用区域 -->
+    <div inert class="inert-test-container">
+        <h3>不可交互区域的禁用区域：被 inert 禁用，禁用元素以及所有子元素</h3>
+        <button type="button" onclick="alert('不可点击区域！不该显示！')">可点击按钮</button>
+        <a href="https://www.baidu.com">不可跳转链接（百度）</a>
+        <input type="text" placeholder="请输入内容..." aria-label="测试输入内容">
+
+        <!-- 默认不显示的对话框，可通过 js 的 showModal() 显示，祖先元素的 inert 属性无法阻止弹出。 -->
+        <dialog id="hobby-dialog" style="background-color: #91b7a2">
+            <!-- 显示禁用 dialog 整个区域，直接给 dialog 设置 inert，不通过继承 -->
+            <!-- <dialog inert id="hobby-dialog" style="background-color: #91b7a2"> -->
+            <form action="#"><label for="hobby">您的喜好：</label>
+                <select name="hobby" id="hobby">
+                    <option value="滑雪">滑雪</option>
+                    <option value="冲浪">冲浪</option>
+                    <option value="阅读">阅读</option>
+                </select>
+                <label for="custom-hobby">自定义喜好：</label>
+                <input type="text" aria-label="custom-hobby" name="custom-hobby" id="custom-hobby">
+                <button type="submit">提交</button>
+                <button type="button" id="close-btn" onclick="document.getElementById('hobby-dialog').close();">关闭对话框
+                </button>
+            </form>
+        </dialog>
+    </div>
+    <button type="button" id="open-btn" onclick="document.getElementById('hobby-dialog').showModal();">打开对话框
+    </button>
+
+    <h3>打开自定义弹窗时：禁用其他区域；关闭弹窗时，取消禁用</h3>
+    <button type="button" id="open-dialog-btn">打开对话框</button>
+    <div id="bg-section" style="height: 300px;background-color: #cecece">
+        <p>我是背景区域</p>
+        <button onclick="alert('Hi，我是弹窗里的内容！')">弹出窗口</button>
+    </div>
+    <div id="custom-dialog" style="display: none;border: 1px solid black;padding: 10px;background-color:#91b7a2;">
+        <p>我是自定义的对话框区域，默认隐藏</p>
+        <button type="button" id="close-dialog-btn">关闭对话框</button>
+
+    </div>
+    <script>
+        // 通过 id 获取元素
+        const bgSection = document.getElementById('bg-section');
+        const customDialog = document.getElementById('custom-dialog');
+
+        // 打开对话框，显示对话框元素，设置 禁用属性 inert，设置不透明度 0.5 辅助提示元素已禁用
+        function openDialog() {
+            customDialog.style.display = 'block';
+            bgSection.setAttribute('inert', '');
+            bgSection.style.opacity = '0.5';
+        }
+
+        // 关闭对话框，隐藏对话框元素，移除 inert 属性，重置不透明度为 1
+        function closeDialog() {
+            customDialog.style.display = "none";
+            bgSection.removeAttribute('inert');
+            bgSection.style.opacity = '1';
+
+        }
+
+        // 在打开和关闭按钮上 监听点击事件
+        document.getElementById("close-dialog-btn").addEventListener("click", closeDialog);
+        document.getElementById("open-dialog-btn").addEventListener("click", openDialog);
+    </script>
+
+    <h2>15. inputmode 属性：根据输入的数据类型提示，显示对应的虚拟键盘</h2>
+    <h3>⑴  无虚拟键盘（inputmode="none"）：通过自定义交互控件输入，不希望用户使用键盘输入。</h3>
+    <br>
+    <input type="text" inputmode="none" aria-label="单行文本" placeholder="type 为 text，inputmode 为 none">
+    <h4>数字调节器：加减按钮（未同时设置 readonly，输入框可输入）</h4>
+    <label for="number1">购买数量：</label>
+    <button type="button" id="decrease-btn1">-</button>
+    <!-- 设置初始值 value 为1 -->
+    <input type="number" name="number" id="number1" inputmode="none" value="1">
+    <button type="button" id="increase-btn1" onclick="increase()">+</button>
+    <h4>数字调节器：加减按钮（同时设置 readonly，防止用户输入）</h4>
+    <label for="number2">购买数量：</label>
+    <button type="button" id="decrease-btn2">-</button>
+    <input type="number" name="number" id="number2" inputmode="none" readonly value="1">
+    <button type="button" id="increase-btn2">+</button>
+
+    <script>
+        //获取元素
+        const number1 = document.getElementById("number1");
+        const number2 = document.getElementById("number2");
+
+        // 两个按钮的加法
+        function increaseNumber1() {
+            // 转换数据类型，运算，赋值
+            number1.value = parseInt(number1.value) + 1;
+        }
+
+        function increaseNumber2() {
+            number2.value = parseInt(number2.value) + 1;
+        }
+
+        // 两个按钮的减法
+        function decreaseNumber1() {
+            const number1Value = parseInt(number1.value);
+            if (number1Value > 1) {
+                number1.value = parseInt(number1.value) - 1;
+            }
+        }
+        function decreaseNumber2() {
+            const number2Value = parseInt(number2.value);
+            if (number2Value > 1) {
+                number2.value = parseInt(number2.value) - 1;
+            }
+
+        }
+
+
+        // 给加减按钮添加监听事件，监听点击事件
+        document.getElementById("increase-btn1").addEventListener("click", increaseNumber1);
+        document.getElementById("increase-btn2").addEventListener("click", increaseNumber2);
+        document.getElementById("decrease-btn1").addEventListener("click", decreaseNumber1);
+        document.getElementById("decrease-btn2").addEventListener("click", decreaseNumber2);
+
+    </script>
+
+    <h3>⑵  标准文本键盘（inputmode="text"）：字母、空格、回车、标点等</h3>
+    <textarea name="comment" id="comment1" cols="30" rows="10"  inputmode="text" placeholder="inputmode 为 text" aria-label="请输入评论"></textarea>
+    <textarea name="comment" id="comment2" cols="30" rows="10"   placeholder="未使用 inputmode" aria-label="请输入评论"></textarea>
+    <br>
+    <input type="text" placeholder="type 为 text，无 inputmode" aria-label="单行文本输入">
+    <br>
+    <input type="text" inputmode="text" placeholder="type、inputmode 都为 text" aria-label="单行文本输入">
+
+    <h3>⑶  纯数字键盘（inputmode="numeric"）：1-9 纯数字键盘，无小数点、无字母，适合验证码、PIN 码</h3>
+    <label for="phone-code">请输入6位手机验证码：</label>
+    <input type="text" id="phone-code" name="phone-code" inputmode="numeric" pattern="\d{6}">
+
+    <h3>⑷ 带小数点的数字键盘（inputmode="decimal"）：带小数的数字，如 数学运算、金额</h3>
+    <label for="price">价格：</label>
+    <input type="number" name="price" id="price" inputmode="decimal" placeholder="type 等于 number,请输入价格，如 19.99">
+    <input type="text" name="price" id="price2" aria-label="价格" inputmode="decimal" placeholder="type 等于 text,请输入价格，如 19.99">
+
+    <h3>⑸ 电话键盘（inputmode="tel"）：数字、*、# ，方便快速拨号</h3>
+    <input type="tel" name="phone" id="phone1" aria-label="电话号码" placeholder="type 为 tel，无 inputmode">
+    <br>
+    <input type="text" name="phone" id="phone2"  inputmode="tel" aria-label="电话号码" placeholder="type 为 text，inputmode 为 tel">
+    <br>
+    <input type="tel" name="phone" id="phone3"  inputmode="tel" aria-label="电话号码" placeholder="type、inputmode 都为 tel">
+
+    <h3>⑹  邮箱键盘（inputmode="email"）：字母、@、.com和点号 .</h3>
+    <input type="email" name="email" id="email1" aria-label="邮箱" placeholder="type 为 email，无 inputmode">
+    <br>
+    <input type="text" name="email" id="email2"  inputmode="email" aria-label="邮箱" placeholder="type 为 text，inputmode 为 email">
+    <br>
+    <input type="email" name="email" id="email3"  inputmode="email" aria-label="邮箱" placeholder="type、inputmode 都为 email">
+
+    <h3>⑺  搜索键盘（inputmode="search"）：虚拟键盘回车键 可能变为“搜索”、“前往”或放大镜</h3>
+    <input type="search" name="search" id="search1" aria-label="搜索" placeholder="type 为 search，无 inputmode">
+    <br>
+    <input type="text" name="search" id="search2"  inputmode="search" aria-label="搜索" placeholder="type 为 text，inputmode 为 search">
+    <br>
+    <input type="search" name="search" id="search3"  inputmode="search" aria-label="搜索" placeholder="type、inputmode 都为 search">
+
+    <h3>⑻ 网址键盘（inputmode="url"）：虚拟键盘含 / 、 . 和 .com，方便输入网址 </h3>
+    <input type="url" name="url" id="url1" aria-label="搜索" placeholder="type 为 url，无 inputmode">
+    <br>
+    <input type="text" name="url" id="url2"  inputmode="url" aria-label="网址" placeholder="type 为 text，inputmode 为 url">
+    <br>
+    <input type="url" name="url" id="url3"  inputmode="url" aria-label="网址" placeholder="type、inputmode 都为 url">
+
+
+
+
+
+    <!-- 辅助代码：快速跳转到最下方 -->
+    <div id="document-end"></div>
 </body>
 </html>
