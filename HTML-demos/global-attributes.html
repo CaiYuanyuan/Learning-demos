@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- 3.指定 IE 使用最新渲染引擎来渲染页面，避免进入“兼容性视图”。 -->
-    <meta http-equiv="X-UA-compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- 4.告诉 360 浏览器等国产双核浏览器 强制使用极速内核（Webkit）打开页面，而不是兼容内核（IE） -->
     <meta name="render" content="webkit">
@@ -103,7 +103,18 @@
             opacity: 0.5; /* 设置不透明度，视觉提示元素不可用，值越小，越透明 */
         }
 
+        /* 根据 不同的 lang 属性值，设置不同的样式*/
+        /* q:lang(zh) - 选择本身有 lang="zh" 属性的 <q> 元素*/
+        /* 中文引号*/
+        /*:lang(zh) q - 选择在 lang="zh" 的元素内部的 <q> 元素*/
+        q:lang(zh), :lang(zh) q {
+            quotes: "「" "」" "『" "』";
+        }
 
+        /*英文引号*/
+        q:lang(en), :lang(en) q {
+            quotes: '"' '"' "'" "'";
+        }
     </style>
 
 </head>
@@ -153,9 +164,9 @@
     <textarea name="bio" id="bio" cols="50" rows="10" placeholder="请简单介绍下您自己..." autocorrect="on"></textarea>
     <!-- <textarea name="bio" id="bio" cols="50" rows="10" placeholder="请简单介绍下您自己..." autocorrect="off"></textarea> -->
 
-    <h2>4. autofocus 属性：自动聚焦</h2>
-    <label for="search">搜索关键词：</label>
-    <input type="search" id="search" name="q" placeholder="请输入搜索关键词" autofocus>
+    <h2>4. autofocus 属性：自动聚焦（代码已注释，测试时取消注释）</h2>
+    <!-- <label for="search">搜索关键词：</label> -->
+    <!-- <input type="search" id="search" name="q" placeholder="请输入搜索关键词" autofocus> -->
     <hr>
 
     <h2>5. class 属性：元素的类名（不唯一）</h2>
@@ -563,7 +574,7 @@
     </script>
 
     <h2>15. inputmode 属性：根据输入的数据类型提示，显示对应的虚拟键盘</h2>
-    <h3>⑴  无虚拟键盘（inputmode="none"）：通过自定义交互控件输入，不希望用户使用键盘输入。</h3>
+    <h3>⑴ 无虚拟键盘（inputmode="none"）：通过自定义交互控件输入，不希望用户使用键盘输入。</h3>
     <br>
     <input type="text" inputmode="none" aria-label="单行文本" placeholder="type 为 text，inputmode 为 none">
     <h4>数字调节器：加减按钮（未同时设置 readonly，输入框可输入）</h4>
@@ -571,7 +582,7 @@
     <button type="button" id="decrease-btn1">-</button>
     <!-- 设置初始值 value 为1 -->
     <input type="number" name="number" id="number1" inputmode="none" value="1">
-    <button type="button" id="increase-btn1" onclick="increase()">+</button>
+    <button type="button" id="increase-btn1">+</button>
     <h4>数字调节器：加减按钮（同时设置 readonly，防止用户输入）</h4>
     <label for="number2">购买数量：</label>
     <button type="button" id="decrease-btn2">-</button>
@@ -600,6 +611,7 @@
                 number1.value = parseInt(number1.value) - 1;
             }
         }
+
         function decreaseNumber2() {
             const number2Value = parseInt(number2.value);
             if (number2Value > 1) {
@@ -617,52 +629,247 @@
 
     </script>
 
-    <h3>⑵  标准文本键盘（inputmode="text"）：字母、空格、回车、标点等</h3>
-    <textarea name="comment" id="comment1" cols="30" rows="10"  inputmode="text" placeholder="inputmode 为 text" aria-label="请输入评论"></textarea>
-    <textarea name="comment" id="comment2" cols="30" rows="10"   placeholder="未使用 inputmode" aria-label="请输入评论"></textarea>
+    <h3>⑵ 标准文本键盘（inputmode="text"）：字母、空格、回车、标点等</h3>
+    <textarea name="comment" id="comment1" cols="30" rows="10" inputmode="text" placeholder="inputmode 为 text"
+              aria-label="请输入评论"></textarea>
+    <textarea name="comment" id="comment2" cols="30" rows="10" placeholder="未使用 inputmode"
+              aria-label="请输入评论"></textarea>
     <br>
     <input type="text" placeholder="type 为 text，无 inputmode" aria-label="单行文本输入">
     <br>
     <input type="text" inputmode="text" placeholder="type、inputmode 都为 text" aria-label="单行文本输入">
 
-    <h3>⑶  纯数字键盘（inputmode="numeric"）：1-9 纯数字键盘，无小数点、无字母，适合验证码、PIN 码</h3>
+    <h3>⑶ 纯数字键盘（inputmode="numeric"）：1-9 纯数字键盘，无小数点、无字母，适合验证码、PIN 码</h3>
     <label for="phone-code">请输入6位手机验证码：</label>
     <input type="text" id="phone-code" name="phone-code" inputmode="numeric" pattern="\d{6}">
 
     <h3>⑷ 带小数点的数字键盘（inputmode="decimal"）：带小数的数字，如 数学运算、金额</h3>
     <label for="price">价格：</label>
     <input type="number" name="price" id="price" inputmode="decimal" placeholder="type 等于 number,请输入价格，如 19.99">
-    <input type="text" name="price" id="price2" aria-label="价格" inputmode="decimal" placeholder="type 等于 text,请输入价格，如 19.99">
+    <input type="text" name="price" id="price2" aria-label="价格" inputmode="decimal"
+           placeholder="type 等于 text,请输入价格，如 19.99">
 
     <h3>⑸ 电话键盘（inputmode="tel"）：数字、*、# ，方便快速拨号</h3>
     <input type="tel" name="phone" id="phone1" aria-label="电话号码" placeholder="type 为 tel，无 inputmode">
     <br>
-    <input type="text" name="phone" id="phone2"  inputmode="tel" aria-label="电话号码" placeholder="type 为 text，inputmode 为 tel">
+    <input type="text" name="phone" id="phone2" inputmode="tel" aria-label="电话号码"
+           placeholder="type 为 text，inputmode 为 tel">
     <br>
-    <input type="tel" name="phone" id="phone3"  inputmode="tel" aria-label="电话号码" placeholder="type、inputmode 都为 tel">
+    <input type="tel" name="phone" id="phone3" inputmode="tel" aria-label="电话号码"
+           placeholder="type、inputmode 都为 tel">
 
-    <h3>⑹  邮箱键盘（inputmode="email"）：字母、@、.com和点号 .</h3>
+    <h3>⑹ 邮箱键盘（inputmode="email"）：字母、@、.com和点号 .</h3>
     <input type="email" name="email" id="email1" aria-label="邮箱" placeholder="type 为 email，无 inputmode">
     <br>
-    <input type="text" name="email" id="email2"  inputmode="email" aria-label="邮箱" placeholder="type 为 text，inputmode 为 email">
+    <input type="text" name="email" id="email2" inputmode="email" aria-label="邮箱"
+           placeholder="type 为 text，inputmode 为 email">
     <br>
-    <input type="email" name="email" id="email3"  inputmode="email" aria-label="邮箱" placeholder="type、inputmode 都为 email">
+    <input type="email" name="email" id="email3" inputmode="email" aria-label="邮箱"
+           placeholder="type、inputmode 都为 email">
 
-    <h3>⑺  搜索键盘（inputmode="search"）：虚拟键盘回车键 可能变为“搜索”、“前往”或放大镜</h3>
+    <h3>⑺ 搜索键盘（inputmode="search"）：虚拟键盘回车键 可能变为“搜索”、“前往”或放大镜</h3>
     <input type="search" name="search" id="search1" aria-label="搜索" placeholder="type 为 search，无 inputmode">
     <br>
-    <input type="text" name="search" id="search2"  inputmode="search" aria-label="搜索" placeholder="type 为 text，inputmode 为 search">
+    <input type="text" name="search" id="search2" inputmode="search" aria-label="搜索"
+           placeholder="type 为 text，inputmode 为 search">
     <br>
-    <input type="search" name="search" id="search3"  inputmode="search" aria-label="搜索" placeholder="type、inputmode 都为 search">
+    <input type="search" name="search" id="search3" inputmode="search" aria-label="搜索"
+           placeholder="type、inputmode 都为 search">
 
     <h3>⑻ 网址键盘（inputmode="url"）：虚拟键盘含 / 、 . 和 .com，方便输入网址 </h3>
     <input type="url" name="url" id="url1" aria-label="搜索" placeholder="type 为 url，无 inputmode">
     <br>
-    <input type="text" name="url" id="url2"  inputmode="url" aria-label="网址" placeholder="type 为 text，inputmode 为 url">
+    <input type="text" name="url" id="url2" inputmode="url" aria-label="网址"
+           placeholder="type 为 text，inputmode 为 url">
     <br>
-    <input type="url" name="url" id="url3"  inputmode="url" aria-label="网址" placeholder="type、inputmode 都为 url">
+    <input type="url" name="url" id="url3" inputmode="url" aria-label="网址" placeholder="type、inputmode 都为 url">
+
+    <h2>16. is 属性：让普通 HTML 元素拥有“自定义元素的功能、样式”</h2>
+    <!-- 普通按钮，无特殊功能、样式 -->
+    <button>普通按钮</button>
+    <!-- 有特别功能和样式，因为使用了 is="fancy-button"，普通按钮被当成自定义按钮实例化-->
+    <!-- 即使 js 加载失败，它本身仍然是一个普通按钮，和 完全自定义的元素，如标签名 my-button 不同 -->
+    <br>
+    <br>
+    <button is="fancy-button">我有自定义按钮 fancy-button 的功能、样式</button>
+    <br/>
+    <br>
+    <button is="fancy-button">我也有自定义按钮 fancy-button 的功能、样式</button>
+
+    <script>
+        // 定义一个类，名为 FancyButton，继承自 HTMLButtonElement
+        // 拥有原生按钮 <button> 的所有功能
+        class FancyButton extends HTMLButtonElement {
+            // 构造函数，创建这个类的新实例时自动调用
+            constructor() {
+                // 先调用 super()，正确继承父类（HTMLButtonElement）的属性方法，相当于执行父类的构造函数
+                super();
+                // 将 handleClick 方法绑定到当前实例的 this 上下文，让 内部的 this 总是指向当前按钮的实例
+                this.handleClick = this.handleClick.bind(this);
+
+            }
+
+            // 定义一个方法，名为 handleClick，处理点击事件，该方法被添加到事件监听器中
+
+            handleClick() {
+                alert("我是自定义按钮的弹窗！");
+            }
+
+            // 生命周期回调函数：元素被成功插入到 DOM 树中时 自动调用
+            // web components 规范中定义的 标准生命周期方法
+            connectedCallback() {
+                // 给当前按钮添加“点击事件的监听器”,this.handleClick 作为回调函数
+                this.addEventListener("click", this.handleClick);
+
+                // 添加自定义样式
+                this.style.border = "2px solid green"; // 设置边框：宽度2px、实线、绿色
+                this.style.padding = "10px 20px";// 设置内边距：上下 10px，左右20px
+                this.style.backgroundColor = "#e0e0e0";// 设置背景色为浅灰色
+                this.style.cursor = "pointer"; // 设置鼠标悬停的样式 为手指样式
+
+                // 弹出提示框，告知用户按钮已被激活
+                // alert('自定义按钮已激活！');
+                //控制台日志，告知按钮已被激活
+                console.log('自定义按钮已激活！')
+
+            }
+
+            // 生命周期回调函数：元素从 DOM 树中移除时 自动调用
+            // 用于清理工作，避免内存泄露，让程序使用的内存，在使用完毕后及时释放，避免占内存位置，导致程序变慢、卡顿
+            disconnectedCallback() {
+                //弹出提示框，告知按钮被移除
+                alert("自定义按钮已被移出");
+                // 移除事件监听器，断开对按钮的引用，如果不移除监听，引用一直在，回收机制就不能回收
+                // 注：必须与添加事件监听时完全一样的函数引用
+                this.removeEventListener("click", this.handleClick);
+            }
+
+        }
+
+        // 注册“自定义元素”：将自定义的类 FancyButton 注册为 自定义元素
+        // 参数1：自定义元素的标签名（必须含连字符） fancy-button；
+        // 参数2：对应的类 FancyButton
+        // 参数3：配置对象，这个类扩展自 <button> 元素 {extends："button"}
+
+        customElements.define("fancy-button", FancyButton, {extends: "button"});
+    </script>
+
+    <h2>17. itemid 属性：微数据实体、具体类型的“全球唯一身份证号 id（搜索引擎可读、用户不可见、源代码可见）</h2>
+    <h3>创建一个描述列表，展示一本书的详细信息，使用微数据提供额外的语义信息</h3>
+    <!-- Schema.org Book type - valid microdata vocabulary -->
+    <dl itemscope itemtype="https://schema.org/Book" itemid="urn:isbn:9787010009254">
+        <dt>书名</dt>
+        <dd itemprop="title">《毛泽东选集》</dd>
+        <dt>作者</dt>
+        <dd itemprop="author">毛泽东</dd>
+        <dt>出版时间</dt>
+        <dd itemprop="datePublished">1951年10月12日</dd>
+    </dl>
+
+    <h3>同上，但使用 JSON-LD 提供额外的语义信息</h3>
+    <!-- 这是用户实际看到的 HTML 内容，保持简洁 -->
+
+    <dl>
+        <dt>书名</dt>
+        <dd>《毛泽东选集》</dd>
+        <dt>作者</dt>
+        <dd>毛泽东</dd>
+        <dt>出版时间</dt>
+        <dd>1951年10月12日</dd>
+    </dl>
+    <!-- 为机器准备的结构化数据，独立存在 -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Book",
+            "@id": "urn:isbn:9787010009254",
+            "name": "《毛泽东选集》",
+            "author": {
+                "@type": "Person",
+                "name": "毛泽东"
+            },
+            "datePublished": "1951-10-12"
+        }
+    </script>
 
 
+    <h2>18. itemprop 属性：数据项的具体属性(提供机器可读的语义：“名称-值”对)</h2>
+    <h3>标注“电影”数据项的各个属性</h3>
+    <!-- 数据项的范围：itemscope、数据项的具体类型： itemtype -->
+    <div itemscope itemtype="https://schema.org/Movie">
+        <h4 itemprop="name">《悬崖上的金鱼姬》</h4>
+        <p>导演: <span itemprop="director">宫崎骏</span></p>
+        <p>上映时间：
+            <time itemprop="datePublished" datetime="2008-07-19">2008年7月19日</time>
+        </p>
+    </div>
+    <h3>嵌套的数据项：商品→ 价格+评价</h3>
+
+    <div itemscope itemtype="https://schema.org/Product">
+        <!-- 商品名称 -->
+        <span itemprop="name">蓝牙耳机</span>
+        <!-- 商品图片 -->
+        <img src="images/headphones.png" itemprop="image" alt="蓝牙耳机">
+        <!-- 商品价格 -->
+        <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+            <span itemprop="price">399</span>
+            <span itemprop="priceCurrency">CNY</span>
+        </div>
+
+        <div itemprop="review" itemscope itemtype="https://schema.org/Review">
+            <!-- 商品的评分 -->
+            <span itemprop="reviewRating">4.5</span> 星
+            <!-- 用户名 -->
+            <span itemprop="author">李女士</span>
+        </div>
+    </div>
+
+    <h2>19. itemref 属性：引用 id，关联外部的“数据项属性”</h2>
+    <!-- 引用id：在 itemscope 所在元素上，用 itemref 引用 id，空格分隔多个 id-->
+    <div itemscope itemtype="https://schema.org/Person" itemref="user-age user-city">
+        <h3 itemprop="name">李四</h3>
+    </div>
+
+    <!-- 添加id：给外部属性元素添加id -->
+    <p id="user-age" itemprop="age">30</p>
+    <p id="user-city" itemprop="address">上海</p>
+
+    <h2>20. itemscope 属性：指定数据项的作用范围</h2>
+    <!-- itemscope：数据项的作用范围，该标签内是一个数据项 -->
+    <!-- itemtype：数据项的类型 = 人 -->
+    <div itemscope itemtype="https://schema.org/Person">
+        <!-- itemprop：标记出人的姓名 -->
+        <h3 itemprop="name">张团团</h3>
+        <!-- itemprop：标记出人的职位 -->
+        <p>职位：<span itemprop="jobTitle">前端开发工程师</span></p>
+        <!-- itemprop：标记出人的公司名称 -->
+        <p>公司：<span itemprop="worksFor">某某科技有限公司</span></p>
+    </div>
+    <!-- json-ld 的写法 -->
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "张团团",
+            "jobTitle": "前端开发工程师",
+            "worksFor": "某某科技有限公司"
+        }
+    </script>
+    <h2>21. itemtype 属性：指明数据项的具体类型</h2>
+    <p>示例：参见上方 ↑</p>
+
+
+    <h2>22. lang 属性：指定元素内容的语言</h2>
+    <h3>⑴ 指定整个页面的语言：在 html 标签中设置</h3>
+    <h3>⑵ 多语言混排：为不同段落指定不同的语言</h3>
+    <p lang="zh">我是中文内容</p>
+    <p lang="en">I'm the content in English</p>
+    <p lang="fr">Je suis le contenu en français</p>
+
+    <h3>⑶ CSS 根据不同的语言应用不同的样式：中文使用「」引号，英文使用 "" 引号</h3>
+    <p>金缨：<q lang="zh">日日行，不怕千万里。常常做，不怕千万事。</q></p>
+    <br />
+    <p>Eileen Gu：<q lang="en">Pain is temporary.</q></p>
 
 
 
