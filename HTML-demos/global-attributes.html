@@ -24,7 +24,8 @@
     <meta property="og:url" content="网址">
 
     <title>全局属性</title>
-    <style>
+    <!-- 添加 NONCE 占位符，让服务器可以动态注入 nonce 值。 -->
+    <style nonce="{{NONCE}}">
         h2 {
             background-color: #aeaeae;
         }
@@ -114,6 +115,52 @@
         /*英文引号*/
         q:lang(en), :lang(en) q {
             quotes: '"' '"' "'" "'";
+        }
+
+
+        /*外部样式定制 */
+        /*定义样式，用于定制自定义组件的外观 -*/
+        /* 选择器 "custom-card::part(header)" 意思是：
+           选中 <custom-card> 组件内部，part 属性值为 "header" 的那个元素 */
+        custom-card::part(header) {
+            background: #056705; /* 将头部背景色设置为深绿色 */
+            color: white; /* 文字颜色设置为白色 */
+            font-weight: bold; /* 文字加粗 */
+        }
+
+        /*不生效，不能选中 part 的子元素*/
+        custom-card::part(header) small{
+            color: red;
+        }
+        /*生效，直接使用 part 名选中*/
+        custom-card::part(small){
+            color: pink;
+        }
+        /*不生效，无法使用“链式选择器”*/
+        custom-card::part(header)::part(small){
+            font-size: 1.2rem;
+        }
+
+
+
+        /*下面这段代码不会生效，因为 class="header"在阴影树的内部,
+        要使用 ::part 来穿透阴影树才能在外部设置样式*/
+        .header {
+            background: red;
+            padding: 12px;
+        }
+
+        /* 选中组件内部 part="content" 的元素（内容区域） */
+        custom-card::part(content) {
+            background: #ccc; /* 内容区背景色设置为浅灰色 */
+            font-size: 16px; /* 文字大小设为16像素 */
+            font-weight: bold; /* 文字加粗 */
+        }
+
+        /* 选中组件内部 part="footer" 的元素（页脚区域） */
+        custom-card::part(footer) {
+            background: #074c8f; /* 页脚背景色设置为深蓝色 */
+            color: white; /* 文字颜色设置为白色 */
         }
     </style>
 
@@ -344,7 +391,7 @@
             }
 
         </style>
-        <!-- part 属性：用于 ::part() 选择器，允许外部样式话内部元素 -->
+        <!-- part 属性：用于 ::part() 选择器，允许外部“样式化内部元素” -->
         <div class="base" part="base">
             <!-- 头部区域：内有具名插槽 = 可插入内容的区域 -->
             <div part="header">
@@ -868,9 +915,228 @@
 
     <h3>⑶ CSS 根据不同的语言应用不同的样式：中文使用「」引号，英文使用 "" 引号</h3>
     <p>金缨：<q lang="zh">日日行，不怕千万里。常常做，不怕千万事。</q></p>
-    <br />
+    <br/>
     <p>Eileen Gu：<q lang="en">Pain is temporary.</q></p>
 
+    <h2>23. nonce 属性：内容安全策略的白名单，一次性的加密数字（= 一次性通行证）</h2>
+    <!-- <div id="users-comments"> -->
+    <!--     &lt;!&ndash; 用户的留言：被直接渲染 &ndash;&gt; -->
+    <!--     <div>用户1: 今天天气真好！</div> -->
+    <!--     <div>用户2: <script>alert('XSS攻击！')</script></div> -->
+    <!-- </div> -->
+
+    <!-- &lt;!&ndash; 网站自己的内联脚本 &ndash;&gt; -->
+    <!-- <script> -->
+    <!--     console.log('页面加载完成'); -->
+    <!--     document.getElementById('comments').style.backgroundColor = '#f0f0f0'; -->
+    <!-- </script> -->
+
+    <!-- 显示当前 nonce 值 -->
+    <div class="test-area" id="nonce-info">
+        <strong>当前 nonce 值：</strong>
+        <code id="nonce-value">{{NONCE}}</code>
+    </div>
+
+    <!-- 测试1：带正确 nonce 的脚本（应该执行） -->
+    <div class="test-area">
+        <h3> 测试1：带 nonce 的内联脚本（应该执行）</h3>
+        <div id="test1-result">等待执行...</div>
+    </div>
+
+    <!--  测试2：不带 nonce 的脚本（应该被 CSP 阻止） -->
+    <div class="test-area">
+        <h3> 测试2：不带 nonce 的内联脚本（应该被 CSP 阻止）</h3>
+        <div id="test2-result">等待执行...</div>
+    </div>
+
+    <!--  测试3：动态创建脚本（应该被阻止） -->
+    <div class="test-area">
+        <h3>测试3：动态创建脚本（应该被阻止）</h3>
+        <button onclick="testDynamicScript()">尝试动态添加脚本</button>
+        <div id="test3-result" style="margin-top: 10px;"></div>
+    </div>
+
+    <!--  测试4：eval() 函数（应该被阻止） -->
+    <div class="test-area">
+        <h3> 测试4：eval() 函数 （应该被阻止）</h3>
+        <button onclick="testEval()">尝试执行 eval()</button>
+        <div id="test4-result" style="margin-top: 10px;"></div>
+    </div>
+
+    <!--  测试5：内联事件处理器（应该被阻止） -->
+    <div class="test-area">
+        <h3> 测试5：内联事件处理器（应该被阻止）</h3>
+        <button onclick="alert('这个弹窗应该被 CSP 阻止！')">点击测试内联事件</button>
+        <p style="font-size: 14px; color: #666;">注意：这个按钮的 onclick 属性应该被 CSP 阻止</p>
+    </div>
+
+    <!-- ============ 测试1的脚本：带 nonce 的脚本区域 ============ -->
+    <script nonce="{{NONCE}}">
+        console.log('✅ 测试1：带 nonce 的脚本执行成功！');
+        console.log('当前 nonce 值:', '{{NONCE}}');
+
+        // 更新测试一的页面显示内容，提醒内联脚本执行成功
+
+        const testResult1 = document.getElementById('test1-result');
+        testResult1.innerHTML =
+            ' 我是带 nonce 的脚本生成的内容，出现这段文字，说明我已执行成功！✅️<br>' +
+            ' 控制台已输出 nonce 值，按 F12，查看[控制台]。';
+        // 设置测试一的字体的颜色
+        testResult1.style.color = 'green';
+
+        // 改变背景色，如果证明脚本生效
+        // document.body.style.backgroundColor = '#e8f5e9';
+
+        // 显示 nonce 值
+        document.getElementById('nonce-value').textContent = '{{NONCE}}';
+    </script>
+
+    <!-- ============ 测试2的脚本，不带 nonce 的脚本（应该被阻止） ============ -->
+    <script>
+        const testResult2 = document.getElementById('test2-result');
+        console.log('⚠️ 这个内联脚本无 nonce，不应该被执行！如果出现在控制台，说明 CSP 未生效！');
+        testResult2.innerHTML =
+            '❌ 错误：不带 nonce 的脚本被执行了！CSP 可能未生效。';
+        testResult2.style.color = 'red';
+    </script>
+
+    <!-- ============ 测试3、测试4的脚本，动态添加的脚本，测试函数（带 nonce） ============ -->
+    <script nonce="{{NONCE}}">
+        function testDynamicScript() {
+            const testResult3 = document.getElementById('test3-result');
+            try {
+                const script = document.createElement('script');
+                script.textContent = "alert('动态创建的脚本执行了！')";
+                document.body.appendChild(script);
+                testResult3.innerHTML =
+                    '⚠️ 动态脚本已添加，但应该被 CSP 阻止（查看控制台）';
+                testResult3.style.color = 'orange';
+            } catch (e) {
+                testResult3.innerHTML =
+                    '❌ 错误: ' + e.message;
+                testResult3.style.color = 'red';
+            }
+        }
+
+        function testEval() {
+            const testResult4 = document.getElementById('test4-result');
+            try {
+                eval('alert("eval() 执行了！")');
+                testResult4.innerHTML =
+                    '⚠️ eval() 执行了！这不应该发生';
+                testResult4.style.color = 'red';
+            } catch (e) {
+                testResult4.innerHTML =
+                    '✅ eval() 被 CSP 阻止了！<br>错误信息: ' + e.message;
+                testResult4.style.color = 'green';
+            }
+        }
+
+        console.log('所有测试函数已加载。');
+    </script>
+
+    <!-- 使用说明 -->
+    <div class="test-area" style="background: #f0f7ff;">
+        <h3>📖 使用说明</h3>
+        <ul>
+            <li><strong>按 F12</strong> 打开开发者工具，查看 Console 标签</li>
+            <li><strong>刷新页面</strong>，观察 nonce 值是否每次都在变化</li>
+            <li><strong>查看 Console 中的红色错误</strong>，了解哪些脚本被 CSP 阻止了</li>
+            <li><strong>点击各个按钮</strong>，观察 CSP 如何阻止危险操作</li>
+            <li><strong>切换到 Network 标签</strong>，查看响应头中的 CSP 策略</li>
+        </ul>
+    </div>
+    <h2>24. part 属性：提供出口，让外部 CSS 穿透 shadow DOM 边界→ 可以使用外部样式设置样式</h2>
+
+    <h3>⑴ 自定义元素内“无任何内容”（无空白换行）：完全使用 shadow 中的默认内容</h3>
+    <!-- 自定义组件内无内容：无空白和换行，会完全显示 shadow 中的内容 -->
+    <custom-card></custom-card>
+    <h3>⑵ 自定义元素内有注释（含空白、换行）：使用 shadow 中的默认内容，但无 name 的 slot 标签内容不显示</h3>
+    <custom-card>
+        <!-- 这里应该完全空白，包括空格和换行都没有，此处不是完全空白，无 name 的slot 标签内容不显示 -->
+        <!-- 如果不具名插槽不显示 slot 标签的默认标签内容：可能自定义元素 custom-card 是含有空格、换行，浏览器认为外部有内容（可能是空白文本节点），所以不显示插槽内部的默认内容。 -->
+
+    </custom-card>
+
+    <h3>⑶ 自定义元素中有“自定义内容”：使用 slot 属性 → 替换指定的 name 的 slot 标签内容，无 slot 属性的标签 → 替换 “无
+        name 属性的 slot 标签内容”</h3>
+    <!-- 在页面中使用自定义组件 <custom-card> -->
+    <custom-card>
+        <!-- slot 属性：插入到哪里。这个 span 会被插入到组件内部 <slot name="header"> 的位置 -->
+        <span slot="header">自定义标题：我的卡片，内容可随意替换</span>
+        <!-- 这个 <p> 标签没有指定 slot，会进入默认的 <slot>（不带 name 的那个） -->
+        <figure>
+            <h4>自定义的内容区（不具名插槽的内容）</h4>
+            <figcaption>波妞</figcaption>
+            <img src="images/ponyo.png" alt="动漫《悬崖上的金鱼姬》里的波妞">
+        </figure>
+        <!-- 这个 div 会被插入到组件内部 <slot name="footer"> 的位置 -->
+        <div slot="footer">
+            <p>自定义页脚：我是页脚内容，可随意替换</p>
+        </div>
+    </custom-card>
+
+
+    <script>
+        // 定义一个类，继承自 HTMLElement，表示我们要创建一个自定义元素
+        class CustomCard extends HTMLElement {
+            // constructor 是类的构造方法，在每次创建 <custom-card> 实例时自动调用
+            constructor() {
+                super();    // 必须调用 super() 先执行父类的构造方法，才能使用 this
+
+                // attachShadow 创建一个 Shadow DOM 树，mode: 'open' 表示外部可以通过 JS 访问这个 Shadow DOM
+                this.attachShadow({mode: 'open'});
+                this.shadowRoot.innerHTML = `
+                <!-- 注意：这个 style 只作用于 Shadow DOM 内部，不会影响外部页面 -->
+                <style>
+                    .card {
+                        border: 1px solid #ccc;    /* 灰色边框，1像素宽，实线 */
+                        border-radius: 8px;         /* 圆角8像素 */
+                        width: 80%;
+                        margin: 0 auto; /* 居中 */
+                    }
+                    .header {
+                        background: #f0f0f0;        /* 默认头部背景色为浅灰色 */
+                        padding: 12px;              /* 内边距12像素 */
+                    }
+                    .content {
+                        padding: 16px;              /* 内容区内边距16像素 */
+                    }
+                    .footer {
+                        padding: 12px;              /* 页脚内边距12像素 */
+                        border-top: 1px solid #ccc; /* 顶部边框，灰色，1像素 */
+                    }
+                </style>
+                <!-- 卡片最外层容器 -->
+                <div class="card">
+                    <!-- 头部区域：part="header" 暴露给外部样式使用，class="header" 用于内部样式 -->
+                    <div part="header" class="header">
+                        <!-- slot 插槽：name="header" 允许外部用 slot="header" 的内容替换这里 -->
+                        <slot name="header">shadow 中插槽的默认标题（具名插槽）</slot>
+                        <br>
+                        <small part="small">小字说明</small>
+                    </div>
+
+                    <!-- 内容区域：同样暴露 part="content" -->
+                    <div part="content" class="content">
+                        <!-- 默认插槽：没有 name 属性，外部未指定 slot 的内容会放到这里 -->
+                        <slot>shadow 中插槽的默认内容区（无名插槽）</slot>
+                    </div>
+
+                    <!-- 页脚区域：暴露 part="footer" -->
+                    <div part="footer" class="footer">
+                        <!-- 具名插槽：name="footer"，外部可用 slot="footer" 的内容替换 -->
+                        <slot name="footer">shadow 中插槽默认的页脚内容（具名插槽）</slot>
+                    </div>
+                </div>
+    `;
+            }
+        }
+
+        //自定义元素的定义： 将 CustomCard 类注册为自定义元素，标签名：为 'custom-card'
+        // 注意：自定义标签名必须包含短横线（-）
+        customElements.define('custom-card', CustomCard);
+    </script>
 
 
     <!-- 辅助代码：快速跳转到最下方 -->
