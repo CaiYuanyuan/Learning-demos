@@ -129,18 +129,19 @@
         }
 
         /*不生效，不能选中 part 的子元素*/
-        custom-card::part(header) small{
+        custom-card::part(header) small {
             color: red;
         }
+
         /*生效，直接使用 part 名选中*/
-        custom-card::part(small){
+        custom-card::part(small) {
             color: pink;
         }
+
         /*不生效，无法使用“链式选择器”*/
-        custom-card::part(header)::part(small){
+        custom-card::part(header)::part(small) {
             font-size: 1.2rem;
         }
-
 
 
         /*下面这段代码不会生效，因为 class="header"在阴影树的内部,
@@ -161,6 +162,26 @@
         custom-card::part(footer) {
             background: #074c8f; /* 页脚背景色设置为深蓝色 */
             color: white; /* 文字颜色设置为白色 */
+        }
+
+        /* popover 弹窗元素的遮罩，背景颜色为半透明*/
+        [popover]::backdrop {
+            background-color: rgba(0, 0, 0, 0.4); /* 顶层元素下面，半透明背景，提示被遮罩 */
+        }
+
+        /* 加内边距 ：输入文字不贴边，鼠标聚焦时可以显示闪烁的光标，不被遮挡*/
+        .editable{
+            padding: 8px;
+        }
+
+        /*空内容时，显示灰色的占位文本*/
+        .editable:empty:before{
+            content: '请输入您的想法...';
+            color: #666;
+        }
+        /* 聚焦时，隐藏占位文本*/
+        .editable:focus:before{
+            content: none;
         }
     </style>
 
@@ -1138,7 +1159,263 @@
         customElements.define('custom-card', CustomCard);
     </script>
 
+    <h2>25. popover 属性：让任意元素变成一个“弹出层元素”、默认隐藏不显示。</h2>
+    <!-- 触发按钮： 用 popovertarget 属性管理 popover 元素的 id -->
+    <button popovertarget="my-popover1">打开弹窗1（auto）</button>
+    <button popovertarget="my-popover2">打开弹窗2（auto）</button>
+    <button popovertarget="my-popover3">打开弹窗3（manual）</button>
+    <button popovertarget="my-popover4">打开弹窗4（manual）</button>
+    <button popovertarget="my-popover5">打开弹窗5（hint）</button>
+    <button popovertarget="my-popover6">打开弹窗6（hint）</button>
+    <br/>
+    <br/>
+    <button popovertarget="my-popover7">打开弹窗7（auto 内部嵌套 auto 弹窗）</button>
+    <br>
+    <br>
+    <!-- 默认值 toggle：在显示和隐藏之间切换，点击按钮，打开弹窗，再次点击按钮会关闭弹窗。 -->
+    <button popovertarget="my-popover1" popovertargetaction="toggle">打开和关闭弹窗1（toggle/默认值）</button>
+    <!-- 值打开弹窗，再次点击不会关闭弹窗 -->
+    <button popovertarget="my-popover1" popovertargetaction="show">只打开弹窗1（show）</button>
+    <!-- 只关闭，再次点击按钮不会显示弹窗 -->
+    <button popovertarget="my-popover1" popovertargetaction="hide">只关闭弹窗1（hide）</button>
+    <!-- 用js 代码控制“手动关闭的 manual 弹窗元素”。别在 auto 上设置，因为 auto 弹窗点击外部时会自动关闭，点击按钮时，就成了“关了又开”，就是没关的状态 -->
+    <button onclick="document.getElementById('my-popover3').togglePopover();">js 切换显示、隐藏（manual）</button>
+    <br>
+    <br>
 
+
+    <!-- auto 和 hint 弹窗的搭配使用 -->
+    <button popovertarget="menu">打开菜单（auto 弹窗内部有 hint 弹窗，提供提示信息）</button>
+
+
+    <!-- 把元素设置为弹出层：添加 popover 属性 、id-->
+    <!-- <div id="my-popover1" popover> -->
+
+    <div id="my-popover1" popover>
+        <p>弹窗1（仅属性名，默认值 auto）</p>
+        <p>提示：这是元素添加 popover 属性后创建的原生弹窗。</p>
+        <p>关闭弹窗（可“轻关闭”）：点击弹窗外部、按 ESC 键关闭弹窗、再次点击按钮关闭。</p>
+        <p>打开 auto 弹窗时：会关闭其他 auto 弹窗。</p>
+    </div>
+    <div id="my-popover2" popover="auto">
+        <p>弹窗2（auto）</p>
+        <p>提示：这是元素添加 popover="auto" 属性后创建的原生弹窗。</p>
+        <p>关闭弹窗（可“轻关闭”）：再次点击按钮、点击弹窗外部、按 ESC 键关闭弹窗。打开 auto 弹窗时：会关闭其他 auto 弹窗</p>
+    </div>
+    <!-- 把元素设置为弹出层：添加 popover 属性 、id-->
+    <div id="my-popover3" popover="manual">
+        <p>弹窗3（manual）</p>
+        <p>提示：这是元素添加 popover="manual" 属性后创建的原生弹窗。</p>
+        <p>关闭弹窗：手动关闭弹窗，再次点击按钮关闭 /js 关闭。</p>
+        <p>无“轻关闭”：无法通过点击弹窗外部、按 ESC 键关闭弹窗。</p>
+        <p>打开 manual 弹窗时：不关闭其他 manual 弹窗，多个 manual 可同时显示，互不干扰。</p>
+    </div>
+
+    <!-- 把元素设置为弹出层：添加 popover 属性 、id-->
+    <div id="my-popover4" popover="manual">
+        <p>弹窗4（manual）</p>
+        <p>提示：这是元素添加 popover="manual" 属性后创建的原生弹窗。</p>
+        <p>关闭弹窗：手动关闭弹窗，再次点击按钮关闭 /js 关闭。无“轻关闭”：无法通过点击弹窗外部、按 ESC 键关闭弹窗。</p>
+    </div>
+
+    <!-- 把元素设置为弹出层：添加 popover 属性 、id-->
+    <div id="my-popover5" popover="hint">
+        <p>弹窗5（hint）</p>
+        <p>提示：这是元素添加 popover="hint" 属性后创建的原生弹窗。</p>
+        <p>关闭弹窗（可“轻关闭”）：点击弹窗外部、按 ESC 键关闭弹窗、再次点击按钮关闭。</p>
+        <p>打开 hint 弹窗时：关闭其他 hint 弹窗，不关闭其他 auto 弹窗。</p>
+    </div>
+    <!-- 把元素设置为弹出层：添加 popover 属性 、id-->
+    <div id="my-popover6" popover="hint">
+        <p>弹窗6（hint）</p>
+        <p>提示：这是元素添加 popover="hint" 属性后创建的原生弹窗。关闭弹窗：再次点击按钮、点击弹窗外部、按 ESC
+            键关闭弹窗。</p>
+    </div>
+
+    <div id="my-popover7" popover>
+        <p>弹窗7（auto）：内部还有嵌套的 auto 弹窗</p>
+        <p>我是 popover 创建的弹窗元素，可以“轻关闭”。</p>
+        <p>我的内部还有一个 auto 弹窗。</p>
+        <p>点击下方按钮，打开内部嵌套的 auto 弹窗，我这个 auto 弹窗也不会关闭哦。</p>
+        <button popovertarget="my-nested-popover1">打开“弹窗元素”内部的弹窗元素</button>
+    </div>
+    <!-- 在 auto 弹窗内部使用的 hint 弹窗，不会关闭 auto 弹窗 -->
+    <div id="my-nested-popover1" popover>
+        <p>我是弹窗元素内部的“嵌套弹窗”，popover 创建的弹窗元素，可以“轻关闭”。</p>
+        <p>打开我时，我外层 auto 弹窗不会关闭。</p>
+    </div>
+
+    <!-- auto 弹窗，内部有按钮，可以打开 hint 弹窗，同时不会关闭 auto 弹窗 -->
+
+    <div id="menu" popover>
+        <ul>
+            <li>
+                新建
+                <button popovertarget="new-info">ⓘ</button>
+            </li>
+            <li>
+                打开
+                <button popovertarget="open-info">ⓘ</button>
+            </li>
+            <li>
+                保存
+                <button popovertarget="save-info">ⓘ</button>
+            </li>
+        </ul>
+    </div>
+
+    <!-- auto 弹窗内部的 hint 弹窗 -->
+
+    <ul>
+        <li popover="hint" id="new-info">新建一个文件</li>
+        <li popover="hint" id="open-info">打开一个文件</li>
+        <li popover="hint" id="save-info">保存文件</li>
+    </ul>
+
+    <h2>26. slot 属性：内容插入到 哪个插槽 ⇒ 对应 slot 标签的 name 属性</h2>
+
+    <!-- 1.自定义组件 -->
+    <template id="card-template">
+        <!-- 定义自定义组件的样式 -->
+        <!-- style 标签写在 template 内容：写在 主文档的 style 标签中不会生效，理由是“Shadow DOM 的封装” -->
+        <!-- Shadow DOM 的样式隔离：Shadow DOM 创建了一个“封装的 DOM 树”，主文档的 CSS 无法影响 “Shadow DOM”内部元素 -->
+        <!-- 样式的作用域：写在 <template> 中，<style> 标签的样式会和 <template>一起被复制到“每个组件实例”的 Shadow DOM 中。 -->
+        <!-- 插槽样式继承：插槽 slot 的内容，可以继承 Shadow DOM 中的样式 -->
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+            }
+
+            /* 卡片容器的样式 */
+            .my-card {
+                border: 1px solid #ccc; /* 卡片的边框 */
+                border-radius: 8px; /* 边框的圆角 */
+                padding: 16px; /* 上下左右内边距 */
+            }
+
+            /* 卡片头部区域的样式 */
+            .header {
+                background-color: #c7eace;
+                padding: 8px;
+                font-size: 18px;
+                font-weight: bold;
+            }
+
+            /*  卡片内容区域的样式  */
+            .content {
+                padding: 16px;
+                background-color: #ccc;
+                margin-top: 10px;
+            }
+
+            /* 卡片页脚区域的样式   */
+            .footer{
+                padding: 16px;
+                background-color: #c7eae7;
+                margin-top: 10px;
+                text-align: right;
+                font-size: 14px;
+                color: #666;
+            }
+
+            .header,.content,.footer{
+                border: 1px solid #ccc;
+                border-radius: 8px;
+            }
+
+        </style>
+        <!-- 自定义组件的大容器 -->
+        <div class="my-card">
+            <!-- (div[class]>slot[name])*3 -->
+            <!-- 具名插槽：头部区域，标题。 -->
+            <div class="header">
+                <slot name="title">头部区域：slot 标签默认的内容（具名插槽）</slot>
+            </div>
+            <!-- 默认插槽：内容区域 -->
+            <div class="content">
+                <slot>内容区：slot 标签的默认内容（第 1 个不具名插槽）</slot>
+                <br>
+                <slot>内容区：slot 标签的默认内容（第 2
+                    个不具名插槽），一个组件，只能用一个“默认插槽（不具名）”多个不具名插槽，仅第一个生效。
+                </slot>
+            </div>
+            <!-- 具名插槽：底部区域 -->
+            <div class="footer">
+                <slot name="footer">底部区域：slot 标签的默认内容（具名插槽）</slot>
+            </div>
+        </div>
+
+
+    </template>
+
+    <!-- 2.注册“自定义元素” -->
+    <script>
+        class MyCard extends HTMLElement {
+            constructor() {
+                super();
+                const template = document.getElementById('card-template');
+                const shadow = this.attachShadow({mode: 'open'});
+                shadow.appendChild(template.content.cloneNode(true));
+            }
+        }
+
+        // 自定义标签名：<my-card>
+        customElements.define('my-card', MyCard);
+    </script>
+
+    <!-- 3.使用自定义组件，用 slot 属性给具名插槽“分配内容” -->
+    <!-- 无自定义内容 -->
+    <h3>⑴ 直接使用“自定义组件”，无自定义内容</h3>
+    <my-card></my-card>
+
+    <!-- 有自定义内容 -->
+    <h3>⑵ 使用自定义组件，有自定义内容：通过 slot 属性 给“具名插槽”分配内容，无 slot 属性给“默认插槽”分配内容</h3>
+    <my-card>
+        <!-- 分配到 name="title" 的插槽（slot 标签） -->
+        <div slot="title">标题：这是自定义的卡片标题（可修改）</div>
+        <!--  无 slot 属性的内容，分配给默认插槽（无 name slot）     -->
+        <div>
+            内容区域：我是自定义的内容，可修改，我没有 slot 属性，内容会分配给默认插槽（无 name 的 slot 标签）。
+        </div>
+        <p>p 标签的内容：一个没有 slot 属性的段落。</p>
+        <!-- 分配给 name="footer" 的插槽（slot 标签） -->
+        <div slot="footer">页脚区域(可写发布时间等)</div>
+    </my-card>
+
+    <h2>27. spellcheck 属性：是否对“可编辑元素”开启“拼写检查”，若拼写错误，一般会有“红色波浪下划线”</h2>
+    <h3>⑴ 富文本编辑器：未设置拼写检查，div 设置 contenteditable="true"</h3>
+    <div id="my-editor1" class="editable"  contenteditable="true" style="width: 300px;height: 100px;background-color:#eee;"></div>
+    <br>
+    <h3>⑵ 富文本编辑器：开启拼写检查（spellcheck="true"）</h3>
+    <div id="my-editor2" class="editable" spellcheck="true" contenteditable="true" style="width: 300px;height: 100px;background-color:#eee;"></div>
+    <br>
+    <h3>⑶ 富文本编辑器：关闭拼写检查（spellcheck="false" ）</h3>
+    <div id="my-editor3" class="editable" spellcheck="false" contenteditable="true" style="width: 300px;height: 100px;background-color:#eee;"></div>
+
+    <h3>⑷ 不设置拼写检查时的默认行为：可编辑元素一般默认开启“拼写检查”</h3>
+    <input type="text" aria-label="测试拼写检查" placeholder="text 未设置拼写检查">
+    <input type="search" aria-label="测试拼写检查" placeholder="search 未设置拼写检查">
+    <input type="password" aria-label="测试拼写检查" placeholder="password 未设置拼写检查">
+    <br>
+    <br>
+    <input type="email" aria-label="测试拼写检查" placeholder="email 未设置拼写检查">
+    <input type="url" aria-label="测试拼写检查" placeholder="url 未设置拼写检查">
+    <br>
+    <br>
+    <textarea name="test-spell-check" id="test-spell-check" aria-label="测试拼写检查" placeholder="textarea 未设置拼写检查"></textarea>
+
+    <h3>⑸ 关闭移动表单的自动处理：关闭自动大写、自动更正、拼写检查</h3>
+    <!-- 彻底关闭自动处理 -->
+    <input type="text" aria-label="测试关闭自动处理" placeholder="输入框无自动处理，关闭自动大写、自动更正、拼写检查" autocorrect="off" autocapitalize="off" spellcheck="false" style="width: 400px">
+
+
+
+    
+
+
+
+    <h2 style="display: none">跳转到最底部</h2>
     <!-- 辅助代码：快速跳转到最下方 -->
     <div id="document-end"></div>
 </body>
