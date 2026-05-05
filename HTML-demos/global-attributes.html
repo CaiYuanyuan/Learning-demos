@@ -23,6 +23,7 @@
     <meta property="og:image" content="图片的url">
     <meta property="og:url" content="网址">
 
+
     <title>全局属性</title>
     <!-- 添加 NONCE 占位符，让服务器可以动态注入 nonce 值。 -->
     <style nonce="{{NONCE}}">
@@ -170,18 +171,25 @@
         }
 
         /* 加内边距 ：输入文字不贴边，鼠标聚焦时可以显示闪烁的光标，不被遮挡*/
-        .editable{
+        .editable {
             padding: 8px;
         }
 
         /*空内容时，显示灰色的占位文本*/
-        .editable:empty:before{
+        .editable:empty:before {
             content: '请输入您的想法...';
             color: #666;
         }
+
         /* 聚焦时，隐藏占位文本*/
-        .editable:focus:before{
+        .editable:focus:before {
             content: none;
+        }
+
+        /* 测试 style 属性中样式的优先级，style 属性中设置的样式优先 style 标签中的样式，加了 !important 后，才能高于元素中的内联样式*/
+        .test-priority {
+            color: green;
+            /*color: green !important;*/
         }
     </style>
 
@@ -570,21 +578,21 @@
     <input type="text" id="nickname" name="nickname">
 
     <h2>14. inert 属性：禁用整片区域，不可聚焦、不可点击、不可选中、不可被搜索、不可被屏幕阅读器朗读</h2>
-    <!-- 未加 inert 的正常区域 -->
+    <h3>⑴ 未加 inert 的正常区域</h3>
     <div class="inert-test-container">
         <h3>可交互区域：未被 inert 禁用</h3>
         <button type="button" onclick="alert('可点击区域！')">可点击按钮</button>
         <a href="https://www.baidu.com">可跳转链接（百度）</a>
         <input type="text" placeholder="请输入内容..." aria-label="测试输入内容">
     </div>
-    <!-- 加 inert 的禁用区域 -->
+    <h3>⑵ 加 inert 的禁用区域</h3>
     <div inert class="inert-test-container">
         <h3>不可交互区域的禁用区域：被 inert 禁用，禁用元素以及所有子元素</h3>
         <button type="button" onclick="alert('不可点击区域！不该显示！')">可点击按钮</button>
         <a href="https://www.baidu.com">不可跳转链接（百度）</a>
         <input type="text" placeholder="请输入内容..." aria-label="测试输入内容">
 
-        <!-- 默认不显示的对话框，可通过 js 的 showModal() 显示，祖先元素的 inert 属性无法阻止弹出。 -->
+        <h3> 默认不显示的对话框，可通过 js 的 showModal() 显示，祖先元素的 inert 属性无法阻止弹出 </h3>
         <dialog id="hobby-dialog" style="background-color: #91b7a2">
             <!-- 显示禁用 dialog 整个区域，直接给 dialog 设置 inert，不通过继承 -->
             <!-- <dialog inert id="hobby-dialog" style="background-color: #91b7a2"> -->
@@ -605,7 +613,7 @@
     <button type="button" id="open-btn" onclick="document.getElementById('hobby-dialog').showModal();">打开对话框
     </button>
 
-    <h3>打开自定义弹窗时：禁用其他区域；关闭弹窗时，取消禁用</h3>
+    <h3>⑶ 打开自定义弹窗时：禁用其他区域；关闭弹窗时，取消禁用</h3>
     <button type="button" id="open-dialog-btn">打开对话框</button>
     <div id="bg-section" style="height: 300px;background-color: #cecece">
         <p>我是背景区域</p>
@@ -1310,7 +1318,7 @@
             }
 
             /* 卡片页脚区域的样式   */
-            .footer{
+            .footer {
                 padding: 16px;
                 background-color: #c7eae7;
                 margin-top: 10px;
@@ -1319,7 +1327,7 @@
                 color: #666;
             }
 
-            .header,.content,.footer{
+            .header, .content, .footer {
                 border: 1px solid #ccc;
                 border-radius: 8px;
             }
@@ -1385,13 +1393,16 @@
 
     <h2>27. spellcheck 属性：是否对“可编辑元素”开启“拼写检查”，若拼写错误，一般会有“红色波浪下划线”</h2>
     <h3>⑴ 富文本编辑器：未设置拼写检查，div 设置 contenteditable="true"</h3>
-    <div id="my-editor1" class="editable"  contenteditable="true" style="width: 300px;height: 100px;background-color:#eee;"></div>
+    <div id="my-editor1" class="editable" contenteditable="true"
+         style="width: 300px;height: 100px;background-color:#eee;"></div>
     <br>
     <h3>⑵ 富文本编辑器：开启拼写检查（spellcheck="true"）</h3>
-    <div id="my-editor2" class="editable" spellcheck="true" contenteditable="true" style="width: 300px;height: 100px;background-color:#eee;"></div>
+    <div id="my-editor2" class="editable" spellcheck="true" contenteditable="true"
+         style="width: 300px;height: 100px;background-color:#eee;"></div>
     <br>
     <h3>⑶ 富文本编辑器：关闭拼写检查（spellcheck="false" ）</h3>
-    <div id="my-editor3" class="editable" spellcheck="false" contenteditable="true" style="width: 300px;height: 100px;background-color:#eee;"></div>
+    <div id="my-editor3" class="editable" spellcheck="false" contenteditable="true"
+         style="width: 300px;height: 100px;background-color:#eee;"></div>
 
     <h3>⑷ 不设置拼写检查时的默认行为：可编辑元素一般默认开启“拼写检查”</h3>
     <input type="text" aria-label="测试拼写检查" placeholder="text 未设置拼写检查">
@@ -1403,16 +1414,205 @@
     <input type="url" aria-label="测试拼写检查" placeholder="url 未设置拼写检查">
     <br>
     <br>
-    <textarea name="test-spell-check" id="test-spell-check" aria-label="测试拼写检查" placeholder="textarea 未设置拼写检查"></textarea>
+    <textarea name="test-spell-check" id="test-spell-check" aria-label="测试拼写检查"
+              placeholder="textarea 未设置拼写检查"></textarea>
 
     <h3>⑸ 关闭移动表单的自动处理：关闭自动大写、自动更正、拼写检查</h3>
     <!-- 彻底关闭自动处理 -->
-    <input type="text" aria-label="测试关闭自动处理" placeholder="输入框无自动处理，关闭自动大写、自动更正、拼写检查" autocorrect="off" autocapitalize="off" spellcheck="false" style="width: 400px">
+    <input type="text" aria-label="测试关闭自动处理" placeholder="输入框无自动处理，关闭自动大写、自动更正、拼写检查"
+           autocorrect="off" autocapitalize="off" spellcheck="false" style="width: 400px">
+
+    <h2> 28. style 属性：只对当前元素生效的“内联样式”</h2>
+    <p class="test-priority" style="color: red;font-weight: bold">你好，通过元素的 style
+        属性设置，我的文字会变成红色，会变成粗体。</p>
 
 
+    <h2>29. tabindex 属性：控制元素是否可以被 tab 键聚焦、聚焦顺序</h2>
+    <h3>⑴ 让原本不能被 tab 键聚焦的元素可以被 tab 键选中，顺序按“DOM 自然顺序”：tabindex="0"</h3>
+    <input type="text" aria-label="测试是否默认可被聚焦" placeholder="input 默认可聚焦">
+    <div>我是 div，默认不可聚焦，tab 键聚焦时会跳过我</div>
+    <div tabindex="0">我是 div，设置了 tabindex="0"，现在可以用 tab 键聚焦了，tab 键会聚焦我，不会再跳过我</div>
 
-    
+    <h3>⑵ 元素不能被 tab 选中，但 JS 代码可以主动聚焦</h3>
+    <button popovertarget="my-panel" id="panel-btn">tab 键选中或点击我，显示弹窗</button>
 
+    <!-- 不加 tabindex="-1"，普通 div 根本不支持 .focus()，JS 聚焦会失效。 -->
+    <!-- <div id="my-panel" popover tabindex="-1"> -->
+    <div id="my-panel" popover>
+        <input id="my-panel-input" type="text" aria-label="测试tab聚焦"
+               placeholder="打开弹窗后，可通过 tab 聚焦">
+        <p>我是弹窗内的内容，我上方的输入框可通过 tab 键获得焦点，获得焦点后，弹窗边框变绿色。</p>
+        <p>如果让弹窗本身获得焦点，可点击按钮，弹窗获得焦点，弹窗边框会变红色。</p>
+    </div>
+
+    <script>
+        const myPanel = document.getElementById('my-panel');
+        const myPanelInput = document.getElementById('my-panel-input');
+        // 监听弹窗的 toggle 事件,打开后弹窗时，让输入框聚焦
+        myPanel.addEventListener('toggle', (event) => {
+            if (event.newState === 'open') {
+                // myPanelInput.focus();
+                myPanel.focus();
+            }
+
+        });
+    </script>
+
+    <h3>⑶ 自定义 tab 键聚焦顺序，数字越小越先聚焦：tabindex="正整数（1,2,3...）"</h3>
+    <small>注：按 Tab 会先到 tabindex="1"，再到 2... ，先走完正整数的元素，再走自然顺序的元素。</small>
+    <div>
+        <a href="#">登录页面的改进建议</a>
+        <br>
+        <input type="text" aria-label="账户名" placeholder="账号名、手机号、邮箱" name="login-name" tabindex="1">
+        <br>
+        <input type="password" name="login-pwd" id="login-pwd" tabindex="2" aria-label="密码" placeholder="请输入密码">
+        <br>
+        <button tabindex="3">登录</button>
+        <br>
+        <a href="#">友情链接1</a>
+        <a href="#">友情链接2</a>
+        <a href="#">友情链接3</a>
+    </div>
+
+    <h2>30. title 属性：给元素添加一段“附加说明、提示文字”，鼠标悬停时显示</h2>
+    <h3>⑴ 给链接、图标添加说明：title="说明文字"</h3>
+    <a href="#" title="点击进入设置页面">设置</a>
+    <br>
+    <a href="#" title="2026年度报告，pdf文件，文件大小约20M">查看报告</a>
+    <br>
+    <a href="#" title="点击进入设置页面">⚙️ </a>
+    <br>
+    <button title="打印当前页面">🖨️</button>
+
+
+    <h3>⑵ 给缩写词标注全称：title="全称"</h3>
+    <p>前端开发的基础三大件：
+        <abbr title="超文本标记语言（Hypertext Markup Language）">HTML</abbr>、
+        <abbr title=" 层叠样式表（cascading style sheet）">CSS</abbr>、
+        <abbr title="JavaScript">JS</abbr>。
+    </p>
+    <small>注：首次使用时，全称是关键信息，应该用纯文本直接标出，而不是使用 title 属性。</small>
+
+    <h3>⑶ 表单输入提示：title="输入提示"</h3>
+    <input type="password" title="请输入字母、数字的组合，至少含一个字母" placeholder="请输入密码">
+    <small>注：不能用 title 替代 &lt;label&gt; 标签。</small>
+
+    <h3>⑷ 图片的补充说明：title="说明文字"（alt 是图片缺失时提示，title 是悬停提示）</h3>
+    <img src="images/ponyo.png" alt="动漫《悬崖上的金鱼姬》里的主角波妞" title="动漫《悬崖上的金鱼姬》里的主角-波妞">
+
+    <h3>⑸ 给内联框架 iframe 提供辅助标签</h3>
+    <iframe src="https://www.baidu.com" title="百度搜索的首页"></iframe>
+
+    <h3>⑹ 创建备用样式表，备用样式表的名称：title="备用样式表的名称"(必需)，搭配 link 标签的 rel="alternate
+        stylesheet"</h3>
+    <small>注：目前仅 Firefox 浏览器支持备用样式表，添加 CSS 文件后，菜单栏 → 查看→ 页面样式中可选择备用样式</small>
+    <pre>
+        <code>
+         &lt;link rel="stylesheet" href="#"&gt;
+         &lt;link rel="alternate stylesheet" href="#" title="暗模式"&gt;
+         &lt;link rel="alternate stylesheet" href="#" title="大字体模式"&gt;
+        </code>
+    </pre>
+
+    <h3>⑺ title 属性可以包含多行：换行、空格会被保留。</h3>
+    <p title="我是第一行，
+    我是第二行，
+        我是第三行。">
+        测试 title 属性的换行</p>
+
+    <h2>31. translate 属性：是否翻译该元素的内容</h2>
+    <h3>⑴ 保护品牌名、产品名不被翻译：translate="no"</h3>
+    <p>Recommended AI tool for developers is <span translate="no">Windsurf</span>。</p>
+    <small>(设置了不翻译)</small>
+    <p>Recommended AI tool for developers is Windsurf。</p>
+    <small>(未设置)</small>
+
+    <p><span translate="no">Tiktok</span> is his favorite app.</p>
+    <small>(设置了不翻译)</small>
+    <p>Tiktok is his favorite app.</p>
+    <small>(未设置)</small>
+
+    <h3>⑵ 代码、命令行、标识符等需要保持原文、不应该被翻译：translate="no"</h3>
+    <p>Type "<code translate="no">node -v</code>" in the terminal to view the version of Node.js.</p>
+    <small>(设置了不翻译)</small>
+    <p>Type "<code>node -v</code>" in the terminal to view the version of Node.js.</p>
+    <small>(未设置)</small>
+
+
+    <h3>⑶ 父元素设置了不翻译，子元素也不翻译</h3>
+    <div translate="no">
+        <p>Tiktok is his favorite app.</p>
+    </div>
+
+    <h2>32. virtualkeyboardpolicy 属性：虚拟键盘的弹出行为</h2>
+    <h3>禁用键盘自动弹出、通过自定义按钮唤起虚拟键盘：virtualkeyboardpolicy="manual"</h3>
+    <small>注：移动端，点击内容不会弹出虚拟键盘，点击按钮才会弹出虚拟键盘。Safari、Firefox 不支持。</small>
+    <div contenteditable="true" virtualkeyboardpolicy="auto"
+         style="border: 2px solid green;padding: 8px;margin-top:8px">virtualkeyboardpolicy="auto"
+    </div>
+    <div contenteditable="true"
+         style="border: 2px solid green;padding: 8px;margin-top:8px">未设置 virtualkeyboardpolicy
+    </div>
+    <div id="editor1" contenteditable="true" virtualkeyboardpolicy="manual"
+         style="border: 2px solid green;padding: 8px;margin-top:8px">
+        <p>内容区1</p>
+        <p>contenteditable="true"（可编辑），virtualkeyboardpolicy="manual"（不弹出）</p>
+        <p>我是原本就有的内容，点击下方按钮进行编辑。</p>
+    </div>
+
+    <div id="editor2" contenteditable="false" virtualkeyboardpolicy="manual"
+         style="border: 2px solid green;padding: 8px;margin-top:8px">
+        <p>内容区2</p>
+        <p>contenteditable="false"（不可编辑），virtualkeyboardpolicy="manual"（不弹出）</p>
+        <p>我是原本就有的内容，点击下方按钮进行编辑。</p>
+    </div>
+    <button id="edit-btn1">编辑内容1</button>
+    <button id="edit-btn2">编辑内容2</button>
+
+    <script>
+
+        // if ('virtualKeyboard' in navigator) {
+            const editor1 = document.getElementById('editor1');
+            const editor2 = document.getElementById('editor2');
+            const editBtn1 = document.getElementById('edit-btn1');
+            const editBtn2 = document.getElementById('edit-btn2');
+
+            // 阻止默认行为：阻止点击编辑器(div)时自动弹出虚拟键盘
+            editor1.addEventListener('click', (e) => {
+                e.preventDefault();
+            });
+            editor2.addEventListener('click', (e) => {
+                e.preventDefault();
+            });
+
+
+            editBtn1.addEventListener('click', () => {
+                // 编辑器获取焦点
+                editor1.focus();
+                // 通过 JS 手动唤起虚拟键盘：显示虚拟键盘
+                navigator.virtualKeyboard.show();
+            });
+            editBtn2.addEventListener('click', () => {
+                // 编辑器获取焦点
+                editor2.focus();
+                // 让 div 可编辑
+                editor2.contentEditable="true";
+                // 通过 JS 手动唤起虚拟键盘：显示虚拟键盘
+                navigator.virtualKeyboard.show();
+            });
+        // }
+    </script>
+
+    <h2>33. writingsuggestions 属性：是否启动浏览器的写作建议</h2>
+    <textarea name="test-writing-suggestion1" id="test-writing-suggestion1" cols="30" rows="10" writingsuggestions="true" placeholder="启动写作建议"></textarea>
+    <textarea name="test-writing-suggestion2" id="test-writing-suggestion2" cols="30" rows="10" writingsuggestions="false" placeholder="禁用写作建议"></textarea>
+    <br />
+    <!-- 禁用写作建议：false -->
+    <input type="text" writingsuggestions="false" placeholder="false，显式禁用写作建议" />
+    <!-- 启动写作建议：默认是启用的 -->
+    <input type="text" placeholder="未设置写作建议，默认启动" />
+    <input type="text" writingsuggestions placeholder="写作建议仅属性名，默认启用" />
+    <input type="text" writingsuggestions="true" placeholder="写作建议值为 true，显式启用"/>
 
 
     <h2 style="display: none">跳转到最底部</h2>
