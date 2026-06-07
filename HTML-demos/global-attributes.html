@@ -191,6 +191,16 @@
             color: green;
             /*color: green !important;*/
         }
+        /* 当弹窗内任何元素获得焦点时,元素的样式，这段代码不注释的话，放:focus 后面时，会显示绿色，因为弹窗聚焦，也满足弹窗内获得焦点，两个权重一样，后面的会生效 */
+        /* 弹窗自己聚焦 = 同时触发 :focus 和 :focus-within ，所以，:focus-within 放前面，避免覆盖 弹窗自己聚焦时的样式 :focus*/
+        #my-panel:focus-within {
+            border: 2px solid green;
+        }
+
+        /* 弹窗自己获得焦点时的样式*/
+        #my-panel:focus {
+            border: 2px solid red;
+        }
     </style>
 
 </head>
@@ -459,7 +469,7 @@
 
     <!-- 3.自定义组件部分 -->
     <h3 class="card">卡片包装器</h3>
-    <!-- 自定义元素 -->
+    自定义元素
     <card-wrapper>
         <!-- slot="H"：元素的内容插入到 slot.name="H" 的 slot 元素中-->
         <p slot="H">包装器头部</p>
@@ -1437,8 +1447,8 @@
     <button popovertarget="my-panel" id="panel-btn">tab 键选中或点击我，显示弹窗</button>
 
     <!-- 不加 tabindex="-1"，普通 div 根本不支持 .focus()，JS 聚焦会失效。 -->
-    <!-- <div id="my-panel" popover tabindex="-1"> -->
-    <div id="my-panel" popover>
+    <div id="my-panel" popover tabindex="-1">
+    <!-- <div id="my-panel" popover> -->
         <input id="my-panel-input" type="text" aria-label="测试tab聚焦"
                placeholder="打开弹窗后，可通过 tab 聚焦">
         <p>我是弹窗内的内容，我上方的输入框可通过 tab 键获得焦点，获得焦点后，弹窗边框变绿色。</p>
