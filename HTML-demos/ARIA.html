@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!-- 页面的语言，中文 -->
+<html lang="zh-CN">
+<head>
+    <!-- 1.页面的字符编码 -->
+    <meta charset="UTF-8">
+    <!-- 2.视口设置（移动端适配必备）：页面宽度 = 设备的屏幕宽度。页面初始的缩放比例为 1:1。 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 3.指定 IE 使用最新渲染引擎来渲染页面，避免进入“兼容性视图”。 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- 4.告诉 360 浏览器等国产双核浏览器 强制使用极速内核（Webkit）打开页面，而不是兼容内核（IE） -->
+    <meta name="render" content="webkit">
+
+    <!-- 5.页面的 SEO 优化：页面关键词、页面描述 -->
+    <meta name="keywords" content="页面的关键词，逗号分隔">
+    <meta name="description" content="页面的描述">
+
+    <!-- 6.社交媒体优化，分享时显示标题、描述、图片，Open Graph 协议，og: 前缀 -->
+    <meta property="og:title" content="分享时显示的标题">
+    <meta property="og:description" content="分享时显示的描述">
+    <meta property="og:image" content="图片的url">
+    <meta property="og:url" content="网址">
+    <title>ARIA-无障碍属性</title>
+    <style>
+        /*进度条容器*/
+        .progress-bar-container {
+            width: 100%;
+            max-width: 700px;
+            background-color: #e0e0e0;
+            border-radius: 10px;
+        }
+
+        /*进度条填充*/
+        .progress-bar-fill {
+            width: 0;
+            height: 30px;
+            line-height: 30px;
+            color: white;
+            background-color: #0f723c;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        /*按钮容器*/
+        .controls {
+            margin: 10px 0;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        /*按钮的样式*/
+        .controls button {
+            padding: 8px 16px;
+            background-color: #50a6ec;
+            border-radius: 5px;
+            border: none;
+            color: #e0e0e0;
+            font-size: 16px;
+
+        }
+
+        /*按钮悬浮样式*/
+        .controls button:hover {
+            background-color: #348fe6;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>ARIA-无障碍属性</h1>
+    <h2>一个自定义的进度条：通过 ARIA 角色和属性，给 div 添加语义</h2>
+    <!--
+    ★★★★★ ARIA核心部分 ★★★★★
+    role="progressbar": 告诉屏幕阅读器这是一个进度条
+    aria-valuenow: 当前进度值 (0-100)
+    aria-valuemin: 最小值
+    aria-valuemax: 最大值
+    aria-label: 给进度条起个名字（因为本身没有文字标签）
+-->
+    <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressFill" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+             aria-valuenow="10"
+             aria-label="文件上传进度">0%
+        </div>
+
+        <!-- 不添加无障碍属性 角色和属性 -->
+        <!-- <div class="progress-bar-fill" id="progressFill" style="margin-top:10px">0% -->
+        </div>
+    </div>
+    <p>
+        <strong>无障碍体验：</strong>
+        用屏幕阅读器（如 NVDA）测试时，它会读："文件上传进度，进度条，百分之二十"
+    </p>
+
+    <div class="controls">
+        <button id="decrease-btn" aria-label="减少进度">-10%</button>
+        <button id="increase-btn" aria-label="增加进度">+10%</button>
+        <button id="reset-btn" aria-label="重置进度">重置</button>
+        <span class="value-display" id="valueDisplay">0%</span>
+    </div>
+    <script>
+        // 获取元素
+        const progressFill = document.getElementById("progressFill");
+        const decreaseBtn = document.getElementById("decrease-btn");
+        const increaseBtn = document.getElementById("increase-btn");
+        const resetBtn = document.getElementById("reset-btn");
+        const valueDisplay = document.getElementById("valueDisplay");
+
+        // 当前进度值
+        let currentValue = 0;
+
+        function updateProgress(newValue) {
+            // 当前进度值的范围限制：当前进度值 大于0，小于100的值（0-100）
+            // 大于0：max(0, newValue)
+            // 小于100：min(100, Math.max(0, newValue))
+            currentValue = Math.min(100, Math.max(0, newValue));
+
+            // 更新视觉显示效果：进度条填充框的宽度、内部文字、按钮旁的文字提醒
+            progressFill.style.width = currentValue + '%';
+            progressFill.textContent = currentValue + '%';
+
+            valueDisplay.textContent = currentValue + '%';
+
+            // 更新进度条填充的无障碍属性 aria-valuenow，让屏幕阅读器知道进度变了
+            progressFill.setAttribute('aria-valuenow', currentValue);
+        }
+
+        // 绑定点击事件
+        decreaseBtn.addEventListener('click', () => {
+            updateProgress(currentValue - 10);
+        });
+        increaseBtn.addEventListener('click', () => {
+            updateProgress(currentValue + 10);
+        });
+        resetBtn.addEventListener('click', ()=>{
+            updateProgress(0);
+        });
+
+
+    </script>
+
+    <h2>原生的进度条：progress 标签</h2>
+    <progress id="progress-bar" max="100" value="80"></progress>
+    <br />
+    <small>注：min 属性不允许用于 &lt;progress&gt; 元素；它的最小值始终是 0 。</small>
+</body>
+</html>
