@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!-- ↑ 文档类型声明：html 版本号，上方代码表示是 html 的版本是 html5 ；写在第一行，html 文件的最上方 -->
+<!--
+    html 标签：这是一个 html 文档；
+    根元素、顶级元素、始祖元素：整个文档的开始和结束；
+    允许的子元素：head、body；
+    lang 属性：整个页面的语言，简体中文 -->
+<html lang="zh-CN">
+<!-- html > head;
+    head 标签：文档的头部，文档的信息 -->
+<head>
+    <!-- 1.页面的字符编码 -->
+    <meta charset="UTF-8">
+    <!-- 2.视口设置（移动端适配必备）：页面宽度 = 设备的屏幕宽度。页面初始的缩放比例为 1:1。 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 3.指定 IE 使用最新渲染引擎来渲染页面，避免进入“兼容性视图”。 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- 4.告诉 360 浏览器等国产双核浏览器 强制使用极速内核（Webkit）打开页面，而不是兼容内核（IE） -->
+    <meta name="render" content="webkit">
+
+    <!-- 5.页面的 SEO 优化：页面关键词、页面描述 -->
+    <meta name="keywords" content="页面的关键词，逗号分隔">
+    <meta name="description" content="页面的描述">
+
+    <!-- 6.社交媒体优化，分享时显示标题、描述、图片，Open Graph 协议，og: 前缀 -->
+    <meta property="og:title" content="分享时显示的标题">
+    <meta property="og:description" content="分享时显示的描述">
+    <meta property="og:image" content="图片的url">
+    <meta property="og:url" content="网址">
+
+    <!--
+        整个网页内容的标题（主题）：
+        head > title : 一个文档中的 head 中仅允许 一个 title 标签，即 一个页面仅限一个主题;
+        用于：搜索引擎优化、浏览器标签和书签、浏览器历史记录、搜索结果、媒体分享预览、屏幕阅读器
+    -->
+    <title>title 标签的内容：整个网页的标题（主题）</title>
+<!--     <style>
+        body {
+            background-color: lightblue;
+        }
+    </style>
+    <script>
+        document.body.onload = function() {
+            alert('页面加载完成！');
+        }
+    </script> -->
+    <!-- 设置网页链接的默认地址和打开位置_blank 为新标签页，解析文档中所有相对url -->
+    <base href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements" target="_blank">
+</head>
+
+<!-- html > body；根元素的第二个子元素
+    body 标签：网页的主体内容、网页的主要内容、可见内容的容器、显示给用户看的内容写在这里
+-->
+<body>
+    <h1>主要标签：文档类型声明，title，h1~h6，p，hr，br</h1>
+    <h1>一级标题：页面的主题，一个页面仅限一个（h1）</h1>
+    <h2>二级标题（h2）</h2>
+    <h3>三级标题（h3）</h3>
+    <h4>四级标题（h4）</h4>
+    <h5>五级标题（h5）</h5>
+    <h6>六级标题（h6）</h6>
+    <h2>p 标签：一个段落 </h2>
+    <p>我是一个段落。</p>
+    <p>我也是一个段落。</p>
+    <p>我也是一个段落。</p>
+
+    <!-- 主题分隔水平线 -->
+    <hr>
+
+
+    <article>
+        <h1>标题的分级使用：文章的主标题=页面的主题、要和title标签的内容高度相似（一级标题h1）</h1>
+        <p>文章的摘要介绍</p>
+        <section>
+            <h2>小节标题1（二级标题h2）</h2>
+            <p>小节内容，一个段落</p>
+            <p>小节内容，一个段落</p>
+            <h3>小节下的子标题（三级标题h3）</h3>
+            <p>子标题下的内容</p>
+        </section>
+        <section>
+            <h2>小节标题2（二级标题h2）</h2>
+            <p>小节内容，一个段落</p>
+            <p>小节内容，一个段落</p>
+        </section>
+    </article>
+
+    <h2>换行标签 br：给诗歌换行</h2>
+    <p>br 标签的作用：换行，在不开启新段落的情况下，让文字在当前行末尾直接另起一行。</p>
+
+    <p>劝学 <br>
+        唐·颜真卿 <br>
+        三更灯火五更鸡 ，<br>
+        正是男儿读书时。<br>
+        黑发不知勤学早，<br>
+        白首方悔读书迟。</p>
+
+    <h2>测试 base 标签：默认链接、打开位置、解析相对 url 的基准 url </h2>
+    <p>
+        <a href="http://www.w3school.com.cn" target="_blank">这个链接</a> 设置了href、target，将在新窗口中加载设置的网页，因为 target 属性被设置为 "_blank"。
+    </p>
+
+    <p>
+        <a href="">这个链接</a> href 没有属性值，也没有设置 target 属性，将按照 base 中的设置的 href 和 target 在新窗口中加载 base 中设置的网页。
+    </p>
+    <p>
+        <a href="http://www.w3school.com.cn">这个链接</a> 有 href ，没有设置 target 属性，将按照 base 中设置的 target 在新窗口中加载。
+    </p>
+
+
+</body>
+</html>
