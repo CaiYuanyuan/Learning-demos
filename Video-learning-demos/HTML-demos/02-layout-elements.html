@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>布局标签</title>
+</head>
+
+<body>
+  <h1>布局标签</h1>
+  <ul>
+    <li>网站结构标签：页眉、导航栏、主内容、侧边栏、页脚等。</li>
+    <li>无语义标签：没有合适的语义时，布局可使用。例如：div、span 标签。</li>
+    <li>列表标签：让网页内容更整齐有序，组织网页内容时使用频率高。例如：有序列表、无序列表、自定义列表等。</li>
+  </ul>
+  <h2>1. 网站结构标签</h2>
+  <img src="img/网站结构标签.png" alt="网站结构标签图">
+
+  <h2>2. 无语义标签：div、span 标签（没有具体的语义）</h2>
+  <h3>⑴ div 标签</h3>
+  <p>块级元素：默认独占一行，前后自动换行</p>
+  <div>我是div的内容1</div>
+  <div>我是div的内容2</div>
+  <p>通常用于：布局，其他元素的容器。</p>
+  <p>没有语义：只用于布局。</p>
+  <p>子元素：内部可以嵌套块级元素、行内元素。</p>
+  <h3>⑵ span 标签</h3>
+  <p>行内元素：不独占一行，可以多个 span 放在一行内。</p>
+  <span>我是span的内容1</span>
+  <span>我是span的内容2</span>
+  <p>无语义：用于对文本、行内元素进行样式设置和操作。</p>
+
+  <h2>3. 列表标签</h2>
+  <h3>⑴ 无序列表 ul 标签（重要、使用频率很高）：跟顺序无关，顺序不重要的列表</h3>
+  <p><strong>常用于：布局“排列整齐的无序内容”。</strong>排列整齐、跟顺序无关的内容，可以选择使用无序列表。</p>
+  <p> <strong> ul 的直接子元素</strong>：只能是列表项 li 标签。</p>
+  <p><strong>列表项 li 标签的子元素</strong>：可以是其他元素，例如：文本、图片、链接等，几乎无限制。</p>
+  <p>块级元素：ul、li 用于布局，都是块级元素，独占一行的，前后自动换行。</p>
+  <p><strong>li 标签</strong>：列表项，用于表示列表中的一项。</p>
+  <ul>
+    <li>苹果</li>
+    <li>香蕉</li>
+    <li>橙子</li>
+    <li>葡萄</li>
+    <li>西瓜</li>
+  </ul>
+
+  <h3>⑵ 有序列表 ol 标签（使用频率较低、了解即可）：跟顺序有关，顺序很重要的列表</h3>
+  <p>主要用于：顺序很重要的内容，步骤、排名、流程等。</p>
+  <p>注：有序列表 ol 的直接子元素：只能是列表项 li 标签。这一点和无序列表 ul 相同，直接子元素只能是列表项 li 标签。</p>
+  <h4>完成任务的基础步骤</h3>
+    <ol>
+      <li>下载文件</li>
+      <li>找到错误信息</li>
+      <li>修改错误信息</li>
+      <li>提交修改后的文件</li>
+      <li>等待审核</li>
+    </ol>
+    <p>注：数字顺序是默认自动添加的编号，不是手动添加。</p>
+    <h3>⑶ 描述列表（自定义列表） dl 标签（重要、使用频率很高）：名称/值对形式（常见：一个标题名称，多个值</h3>
+    <p>主要用于：描述标题-对应相关的一个或多个描述详情，都围绕一个主题，这样的名称值对，一般用 dl 标签，常用于网站的底部“分组的相关链接”。</p>
+    <p><strong>dt 标签</strong>：描述的标题（被描述的术语）。</p>
+    <p><strong>dd 标签</strong>：描述的详情（术语的定义）。dd 标签里可以放其他的元素。样式：默认带有左外边距（margin-left）</p>
+    <p><strong>组合方式：单个dt，单个dd；多个dt，单个dd；单个dt，多个dd。</strong></p>
+    <p>描述列表：适用于将元数据显示为“键值对列表”的情况。</p>
+
+    <dl>
+      <dt>宠物</dt>
+      <dd>猫咪</dd>
+      <dd>狗狗</dd>
+      <dd>鱼</dd>
+      <dd>鸟</dd>
+      <dd>乌龟</dd>
+      <dd>仓鼠</dd>
+    </dl>
+
+  
+		<!--dl>(dt+dd)*3-->
+		<dl>
+			<dt><dfn>HTML</dfn></dt>
+			<dd>超文本标记语言（Hypertext Markup Language），定义了网页内容的含义和结构。</dd>
+			<dt><dfn>CSS</dfn></dt>
+			<dd>层叠样式表（Cascading Style Sheets，缩写为 CSS）是一种样式表语言，用来描述 HTML 或 XML（包括如 SVG、MathML 或 XHTML
+			    之类的 XML 分支语言）文档的呈现方式。
+			</dd>
+			<dt><dfn>JavaScript</dfn></dt>
+			<dd>JavaScript（JS）是一种具有函数优先特性的轻量级、解释型或者说即时编译型的编程语言。</dd>
+		</dl>
+
+    <dl>
+  <dt>Firefox</dt>
+  <dt>Mozilla Firefox</dt>
+  <dd>
+    一个免费的、开源的、跨平台的、图形化的 web 浏览器，由 Mozilla 公司和数百名志愿者开发。
+  </dd>
+</dl>
+
+  <p><strong>注：</strong> MDN 文档提示：HTML 允许将每个名称-值组（dt、dd）包裹在 dl 元素中的 div 元素内。这在使用微数据、全局属性适用于整个组，或用于样式目的时非常有用。</p>
+
+  <dl>
+		<div style="color:green">
+			<dt>型号</dt>
+			<dd>S-2026 Pro</dd>
+		</div>
+		<dt>颜色</dt>
+		<dd>深空灰</dd>
+		<dt>电池续航</dt>
+		<dd>最长 20 小时</dd>
+	</dl>
+
+</body>
+
+</html>

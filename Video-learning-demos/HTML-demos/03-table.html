@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>表格标签</title>
+</head>
+
+<body>
+  <h1>表格标签 table：展示数据</h1>
+  <p><strong>用途：</strong>结构化数据方式，展示行列数据。</p>
+  <p><strong>使用场景：</strong>展示“排列整齐的行列数据”。如 分为清晰行列的数据展示、后台管理系统的信息展示。</p>
+  <p>注：表格主要用于以行列的形式“展示数据”，而不是“排版”。</p>
+
+  <p><strong>⑴ 表格的行 tr：</strong>表格的一行，用于展示一行数据。</p>
+
+  <p><strong>⑵ 标题单元格 th：</strong>表格的列标题或行标题，用于描述数据的含义，是行或列的标题。</p>
+
+  <p>th 的显示：水平和垂直居中，加粗。</p>
+  <p><strong>⑶ 数据单元格 td：</strong>表格的普通单元格，用于展示数据。</p>
+
+  <!-- border 属性：设置表格边框，是过时属性，此处仅展示边框，后期应该使用 CSS 来设置边框 -->
+  <table border="1">
+    <tr>
+      <th>姓名</th>
+      <th>年龄</th>
+      <th>性别</th>
+    </tr>
+    <tr>
+      <td>张三</td>
+      <td>25</td>
+      <td>男</td>
+    </tr>
+    <tr>
+      <td>李四</td>
+      <td>30</td>
+      <td>女</td>
+    </tr>
+    <tr>
+      <td>王五</td>
+      <td>28</td>
+      <td>男</td>
+    </tr>
+  </table>
+
+  <h2>表格结构标签：thead、tbody、tfoot</h2>
+  <p><strong>作用：</strong>增强表格语义，让表格结构更清晰。</p>
+  <p>把相关的行 tr 分别放到 thead、tbody、tfoot 中，分别展示表格的表头、主体、页脚。</p>
+  <p><strong>⑴ thead：</strong>表格的表头，放标题行，用于展示表格的列标题。</p>
+  <p>thead 限定子元素：tr （tr >th），该行（tr）里一般是一组标题单元格（th）。</p>
+  <p>thead 应只包含 tr，且 tr 中通常只放 th（标题单元格），不要在 thead 中放置 td（数据单元格）。</p>
+  <p>数量：一个表格内只应有一个 thead。即 一个表格，只能有一个表头区域。</p>
+  <p><strong>⑵ tbody：</strong>表格的主体，放数据行，用于展示表格的数据。</p>
+  <p><strong>⑶ tfoot：</strong>表格的页脚，放汇总行，用于展示表格的页脚信息。</p>
+
+  <table border="1">
+    <caption>2026 第一学期课程表</caption>
+    <!--给列分组-->
+    <colgroup>
+      <col />
+      <col span="5" class="weekdays" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th scope="col">时间</th>
+        <th scope="col">星期一</th>
+        <th scope="col">星期二</th>
+        <th scope="col">星期三</th>
+        <th scope="col">星期四</th>
+        <th scope="col">星期五</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">上午 9:00-10:30</th>
+        <td>高数</td>
+        <td>英语</td>
+        <td>计算机网络</td>
+        <td>计算机组成原理</td>
+        <td>体育</td>
+      </tr>
+      <tr>
+        <th scope="row">下午 13:00-14:30</th>
+        <td>英语</td>
+        <td>音乐</td>
+        <td>体育</td>
+        <td>单片机</td>
+        <td>数据结构</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="6">注：具体上课地点参见班群通知。</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <h3>表格的合并单元格：colspan、rowspan</h3>
+  <p>注：合并单元格使用较少，可能影响响应式适配（尤其是移动端）。</p>
+  <p><strong>colspan：</strong>合并列，用于合并多个列的单元格。</p>
+  <p><strong>rowspan：</strong>合并行，用于合并多个行的单元格。</p>
+  <p>注：合并单元格时，合并后的单元格会显示第一个单元格的内容。</p>
+
+  <p><strong>合并单元格的步骤：</strong></p>
+  <ol>
+    <li>第一步：确定是跨行还是跨列，即合并上下行的单元格，还是合并左右列的单元格。</li>
+    <li>第二步：设置属性的位置“左上单元格”（左上原则）。左右合并，写在左边，上下合并，写在上面。根据合并方向，设置 colspan（左右合并列） 或 rowspan（上下合并行）属性。跨几个单元格，数量就写几。</li>
+    <li>第三步：删除多余的单元格，除了左上单元格，其他位置被合并的单元格都要删除。</li>
+  </ol>
+
+  <h3>th 标签的 scope 属性、colspan 属性、rowspan 属性</h3>
+
+  <table border="1">
+    <tr>
+      <th colspan="2" rowspan="2" scope="colgroup">年级</th>
+      <th scope="colgroup" colspan="2">男生</th>
+      <th scope="colgroup" colspan="2">女生</th>
+    </tr>
+    <tr>
+      <th scope="col">人数</th>
+      <th scope="col">平均分</th>
+      <th scope="col">人数</th>
+      <th scope="col">平均分</th>
+    </tr>
+    <tr>
+      <!--rowspan 合并行,合并两行单元格，下一行 tr 中省略第一个单元格-->
+      <th scope="rowgroup" rowspan="2">小学（2026年）</th>
+      <th scope="row">一年级</th>
+      <td>40</td>
+      <td>80</td>
+      <td>33</td>
+      <td>88</td>
+    </tr>
+    <tr>
+      <!--rowspan 合并行,此处省略单元格-->
+      <th scope="row">二年级</th>
+      <td>50</td>
+      <td>90</td>
+      <td>44</td>
+      <td>99</td>
+    </tr>
+  </table>
+
+
+
+
+
+</body>
+
+</html>
