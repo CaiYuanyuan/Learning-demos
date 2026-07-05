@@ -1,11 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>表单标签</title>
 </head>
+
 <body>
   <h1>表单标签</h1>
+  <!-- 表单标签 form：收集用户信息，表单控件的容器 -->
+  <p>表单标签 form：用于收集用户信息，例如用户名、密码、姓名等，是表单控件的容器。</p>
+  <h2>1. 输入标签 input：收集用户输入信息，单行文本框、密码、上传文件、单选按钮、复选框、日期、时间、数字等</h2>
+  <p><strong>⑴ 输入类型 type 属性</strong>：根据 input 的 type 属性决定</p>
+  <p>单行文本框：type="text"</p>
+  <p>密码：type="password"</p>
+  <p>上传文件：type="file"</p>
+  <p>单选按钮：type="radio"</p>
+  <p>复选框：type="checkbox"</p>
+  <p>日期：type="date"</p>
+  <p>时间：type="time"</p>
+  <p>数字：type="number"</p>
+  <p>提交按钮：type="submit"</p>
+  <p>重置按钮：type="reset"</p>
+  <p><strong>⑵ placeholder 属性</strong>：提示信息（placeholder）属性：提示用户应该输入什么内容</p>
+  <p><strong>⑶ name 属性</strong>：控件的名称，区分控件。用于标识表单控件，提交表单时会将该属性值作为参数名发送到服务器端，后端处理时，根据对应的名字找到对应的表单控件。</p>
+  <p><strong>⑷ maxlength 、minlength 属性</strong>：最大输入长度、最小输入长度。用于限制用户输入的字符数量。</p>
+  <p><strong>⑸ accesskey 属性</strong>：访问的快捷键。用于快速定位到该控件。windows 下按 alt + 快捷键即可定位到该控件。比如 B 站，alt +s 可以定位到搜索框。</p>
+  <p><strong>⑹ autocomplete 属性</strong>：自动完成填写。用于自动填写表单控件的值。默认值为 on，自动填写。根据用户的历史输入值自动填写。关闭自动填写 off。对于隐私敏感信息，建议关闭自动填写。
+  </p>
+  <form action="">
+    <ul>
+      <li>
+        <label for="username">账号：</label>
+        <input type="text" id="username" value placeholder="请输入账号" name="username" autocomplete="off">
+      </li>
+      <li>
+        <label for="pwd">密码：</label>
+        <input type="password" id="pwd" placeholder="请输入密码" name="pwd" maxlength="10" minlength="6">
+      </li>
+      <li>
+        <label for="search">搜索：</label>
+        <input type="text" id="search" placeholder="请输入搜索内容" name="search" accesskey="a">
+      </li>
+      <li>
+        <p><strong>单选按钮实现单选</strong>：相同的 name 值。name 相同，分为一组，则单选按钮只能选择一个选项，实现单选。</p>
+        <p><strong>要将单选按钮的值提交给服务器端</strong>：需要设置 name 属性、value 属性，形成“名称/值对”。才能把选中项的名称和值提交给服务器端。</p>
+        <p><strong>默认选中项</strong>：设置 checked 属性，布尔属性。</p>
+        <dl>
+          <dt>性别：</dt>
+          <dd>
+            <label for="male">男</label>
+            <input type="radio" id="male" name="gender" value="male">
+            <label for="female">女</label>
+            <input type="radio" id="female" name="gender" value="female" checked>
+        </dl>
+        <hr>
+      </li>
+      <li>
+        <p><strong>复选框 checkbox：</strong>设置相同的 name 值，分为一组，但可以多选。被选中项的名称/值（name、value值）会提交给服务器端。</p>
+        <dl>
+          <dt>爱好：</dt>
+          <dd>
+            <label><input type="checkbox" name="hobby" value="reading">阅读</label>
+            <label><input type="checkbox" name="hobby" value="sports">运动</label>
+            <label><input type="checkbox" name="hobby" value="music">音乐</label>
+            <label><input type="checkbox" name="hobby" value="travel">旅行</label>
+          </dd>
+        </dl>
+        <hr>
+      </li>
+      <li>
+        <p><strong>上传文件 type="file"：</strong>上传用户文件，例如图片、视频等。必须有 name 属性，才能上传成功。特殊：value 属性不需要设置，为只读。部分方法下，也可省略 name 属性。
+        </p>
+        <p><strong>上传文件的类型 accept 属性</strong>：初步指定上传文件的类型，多个类型用逗号隔开。例如：image/* 上传图片文件，video/*
+          上传视频文件，或者使用文件的扩展名，例如：.jpg、.png、.mp4 等。</p>
+        <p><strong>上传多个文件 multiple 属性</strong>：布尔属性。直接滑动选多个或按住 ctrl 选多个文件。</p>
+        <p><strong>实际开发中隐藏上传按钮</strong>：设置 style="display: none;" 隐藏上传按钮。然后设置自定义的漂亮的外观按钮，再用 js 实现点击按钮触发上传文件。</p>
+        <label for="user-avatar">上传用户头像：</label>
+        <input type="file" id="user-avatar" name="user-avatar" accept="image/*,video/*" multiple>
+      </li>
+    </ul>
+
+    <h2>2. 多行文本域 textarea：收集用户输入的多行文本，例如评论、描述等；</h2>
+    <p>textarea：只能输入可换行的多行纯文本，常用于用户的评论、反馈等，需要输入大量纯文字的场景。如果要添加表情，图片等其他内容，需要使用 div 标签实现自定义的内容区。</p>
+    <p><strong>多行文本域名称 name 属性</strong>：提交值时必须属性。</p>
+    <p><strong>可见行数和列数 rows、cols 属性</strong>：文本域的可见行数、列数。默认值为 2 行，20 列。</p>
+    <p><strong>提示信息 placeholder 属性</strong>：提示用户应该输入什么内容。</p>
+    <textarea name="comment" id="comment" placeholder="请输入您的评论" rows="4" cols="30" aria-label="请输入您的评论"></textarea>
+
+    <h2>3. 下拉列表 select：收集用户选择的选项，例如城市、国家等；</h2>
+    <p><strong>下拉列表的选项（option 标签）</strong>：用户可以从下拉列表中选择一个选项。</p>
+    <p><strong>下拉列表的默认选中项（selected 属性）</strong>：设置 selected 属性，布尔属性。单选按钮和复选框的默认选中项，需要设置 checked 属性。注意区分。</p>
+    <p><strong>必须搭配的属性</strong>：select 的 name、option 的 value，才能把选中项的名称和值提交给服务器端，select.="option.value"。</p>
+
+    <label for="city">请选择您的城市：</label>
+    <select name="city" id="city">
+      <option value="wuhan">武汉</option>
+      <option value="shanghai" selected>上海</option>
+      <option value="guangzhou">广州</option>
+      <option value="beijing">北京</option>
+    </select>
+    <label for="pet">请选择您的宠物：</label>
+    <select name="pet" id="pet">
+      <option value="cat">猫</option>
+      <option value="dog">狗</option>
+      <option value="rabbit">兔</option>
+      <option value="bird">鸟</option>
+    </select>
+
+    <h2>4. 按钮 button 标签:定义一个按钮，元素内容可以放文本、图像等</h2>
+    <p>按钮显示内容 = 标签内容</p>
+    <p>disable 属性：禁用按钮，用户不能点击。</p>
+    <button type="submit">提交</button>
+    <button disabled>提交</button>
+
+    <h2>5. 标签 label：表单元素的说明，点击标签内容，可以聚焦到对应的表单元素上，扩大可点击范围，提高可访问性</h2>
+    <p>关联方式1：属性关联。label 标签的 for 属性，关联表单元素的 id 属性。</p>
+    <p>例：label.for = "input.id"</p>
+    <label for="apple">苹果</label>
+    <input type="checkbox" id="apple" name="apple">
+
+    <p>关联方式2：直接包裹在 label 内部。直接用 label 标签包裹表单元素或文本。</p>
+    <p>例：label>input</p>
+    <label>香蕉
+      <input type="checkbox" name="banana" id="banana">
+    </label>
+  </form>
+
+
 </body>
+
 </html>

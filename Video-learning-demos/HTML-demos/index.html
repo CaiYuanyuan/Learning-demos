@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>科技日报</title>
+  <style>
+    /* 页面滚动行为：平滑的滚动行为，在根元素 html 上设置 */
+    html {
+      /*平滑的滚动行为 sbs */
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 网站头部 -->
+  <header id="top">
+    <!-- 网站大标题 h1，返回链接 a，悬浮提示文字 title -->
+    <h1>
+      <a href="index.html" title="返回首页">科技日报</a>
+    </h1>
+    <p>探索未来科技，传递创新力量</p>
+    <!-- 页面主导航 nav，排列整齐的导航链接 nav>ul>li>a -->
+    <nav>
+      <ul>
+        <li><a href="./index.html">返回首页</a></li>
+        <li><a href="#">科技动态</a></li>
+        <li><a href="#">国际科技</a></li>
+        <li><a href="#">科技论坛</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- 页面的主体内容 -->
+  <main id="main">
+    <h2>今日要闻</h2>
+    <h3>1.量子计算机取得突破性进展</h3>
+    <p>这次中国自主量子计算机“本源悟空”全球首次运行十亿级AI微调大模型，标志着国内已经开始通过量子-经典混合框架，将大模型参数优化转化为量子退火问题，实现量子计算机对AI大模型任务的协助。</p>
+    <p>
+      这将有助于国产AI大模型的技术落地。同时，由于量子计算机的算力优势，一旦相关的技术壁垒被攻克，国产算力的发展将不再受制于美西方的芯片管制措施。除此之外，量子计算还会优先处理高维参数优化、注意力机制等计算密集型任务，与经典算力形成互补。
+    </p>
+    <p>
+      结合国内现有的AI芯片产业，两者就可以发挥出1+1大于2的能力。但就目前而言，国用量子计算机在商用领域仍需要解决诸多问题。比如，需将量子比特数从72提升至千级规模，同时将量子门保真度从99.5%提高至99.99%，涉及超导材料、误差校正等关键技术攻关。
+    </p>
+    <p>量子计算需与经典体系深度耦合，推动编译器、开发工具链等生态成熟，降低应用门槛等。但就目前而言，国内在量子计算机领域的确已经开始领先全球，叠加美方近段时间的关税措施，其综合研发实力已经大不如之前。</p>
+    <img src="img/1.webp" alt="人工智能在医疗领域的最新应用" width="500" title="人工智能在医疗领域的最新应用">
+    <p>人工智能在医疗领域的最新应用</p>
+
+    <h3>2.AI辅助诊断准确率突破95%</h3>
+    <p>近日，美国科技公司DeepHealth宣布，其研发的AI医疗诊断系统在乳腺癌筛查中的准确率超过95%，远超人类医生的平均水平。该系统通过深度学习技术，能够快速分析医学影像，识别早期癌症病变，并提供诊断建议。</p>
+    <p>
+      目前，DeepHealth的AI系统已在美国多家医院试点应用，未来有望在全球范围内推广。专家表示，AI技术的引入将极大提高医疗诊断的效率和准确性，为患者带来更好的治疗效果。
+    </p>
+    <img src="img/2.webp" alt="这是医疗AI发展的里程碑" width="500" title="这是医疗AI发展的里程碑">
+    <p>"这是医疗AI发展的里程碑" — 引自《科技报告》主编WSWW</p>
+
+
+    <h3>3.行业数据</h3>
+    <!-- 
+      第一，表格 border="1" 表示边框宽度,过时属性，此处仅用于展示
+      第二，添加表格必要的结构标签，thead、tbody、tfooter-->
+    <table border="1">
+      <!-- 表格头部 -->
+      <thead>
+        <tr>
+          <th>领域</th>
+          <th>投资额（亿美元）</th>
+          <th>增长率</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>人工智能</td>
+          <td>580</td>
+          <td>+42%</td>
+        </tr>
+        <tr>
+          <td>量子计算</td>
+          <td>120</td>
+          <td>+215%</td>
+        </tr>
+        <tr>
+          <td>生物科技</td>
+          <td>80</td>
+          <td>+120%</td>
+        </tr>
+        <tr>
+          <td>机器人</td>
+          <td>100</td>
+          <td>+150%</td>
+        </tr>
+        <tr>
+          <td>VR/AR</td>
+          <td>20</td>
+          <td>+1000%</td>
+        </tr>
+        <tr>
+          <td>自动驾驶</td>
+          <td>10</td>
+          <td>+1000%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>4.读者互动</h3>
+    <p>您最关注的科技领域是？</p>
+    <!-- 表单控件：单选按钮。
+     第一，表单控件要写在表单容 form 中，收集表单控件的值。
+     第二，整齐排列的无序列表，用 ul。
+     第三，单选按钮 相同 name 值，同一组，实现单选。
+     第四，设置 value 值，提交时，会提交选中项的 value 值。
+     第五，添加标签说明 label，点击文字，选中按钮，扩大可选择范围，实现可访问性 -->
+
+    <form action="">
+      <ul>
+        <li>
+          <label>
+            <input type="radio" name="interest" value="ai">人工智能</label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="interest" value="qc">量子计算</label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="interest" value="bt">生物科技</label>
+        </li>
+        <li>
+          <label>
+            <input type="radio" name="interest" value="robot">机器人</label>
+        </li>
+      </ul>
+      <p>留下您的观点：</p>
+      <textarea name="comments" id="comments" rows="10" cols="40" aria-label="请输入您的观点"></textarea>
+      <br>
+      <button type="submit">提交</button>
+    </form>
+
+    <h3>5.科技大讲堂</h3>
+    <!-- 添加视频：video 标签
+     第一，视频的兼容性，使用 source 提供多个格式的视频文件。
+     第二，视频的播放，使用 controls 属性添加视频播放控件。
+     第三，视频的封面，使用 poster 属性添加视频封面。
+     第四，视频的宽度，使用 width 属性设置视频宽度。
+     第五，使用段落标签，提供不兼容浏览器的视频回退文本。
+     第六，自动播放，使用 autoplay 属性设置视频自动播放。
+     第七，静音，使用 muted 属性设置视频静音。
+      -->
+    <video controls poster="img/poster.jpg" width="500" autoplay muted>
+      <source src="img/video.mp4" type="video/mp4">
+      <p>您的浏览器不支持查看视频,请使用现代浏览器如 谷歌、火狐等。</p>
+    </video>
+
+    <p>《未来十年科技趋势》讲座节选</p>
+  </main>
+
+  <!-- 页面的底部/页脚 -->
+  <footer>
+    <p>© 2025 科技日报社 版权所有</p>
+    <p>京ICP备20250001号-1</p>
+    <!-- 点击链接，打开邮箱客户端：mailto:邮箱地址 -->
+    <p>联系我们：<a href="mailto:123@qq.com">123@qq.com</a></p>
+    <p>地址：北京市大厦</p>
+    <!-- 锚点链接：
+     第一，点击链接，跳转到指定元素的位置。属性值相关，#标记。
+     a.top="#header.id"
+     第二，跳转时，平滑的滚动行为。加 css 属性 scroll-behavior: smooth;" -->
+    <p><a href="#">返回内容顶部（href="#"）</a></p>
+    <p><a href="#main">返回主体区域（href="#main"）</a></p>
+  </footer>
+</body>
+
+</html>
