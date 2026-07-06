@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 引入外部样式表 basic.css -->
+  <title>CSS 基础知识</title>
+  <link rel="stylesheet" href="css/basic.css">
+  <style>
+    p.internal-style {
+
+      color: blue;
+    }
+
+    /* 元素选择器 */
+    p {
+      /* 字体大小设置 17px */
+      font-size: 18px;
+    }
+
+    /* 后面覆盖前面：元素选择器 p 设置了两种字体大小，后面的会覆盖前面的样式 */
+    p {
+      /* 字体大小设置 17px */
+      font-size: 17px;
+    }
+
+    /* 类选择器: 根据元素的类名来选择元素 */
+    .class-style {
+      color: blue;
+    }
+
+    /* 类选择器: 根据元素的类名来选择元素 */
+    .red {
+      color: red;
+    }
+
+    /* 类选择器: 根据元素的类名来选择元素 */
+    .bold {
+      font-weight: bold;
+    }
+
+    /* id 选择器: 根据元素的 id 来选择元素 */
+    #id-style {
+      color: green;
+      font-weight: bold;
+    }
+
+    /* 通配符选择器: 选择所有元素 */
+    * {
+      /* 统一不同浏览器的默认样式：去除所有元素默认的内外边距、统一盒模型为 border-box */
+      /* 内边距设置 0 */
+      /* padding: 0; */
+
+      /* 外边距设置 0 */
+      /* margin: 0; */
+
+      /* 统一盒模型：bsbb */
+      box-sizing: border-box;
+    }
+
+    /* 后代选择器: 根据祖先，选择后代（空格分隔） */
+    /* 选择 div-p-a-style 类中的 p 元素中的 a 元素（孙子），设置为红色 */
+    .div-p-a-style a {
+      color: lightpink;
+    }
+
+    /* 上面的类名的优先级更高，所以下面这个不会生效 */
+    div p a {
+      color: green;
+    }
+
+    /* 设置无序列表中的链接 a 的样式;不会生效，因为下面的 .nav li a 优先级更高，类名＞元素选择器 */
+    ul li a {
+      color: lightgreen;
+      font-size: 20px;
+    }
+
+    /* 我的优先级比上面和下面的都高 */
+    .nav li a {
+      color: darkgreen;
+      font-size: 20px;
+    }
+
+    /* 虽然样式在下面，但上面限定的祖先更多，下面不如上面的优先级高，所以不会生效。 */
+    ul a {
+      color: red;
+      font-size: 20px;
+    }
+
+    /* 子代选择器: 根据父，选择直接子元素，> 分隔 */
+    .child-style>span {
+      background-color: green;
+    }
+
+    /* 相邻兄弟选择器：根据前一个哥哥元素，选择后一个弟弟元素（+ 分隔） */
+    .fourth-p+p {
+      background-color: green;
+    }
+
+    /* 通用兄弟选择器：根据前一个哥哥元素，选择“所有弟弟元素”（~ 分隔） */
+    .third-p~p {
+      background-color: darkgreen;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>CSS 基础知识</h1>
+  <p>css 基础知识：样式分类、选择器、属性、值、注释等。</p>
+  <h2>1. 样式分类</h2>
+  <p>css 样式分类：内联样式、内部样式、外部样式。</p>
+  <!-- 内联样式 -->
+  <h3>⑴ 内联样式：style 属性</h3>
+  <p>内联样式：在 html 元素内部使用 style 属性，直接设置元素的样式。</p>
+  <p>例如：<span style="color: red;">这是一个红色的文本，是当前标签 span 的 style 属性设置内联样式</span>，我是没有设置内联样式的文本。</p>
+
+  <!-- 设置内部样式 -->
+  <h3>⑵ 设置内部样式：style 标签</h3>
+  <p>设置内部样式：在 html 文档的 head 元素内部使用 style 元素，定义 css 样式。</p>
+  <p class="internal-style">例如：我是在 head 的 style 元素内部定义的样式。</p>
+
+  <!-- 设置外部样式 -->
+  <h3>⑶ 设置外部样式：link 标签</h3>
+  <p>设置外部样式：在 html 文档的 head 元素内部使用 link 元素，引入外部的 css 文件。</p>
+  <p>例如：link 标签中设置 rel="stylesheet" href="css/basic.css"， 引入外部的 css 文件 basic.css。</p>
+  <p>在 basic.css 文件中定义的样式，会覆盖 head 元素内部定义 style 元素的样式。</p>
+  <p class="external-style">我在 basic.css 文件中定义的样式1</p>
+  <p class="external-style">我在 basic.css 文件中定义的样式2</p>
+
+  <h2>2. CSS 选择器</h2>
+  <h3>2.1 基础选择器：单个选择器组成，根据元素的标签名、类名、id 、通配符来选择元素。</h3>
+  <h3>⑴ 元素选择器：标签名</h3>
+  <p>元素选择器：根据元素的标签名来选择元素。</p>
+  <p>例如：p 标签选择器，会选择所有 p 标签。</p>
+
+  <h3>⑵ 类选择器： .类名</h3>
+  <p>类选择器：根据元素的类名来选择元素。</p>
+  <p>例如：.class-style 类选择器，会选择所有 class="为 class-style" 的元素。</p>
+  <p class="class-style">我是通过类名选择器定义的样式1</p>
+  <p class="class-style">我是通过类名选择器定义的样式2</p>
+  <!-- 设置两个类名，类名之间用空格隔开 -->
+  <p class="red bold">我是通过类名选择器定义的样式3</p>
+
+  <h3>⑶ id 选择器： #id</h3>
+  <p>id 选择器：根据元素的 id 来选择元素。</p>
+  <p>例如：#id-style id 选择器，会选择 id="id-style" 的元素。</p>
+  <p id="id-style">我是通过 id 选择器定义的样式，只能选择一个元素。</p>
+
+  <h3>⑷ 通配符选择器：*</h3>
+  <p>通配符选择器：选择所有元素。</p>
+  <p>例如：* 通配符选择器，会选择所有元素，可以设置内外边距 padding 和 margin 。</p>
+
+  <h3>2.2 关系选择器：根据元素之间的“位置关系”选择元素。多个选择器搭配。</h3>
+  <h4>⑴ 后代选择器：根据祖先，选择后代（空格分隔）</h4>
+  <ul class="nav">
+    <li><a href="#">链接1（ul 的 li 中的 链接 a）</a></li>
+    <li><a href="#">链接2</a></li>
+    <li><a href="#">链接3</a></li>
+    <li><a href="#">链接4</a></li>
+  </ul>
+
+  <div class="div-p-a-style">
+    <p><a href="#">我是div的p中的链接1</a></p>
+    <p><a href="#">我是div的p中的链接2</a></p>
+    <p><a href="#">我是div的p中的链接3</a></p>
+  </div>
+
+  <h4>⑵ 子代选择器：根据父元素，选择直接子元素（&gt;分隔）</h4>
+
+  <div class="child-style">
+    <span>div 的直接子元素（儿子）：我是div 的 直接子元素 span 的内容1</span>
+    <br>
+    <span>div 的直接子元素（儿子）：我是div 的 直接子元素 span 的内容2</span>
+    <p><span>div 的孙子的内容：我是div 的 直接子元素 p 中的 span 的内容</span></p>
+  </div>
+
+  <h4>⑶ 相邻兄弟选择器：根据前一个哥哥元素，选择“后一个弟弟元素”（+ 分隔）</h4>
+  <div>
+    <p>我是第一个 p 标签</p>
+    <p>我是第二个 p 标签</p>
+    <p>我是第三个 p 标签</p>
+    <p class="fourth-p">我是第四个 p 标签，我设置了类名 fourth-p</p>
+    <p>我是第五个 p 标签</p>
+    <p>我是第六个 p 标签</p>
+    <p>我是第七个 p 标签</p>
+  </div>
+
+
+  <h4>⑷ 通用兄弟选择器：根据前一个哥哥元素，选择“所有弟弟元素”（~ 分隔）</h4>
+
+  <div>
+    <p>我是第一个 p 标签</p>
+    <p>我是第二个 p 标签</p>
+    <p class="third-p">我是第三个 p 标签，我设置了类名 third-p</p>
+    <p>我是第四个 p 标签</p>
+    <p>我是第五个 p 标签</p>
+    <p>我是第六个 p 标签</p>
+  </div>
+
+
+
+
+</body>
+
+</html>

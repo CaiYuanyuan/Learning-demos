@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>基础布局-画盒子</title>
+  <style>
+    /* 清除浏览器的默认样式：清除所有元素的内外边距。使用通配符选择器 *，对所有元素都生效 */
+    /* 盒子摆放没有缝隙，根据开发需要来摆放盒子。 */
+    * {
+      /* 清除浏览器的默认样式，让画出来的盒子紧紧贴着浏览器边缘：外边距为 0，内边距为 0 */
+      margin: 0;
+      padding: 0;
+    }
+
+    /* 头部区域高度、背景色；头部为“通栏”：宽度不设置，默认占满父元素，和浏览器窗口一样宽 */
+    .header {
+      height: 90px;
+      background-color: gray;
+    }
+
+    /* 导航栏盒子：宽高、背景色 */
+    .nav {
+      width: 600px;
+      height: 60px;
+      /* 没加背景色之前，空盒子里没有内容，默认是透明的，会预留位置，但看不出来 */
+      background-color: lightblue;
+    }
+
+    .main {
+      /* w1000 */
+      width: 600px;
+      height: 680px;
+      background-color: lightgreen;
+    }
+
+    .footer {
+      height: 80px;
+      background-color: lightpink;
+    }
+
+    /* 让块级元素的盒子，在浏览器中“水平居中显示” ：m0a；设置外边距上下为 0，左右为自动 auto 即可居中 */
+    /* 直接写在类 center 中，可以多元素复用同一种样式。因为这种多个元素共用的样式，写在类中更方便，哪个块级元素需要，就给哪个元素添加类名 center */
+    .center {
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 头部区域：用 header 或 div，div 可以设置 class="header"，标明是头部，方便设置样式 -->
+  <!-- 头部区域 -->
+  <!-- div.header -->
+  <div class="header">
+    <h1>基础布局-画盒子：给盒子设置宽、高、背景色</h1>
+    <p>布局的思路：先画盒子，设宽高、背景色。先画大盒子，再画小盒子，装里面的细节。</p>
+    <p>通栏：当宽度和浏览器窗口宽度一致时，就是“通栏”。宽度不用设置，默认占满父元素，和浏览器窗口一样宽。</p>
+  </div>
+
+  <!-- 导航栏区域：使用 nav 或 div，div 可以设置 class="nav"，标明是导航栏，方便设置样式 -->
+  <!-- 多类名：空格隔开 -->
+  <div class="nav center"></div>
+
+  <!-- 主体部分：使用 main 或 div，div 可以设置 class="main"，标明是主体，方便设置样式 -->
+  <div class="main center">
+
+  </div>
+  <!-- 底部区域：使用 footer 或 div，div 可以设置 class="footer"，标明是底部，方便设置样式 -->
+  <div class="footer"></div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>字体样式</title>
+  <style>
+    /* 关键字颜色 */
+    .keywords-color {
+      color: cyan;
+    }
+
+    /* 十六进制颜色值 */
+    .hex-color {
+      color: #ff0000;
+    }
+
+    /* rgb 颜色值 */
+    .rgb-color {
+      color: rgb(0, 255, 0);
+    }
+
+    /* rgba 颜色值: rgba(红, 绿, 蓝, 不透明度);透明度范围:0-1,0 表示完全透明,1 表示完全不透明 */
+    .rgba-color {
+      /* color: rgba(0, 0, 255, 0.5); */
+      /* 不透明度可以省略小数点前面的 0 */
+      color: rgba(0, 0, 255, .5);
+
+    }
+
+    /* 单独给一个段落设置字体族：实际开发中，一般会在 body 标签中设置字体族 ，给整个页面设置字体，而且会是一个字体族名称列表。此处仅为测试 */
+    .font-family {
+      font-family: "宋体";
+      /* font-family: "微软雅黑"; */
+    }
+  </style>
+
+</head>
+<h1>字体样式</h1>
+<h2>设置文字颜色： color 属性</h2>
+<p>文字颜色可以使用颜色值、颜色名称或十六进制颜色值。</p>
+<p class="keywords-color">⑴ 设置颜色为关键字颜色：我是关键字颜色，比如 颜色名称 red、green、blue 等。</p>
+<p class="hex-color">⑵ 设置颜色为十六进制颜色值：我是十六进制颜色值，比如 #ff0000、#00ff00 等。</p>
+<p class="rgb-color">⑶ 设置颜色为 rgb 颜色值：我是 rgb 颜色值，比如 rgb(0, 255, 0)。</p>
+<p class="rgba-color">⑷ 设置颜色为 rgba 颜色值：我是 rgba 颜色值，比如 rgba(0, 0, 255, 0.5)。</p>
+
+<h2>设置字体族： font-family 属性</h2>
+<p>字体族可以使用字体名称、字体族名称或字体族名称列表。</p>
+<p class="font-family">我是给这个段落单独设置的字体族，比如 "宋体"、"微软雅黑" 等。</p>
+<p>实际开发中，一般会设置在 body 标签中，而且会是一个字体族名称列表。此处仅为测试。</p>
+
+<body>
+
+</body>
+
+</html>
