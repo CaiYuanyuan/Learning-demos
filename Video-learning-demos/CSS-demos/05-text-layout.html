@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>文本布局</title>
+</head>
+
+<style>
+  /* 文本对齐：块级元素、文本的水平对齐 */
+  .text-align-style p {
+    /* 先画盒子，给宽高背景色，方便看对齐方式 */
+    width: 400px;
+    height: 100px;
+    background-color: lightgreen;
+  }
+
+  /* 左对齐：tal，left，文本会向左对齐 */
+  .left-align {
+    text-align: left;
+  }
+
+  /* 右对齐：tar，right，文本会向右对齐 */
+  .right-align {
+    text-align: right;
+  }
+
+  /* 居中对齐：tac，center，文本会居中对齐 */
+  .center-align {
+    text-align: center;
+  }
+
+  /* 两端对齐：taj，justify，左侧和右侧都会对齐，字间距自动调整 */
+  .justify-align {
+    text-align: justify;
+  }
+
+  /* 设置文本缩进：块级元素的段落的第一行缩进，strong 标签的内容不会缩进，因为行内元素不能使用文本缩进 */
+  .text-indent {
+    /* 相对于当前元素的字体大小：2em 表示 2 个字符 */
+    /* 1em 表示 1 个字符 */
+    /* 1.5em 表示 1.5 个字符 */
+    text-indent: 2em;
+    /* 也可以设置像素值，但实际开发中一般直接使用 em 单位，缩进 2 个字符比较常见 */
+    /* text-indent: 20px; */
+  }
+
+  /* 设置文本的字符间距: letter-spacing*/
+  /* 默认值是 0。此处设置为 2px，表示字符间距为 2 个像素。 */
+  .letter-spacing2 {
+    letter-spacing: 2px;
+  }
+
+  .letter-spacing4 {
+    letter-spacing: 4px;
+  }
+
+  .letter-spacing6 {
+    letter-spacing: 6px;
+  }
+
+  /* 字间距设置为负值，会压缩字符间距，使字符更密，一般不会使用，影响阅读。 */
+  .letter-spacing-minus2 {
+    letter-spacing: -2px;
+  }
+
+  /* 设置行高：line-height 属性，调整文本行之间的间距 */
+  /* 设置行高为 1.5，当前字体大小的 1.5 倍。 */
+  .line-height15 {
+    line-height: 1.5;
+    background-color: lightgreen;
+  }
+
+  /* 设置行高为 2，当前字体大小的 2 倍。 */
+  .line-height2 {
+    line-height: 2;
+    background-color: lightblue;
+  }
+
+  /* 设置行高为 3，当前字体大小的 3 倍。 */
+  .line-height3 {
+    line-height: 3;
+    background-color: lightcoral;
+  }
+
+  /* 单行文本垂直居中：行高 line-height = 盒子的高度 height = 30px，实现垂直居中 */
+  /* 仅限单行文本，多行文本不能垂直居中 */
+  .single-line-text-vertical-align1 {
+    height: 30px;
+    line-height: 30px;
+    /* 加一个背景色看的更清晰 */
+    background-color: lightgreen;
+  }
+
+  /* 单行文本偏上：行高 line-height ＜ 盒子的高度 height，文字偏上 */
+  .single-line-text-vertical-align2 {
+    height: 40px;
+    line-height: 20px;
+    /* 加一个背景色看的更清晰 */
+    background-color: lightblue;
+  }
+
+  /* 单行文本偏下：行高 line-height ＞ 盒子的高度 height，文字偏下 */
+  .single-line-text-vertical-align3 {
+    height: 30px;
+    line-height: 40px;
+    /* 加一个背景色看的更清晰 */
+    background-color: lightcoral;
+  }
+</style>
+
+<body>
+  <h1>文本布局</h1>
+
+  <!-- 文本对齐：块级元素、文本的水平对齐 -->
+  <h2> 文本对齐 text-align 属性：块级元素、文本的水平对齐</h2>
+  <p>文本对齐：可以使用 left（左对齐）、right（右对齐）、center（居中对齐）、justify（两端对齐）。</p>
+  <p>默认值是 left。</p>
+  <p>注意：行内元素不能使用 text-align 属性。</p>
+  <div class="text-align-style">
+    <p class="left-align">我是一个段落，我设置左对齐 left。</p>
+    <p class="right-align">我是一个段落，我设置右对齐 right。</p>
+    <p class="center-align">我是一个段落，我设置居中对齐 center。</p>
+    <p class="justify-align">
+      我是一个段落，我设置两端对齐 justify。我是一个段落，我设置两端对齐。我是一个段落，我设置两端对齐。我是一个段落，我设置两端对齐。我是一个段落，我设置两端对齐。我是一个段落，我设置两端对齐。
+    </p>
+    <p>
+      我是一个段落，我没有设置两端对齐。我是一个段落，我没有设置两端对齐。我是一个段落，我没有设置两端对齐。我是一个段落，我没有设置两端对齐。我是一个段落，我没有设置两端对齐。
+    </p>
+  </div>
+
+  <!-- 设置文本缩进 -->
+  <h2>文本缩进 indent 属性：段落的第一行缩进</h2>
+  <p class="text-indent">我是一个段落，我设置缩进 2 个字符。我是一个段落，我设置缩进 2 个字符。我是一个段落，我设置缩进 2 个字符。我是一个段落，我设置缩进 2 个字符。我是一个段落，我设置缩进 2 个字符。
+  </p>
+  <p>我是一个段落，我没有设置缩进。我是一个段落，我没有设置缩进。我是一个段落，我没有设置缩进。我是一个段落，我没有设置缩进。我是一个段落，我没有设置缩进。</p>
+  <strong class="text-indent">我是 strong 标签的内容，我是行内元素，我也设置了文本缩进两个字符，但是不会生效，因为 text-indent 属性只能用于块级元素。</strong>
+
+  <!-- 设置文本的字符间距 -->
+  <h2>文本字符间距 letter-spacing 属性：设置字符之间的间距</h2>
+  <p>默认值是 0。</p>
+  <p class="letter-spacing2">例如：letter-spacing: 2px; 表示字符间距为 2 个像素。</p>
+  <p class="letter-spacing4">例如：letter-spacing: 4px; 表示字符间距为 4 个像素。</p>
+  <p class="letter-spacing6">例如：letter-spacing: 6px; 表示字符间距为 6 个像素。</p>
+  <p class="letter-spacing-minus2">例如：letter-spacing: -2px; 表示字符间距为 -2 个像素，会压缩字符间距，使字符更密，一般不会使用，影响阅读。</p>
+
+  <!-- 设置行高：line-height 属性，调整文本行之间的间距 -->
+  <h2>文本行高 line-height 属性： 行框的高度（水平模式）、调整文本行之间的间距</h2>
+  <p>我没有设置行高。我没有设置行高。我没有设置行高。我没有设置行高。我没有设置行高。我没有设置行高。我没有设置行高。我没有设置行高。我没有设置行高。</p>
+  <p class="line-height15">我设置行高为 1.5，当前字体大小的 1.5 倍。我设置行高为 1.5，当前字体大小的 1.5 倍。我设置行高为 1.5，当前字体大小的 1.5 倍。我设置行高为
+    1.5，当前字体大小的 1.5 倍。我设置行高为 1.5，当前字体大小的 1.5 倍。我设置行高为 1.5，当前字体大小的 1.5 倍。我设置行高为 1.5，当前字体大小的 1.5 倍。我设置行高为 1.5，当前字体大小的 1.5
+    倍。</p>
+  <p class="line-height2">我设置行高为 2，当前字体大小的 2 倍。我设置行高为 2，当前字体大小的 2 倍。我设置行高为 2，当前字体大小的 2 倍。我设置行高为 2，当前字体大小的 2 倍。我设置行高为
+    2，当前字体大小的 2 倍。我设置行高为 2，当前字体大小的 2 倍。</p>
+  <p class="line-height3">我设置行高为 3，当前字体大小的 3 倍。我设置行高为 3，当前字体大小的 3 倍。我设置行高为 3，当前字体大小的 3 倍。我设置行高为 3，当前字体大小的 3 倍。我设置行高为
+    3，当前字体大小的 3 倍。我设置行高为 3，当前字体大小的 3 倍。我设置行高为 3，当前字体大小的 3 倍。</p>
+
+  <h3>让单行文本垂直居中：行高 line-height = 盒子的高度 height</h3>
+  <p>注：仅限单行文本，多行文本不能垂直居中。</p>
+  <p class="single-line-text-vertical-align1">这个单行文本垂直居中显示：line-height = height = 30px</p>
+  <p class="single-line-text-vertical-align2">这个单行文本偏上：line-height ＜ height</p>
+  <p class="single-line-text-vertical-align3">这个单行文本偏下：line-height ＞ height</p>
+
+
+
+</body>
+
+</html>

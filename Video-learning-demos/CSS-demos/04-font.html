@@ -34,21 +34,142 @@
       font-family: "宋体";
       /* font-family: "微软雅黑"; */
     }
+
+    /* 单独给一个段落设置字体大小：实际开发中，一般会在 body 标签中设置字体大小 ，给整个页面设置字体大小。此处仅为测试 */
+    .font12 {
+      font-size: 12px;
+    }
+
+    .font14 {
+      font-size: 14px;
+    }
+
+    .font16 {
+      font-size: 16px;
+    }
+
+    /* 设置字体风格、是否倾斜 */
+    .italic-style {
+      font-style: italic;
+    }
+
+    .normal-style {
+      font-style: normal;
+    }
+
+    /* 设置字体粗细、是否加粗 */
+    /* 字体粗细可以使用 normal、400（正常）或 bold、700（加粗）。*/
+    /* 给标题设置为不加粗（正常粗细） */
+    .normal-weight {
+      /* font-weight: normal; */
+      font-weight: 400;
+    }
+
+    .bold-weight {
+      /* font-weight: bold; */
+      font-weight: 700;
+    }
+
+    /* 设置文本装饰 */
+    /* 文本装饰可以使用 none（无装饰）、overline（上划线）、line-through（删除线）、underline（下划线）。*/
+    /* 给超链接去掉下划线 tdn*/
+    .none-underline a {
+      text-decoration: none;
+    }
+
+    /* 给段落添加上划线 tdo */
+    .overline {
+      text-decoration: overline;
+    }
+
+    /* 给段落添加删除线 tdl */
+    .line-through {
+      text-decoration: line-through;
+    }
+
+    /* 给段落添加下划线 tdu */
+    .underline {
+      text-decoration: underline;
+      /* 下面是拼写错误线、语法错误线的设置，分别为红色和灰色的波浪线，不常用 */
+      /* text-decoration-line: spelling-error; */
+      /* text-decoration-line: grammar-error; */
+    }
+
+    .textdec {
+      /*给文本 添加下划线*/
+      text-decoration: underline;
+      width: 30%;
+      background-color: #d0d0d0;
+      padding: 10px;
+      line-height: 1.5em;
+    }
+
+    .textdec strong {
+      /*取消强调文本的下划线*/
+      text-decoration: none;
+      color: green;
+      text-decoration: overline;
+    }
   </style>
+
+
 
 </head>
 <h1>字体样式</h1>
-<h2>设置文字颜色： color 属性</h2>
+
+<!-- 设置文字颜色 -->
+<h2>1. 设置文字颜色： color 属性</h2>
 <p>文字颜色可以使用颜色值、颜色名称或十六进制颜色值。</p>
 <p class="keywords-color">⑴ 设置颜色为关键字颜色：我是关键字颜色，比如 颜色名称 red、green、blue 等。</p>
 <p class="hex-color">⑵ 设置颜色为十六进制颜色值：我是十六进制颜色值，比如 #ff0000、#00ff00 等。</p>
 <p class="rgb-color">⑶ 设置颜色为 rgb 颜色值：我是 rgb 颜色值，比如 rgb(0, 255, 0)。</p>
 <p class="rgba-color">⑷ 设置颜色为 rgba 颜色值：我是 rgba 颜色值，比如 rgba(0, 0, 255, 0.5)。</p>
 
-<h2>设置字体族： font-family 属性</h2>
+<!-- 设置字体族 -->
+<h2>2. 设置字体族： font-family 属性</h2>
 <p>字体族可以使用字体名称、字体族名称或字体族名称列表。</p>
 <p class="font-family">我是给这个段落单独设置的字体族，比如 "宋体"、"微软雅黑" 等。</p>
 <p>实际开发中，一般会设置在 body 标签中，而且会是一个字体族名称列表。此处仅为测试。</p>
+
+<!-- 设置字体大小 -->
+<h2>3. 设置字体大小： font-size 属性</h2>
+<p>字体大小可以使用的单位：像素值 px、百分比值 %、em 值（相对父元素）、rem 值（相对根元素 html）等。</p>
+<p class="font12">使用 font-size 属性给这个段落单独设置字体大小，比如 12px。</p>
+<p class="font14">使用 font-size 属性给这个段落单独设置字体大小，比如 14px。</p>
+<p class="font16">使用 font-size 属性给这个段落单独设置字体大小，比如 16px。</p>
+
+<!-- 设置字体风格、是否倾斜 -->
+<h2>4. 设置字体风格、是否倾斜：font-style 属性</h2>
+<p>字体风格可以使用 normal（正常）或 italic（倾斜）。</p>
+<p class="italic-style">我是给这个段落单独设置的字体风格，比如 italic，本来是不倾斜的，可以设置为倾斜。</p>
+<em class="normal-style">我是 em 标签的内容，会自动倾斜。但通过 font-style: normal（正常）,可以设置为不倾斜。</em>
+<br>
+<i class="normal-style">我是 i 标签的内容，会自动倾斜。但通过 font-style: normal（正常）,可以设置为不倾斜。</i>
+
+<!-- 设置字体粗细 -->
+<h2 class="normal-weight">5. 设置字体粗细：font-weight 属性（标题原本是加粗的，这里设置为不加粗）</h2>
+<p>字体粗细可以使用 normal、400（正常）或 bold、700（加粗）。</p>
+<p class="bold-weight">我是给段落设置的字体粗细，比如 bold，本来是正常粗细的，可以设置为加粗。</p>
+<p class="bold-weight">我是给段落设置的字体粗细，比如 bold，本来是正常粗细的，可以设置为加粗。</p>
+
+<!-- 设置文本装饰 -->
+<h2>6. 设置文本装饰：text-decoration 属性</h2>
+<p>文本装饰可以使用 none（无装饰）、overline（上划线）、line-through（贯穿线/删除线）、underline（下划线）。</p>
+<p class="none-underline">
+  <a href="#">去掉下划线：我是超链接，原本是有下划线的，但是设置为 none 后，就没有下划线了。</a>
+</p>
+<p class="overline">我是给这个段落单独设置的文本装饰，比如 overline，本来是没有上划线的，可以设置为上划线。</p>
+<p class="line-through">我是给这个段落单独设置的文本装饰，比如 line-through，本来是没有删除线的，可以设置为删除线。</p>
+<del>我是 del 标签的内容，表示被删除的内容，我会自动添加删除线。</del>
+<p class="underline">我是给这个段落单独设置的文本装饰，比如 underline，本来是没有下划线的，可以设置为下划线。</p>
+
+<h3>注：文本装饰线可被子元素继承，并且不会被子元素取消装饰线，但可以添加更多装饰线</h3>
+
+<p class="textdec">
+  <strong>少壮不努力，老大徒伤悲。</strong>意思是：年轻力壮的时候 不奋发图强，到了老年 再悲伤也没用了。出处 《乐府诗集·长歌行》。
+</p>
+
+
 
 <body>
 
