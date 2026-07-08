@@ -12,6 +12,11 @@
       padding: 0;
     }
 
+    /* 在 body 中给整个页面设置字体 font，取值可以从一些官网上复制，比如 B站、小米商城等*/
+    body {
+      font: 14px/1.5 Helvetica Neue, Helvetica, Arial, Microsoft Yahei, Hiragino Sans GB, Heiti SC, WenQuanYi Micro Hei, sans-serif;
+    }
+
     /* 最外层的容器 */
     .poem-container {
       width: 677px;
@@ -29,6 +34,8 @@
       margin: 0 auto;
       /* 设置内内边距：让内容与边框有间距 */
       padding: 20px;
+      /* 设置内容区里的文字行高 27px */
+      line-height: 27px;
     }
 
     /* 让诗歌内容盒子里的所有图片的宽度和内容盒子的宽度一样宽：宽度 = 一样的值 或 100% */
@@ -37,6 +44,31 @@
       /* width: 610px; */
       width: 100%;
     }
+
+    /* 修改诗歌内容区里的直接子元素 p 的水平对齐方式为两端对齐：左侧、右侧都对齐 */
+
+    .poem-content>p {
+      text-align: justify;
+      /* 首行缩进 2 个字符 */
+      text-indent: 2em;
+    }
+
+    /* 设置诗句水平居中对齐:设置父元素为居中对齐，里面的标题和所有的段落 p 标签，自动继承父元素设置的块级元素、水平居中对齐 */
+    .poem {
+      /* .poem-content .poem { */
+      /* 块级元素，水平居中对齐，子元素自动继承父元素的水平居中对齐 */
+      text-align: center;
+      /* 设置诗句的字体加粗 */
+      font-weight: 700;
+      /* 设置诗句的字体大小 16px */
+      font-size: 16px;
+    }
+
+    /* 诗歌中的标题 h1 的字体大小没有继承父元素设置的字体大小，需要特别设置 */
+    .poem-content .poem h1 {
+      font-size: 18px;
+    }
+
 
     /* 让内容盒子里的所有视频和内容盒子的宽度一样宽 */
     .poem-content video {

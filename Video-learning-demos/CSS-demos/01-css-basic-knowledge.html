@@ -14,16 +14,16 @@
     }
 
     /* 元素选择器 */
-    p {
-      /* 字体大小设置 17px */
-      font-size: 18px;
-    }
+    /* p { */
+    /* 字体大小设置 17px */
+    /* font-size: 18px; */
+    /* } */
 
     /* 后面覆盖前面：元素选择器 p 设置了两种字体大小，后面的会覆盖前面的样式 */
-    p {
-      /* 字体大小设置 17px */
-      font-size: 17px;
-    }
+    /* p { */
+    /* 字体大小设置 17px */
+    /* font-size: 17px; */
+    /* } */
 
     /* 类选择器: 根据元素的类名来选择元素 */
     .class-style {
@@ -101,6 +101,77 @@
     /* 通用兄弟选择器：根据前一个哥哥元素，选择“所有弟弟元素”（~ 分隔） */
     .third-p~p {
       background-color: darkgreen;
+    }
+
+    /* 分组选择器（并集选择器）：多个选择器使用相同的样式时，分为一组，逗号隔开 */
+    /* 父元素设置宽度、背景色、内边距 */
+    .grouping-selectors {
+      width: 500px;
+      background-color: gray;
+      padding: 10px;
+    }
+
+    /* 父元素中的 图片、视频，设置宽度 = 父元素宽度 */
+    .grouping-selectors img,
+    .grouping-selectors video {
+      width: 100%;
+    }
+
+    /* 链接伪类选择器：a 标签的伪类选择器 */
+    /* 严格顺序：LVHA，分别表示：未访问链接、已访问链接、鼠标悬停链接、鼠标点击链接 */
+    /* 未访问链接 a:link 的样式*/
+    .a-pesudo-class a:link {
+      /* 黑色字体 */
+      color: black;
+      /* 去掉链接的默认下划线 tdn */
+      text-decoration: none;
+    }
+
+    /* 已访问链接 a:visited 的样式*/
+    .a-pesudo-class a:visited {
+      color: chocolate;
+    }
+
+    /* 鼠标悬停链接 a:hover 的样式*/
+    .a-pesudo-class a:hover {
+      color: green;
+      font-weight: 700;
+    }
+
+    /* 被点击的链接（鼠标按下未松开） a:active 的样式*/
+    .a-pesudo-class a:active {
+      color: purple;
+    }
+
+    /* 实际开发中的链接，一般只设置 a 和 a:hover 的样式 */
+    /* 链接 a 的样式：黑色字体，无下划线*/
+    .actual-development-a-pesudo a {
+      color: black;
+      text-decoration: none;
+    }
+
+    /* 鼠标悬停链接 a:hover 的样式：红色、下划线*/
+    .actual-development-a-pesudo a:hover {
+      color: red;
+      text-decoration: underline;
+    }
+
+
+
+    /* CSS 的继承性：部分属性，可能会被子元素自动继承，。比如 一般文字相关的样式属性，可能会子元素自动继承，比如文字颜色、字体大小、行高、字体族等，会被子元素自动继承。 */
+    .inherit-style {
+      color: green;
+      font-size: 20px;
+      line-height: 1.5;
+      background-color: lightgreen;
+    }
+
+    /* 子元素继承的样式，可以被子元素自己设置的样式覆盖 */
+    p.special-p {
+      color: gray;
+      /* font-size: 18px; */
+      line-height: 1.2;
+      background-color: lightgray;
     }
   </style>
 </head>
@@ -196,6 +267,47 @@
     <p>我是第四个 p 标签</p>
     <p>我是第五个 p 标签</p>
     <p>我是第六个 p 标签</p>
+  </div>
+
+  <!-- 分组选择器 -->
+  <h3>2.3 分组选择器（并集选择器）：多个选择器使用相同的样式时，分为一组，逗号隔开</h3>
+  <p>下方的图片和视频，都和父元素设置一样的宽度 width：100%，并设置内边距 padding：10px。</p>
+  <div class="grouping-selectors">
+    <img src="img/qiqi.png" alt="魔女宅急便中的琪琪">
+    <video controls poster="img/poster.jpg">
+      <source src="img/video.mp4" type="video/mp4">
+      <p>您的浏览器不支持播放视频，请使用现代浏览器，如 Chrome、Firefox、Edge 等。</p>
+    </video>
+  </div>
+
+  <!-- 伪类选择器 -->
+  <h3> 伪类选择器</h3>
+  <h4>链接伪类选择器：a 标签的伪类选择器</h4>
+  <p>根据链接的状态，选择链接元素，设置样式。</p>
+  <p><strong>LVHA（严格顺序）</strong>：未访问链接 a:link、已访问链接 a:visited、鼠标悬停链接 a:hover、被点击链接 a:active（鼠标按下未松开）</p>
+  <p><strong>① 自定义 4 种状态下的链接样式</strong></p>
+
+  <p class="a-pesudo-class">
+    <a href="https://developer.mozilla.org/en-US/">MDN</a>
+    <a href="https://www.taobao.com/">淘宝</a>
+    <a href="https://www.csdn.net/?spm=1001.2014.3001.4476">CSDN</a>
+  </p>
+  <p><strong>② 实际开发中，一般只设置 a 和 a:hover 的样式。</strong></p>
+  <p class="actual-development-a-pesudo">
+    <a href="#">首页</a>
+    <a href="#">联系我们</a>
+    <a href="#">加入我们</a>
+  </p>
+
+
+  <!-- CSS 的继承性 -->
+  <h2>3. CSS 的继承性</h2>
+  <p>父元素设置的部分属性，会被子元素自动继承，大部分是“字体相关属性”，比如字体大小、行高、字体族等。</p>
+
+  <div class="inherit-style">
+    <p>我是div的p中的内容1，我的样式继承自父元素 div</p>
+    <p>我是div的p中的内容2，我的样式继承自父元素 div</p>
+    <p class="special-p">我是div的p中的内容3，我使用自己的自定义样式</p>
   </div>
 
 

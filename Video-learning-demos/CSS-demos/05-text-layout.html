@@ -8,7 +8,24 @@
 </head>
 
 <style>
-  /* 文本对齐：块级元素、文本的水平对齐 */
+  /* 设置整个页面的字体大小、行高、字体族 */
+  /* body { */
+  /* font-size: 16px;
+    line-height: 1.5;
+    font-family: '宋体', '微软雅黑', 'Arial', sans-serif; */
+
+  /* 同时设置字体大小、行高、字体族，会生效 */
+  /* font: 16px/1.5 '黑体', '微软雅黑', 'Arial', sans-serif; */
+
+  /* 单写一个字体大小，不生效，字体大小和字体族是必须的 */
+  /* font: 12px; */
+  /* 字体大小、字体族同时设置，会生效 */
+  /* font: 12px '微软雅黑', sans-serif; */
+
+  /* 斜粗大行字：同是设置斜体、加粗、行高、字体族，会生效 */
+  /* font: italic 700 16px/1.5 '黑体', '微软雅黑', 'Arial', sans-serif; */
+  /* } */
+
   .text-align-style p {
     /* 先画盒子，给宽高背景色，方便看对齐方式 */
     width: 400px;
@@ -114,7 +131,7 @@
   <h1>文本布局</h1>
 
   <!-- 文本对齐：块级元素、文本的水平对齐 -->
-  <h2> 文本对齐 text-align 属性：块级元素、文本的水平对齐</h2>
+  <h2>1. 文本对齐 text-align 属性：块级元素、文本的水平对齐</h2>
   <p>文本对齐：可以使用 left（左对齐）、right（右对齐）、center（居中对齐）、justify（两端对齐）。</p>
   <p>默认值是 left。</p>
   <p>注意：行内元素不能使用 text-align 属性。</p>
@@ -131,14 +148,14 @@
   </div>
 
   <!-- 设置文本缩进 -->
-  <h2>文本缩进 indent 属性：段落的第一行缩进</h2>
+  <h2>2. 文本缩进 indent 属性：段落的第一行缩进</h2>
   <p class="text-indent">我是一个段落，我设置缩进 2 个字符。我是一个段落，我设置缩进 2 个字符。我是一个段落，我设置缩进 2 个字符。我是一个段落，我设置缩进 2 个字符。我是一个段落，我设置缩进 2 个字符。
   </p>
   <p>我是一个段落，我没有设置缩进。我是一个段落，我没有设置缩进。我是一个段落，我没有设置缩进。我是一个段落，我没有设置缩进。我是一个段落，我没有设置缩进。</p>
   <strong class="text-indent">我是 strong 标签的内容，我是行内元素，我也设置了文本缩进两个字符，但是不会生效，因为 text-indent 属性只能用于块级元素。</strong>
 
   <!-- 设置文本的字符间距 -->
-  <h2>文本字符间距 letter-spacing 属性：设置字符之间的间距</h2>
+  <h2>3. 文本字符间距 letter-spacing 属性：设置字符之间的间距</h2>
   <p>默认值是 0。</p>
   <p class="letter-spacing2">例如：letter-spacing: 2px; 表示字符间距为 2 个像素。</p>
   <p class="letter-spacing4">例如：letter-spacing: 4px; 表示字符间距为 4 个像素。</p>
@@ -146,7 +163,9 @@
   <p class="letter-spacing-minus2">例如：letter-spacing: -2px; 表示字符间距为 -2 个像素，会压缩字符间距，使字符更密，一般不会使用，影响阅读。</p>
 
   <!-- 设置行高：line-height 属性，调整文本行之间的间距 -->
-  <h2>文本行高 line-height 属性： 行框的高度（水平模式）、调整文本行之间的间距</h2>
+  <h2>4. 文本行高 line-height 属性： 行框的高度（水平模式）、调整文本行之间的间距</h2>
+  <h3>⑴ 调整文本行之间的间距：字体大小 font-size 不变，调整行高 line-height</h3>
+  <p>文本行间距（垂直空白距离）= line-height - font-size</p>
   <p>我没有设置行高。我没有设置行高。我没有设置行高。我没有设置行高。我没有设置行高。我没有设置行高。我没有设置行高。我没有设置行高。我没有设置行高。</p>
   <p class="line-height15">我设置行高为 1.5，当前字体大小的 1.5 倍。我设置行高为 1.5，当前字体大小的 1.5 倍。我设置行高为 1.5，当前字体大小的 1.5 倍。我设置行高为
     1.5，当前字体大小的 1.5 倍。我设置行高为 1.5，当前字体大小的 1.5 倍。我设置行高为 1.5，当前字体大小的 1.5 倍。我设置行高为 1.5，当前字体大小的 1.5 倍。我设置行高为 1.5，当前字体大小的 1.5
@@ -156,11 +175,14 @@
   <p class="line-height3">我设置行高为 3，当前字体大小的 3 倍。我设置行高为 3，当前字体大小的 3 倍。我设置行高为 3，当前字体大小的 3 倍。我设置行高为 3，当前字体大小的 3 倍。我设置行高为
     3，当前字体大小的 3 倍。我设置行高为 3，当前字体大小的 3 倍。我设置行高为 3，当前字体大小的 3 倍。</p>
 
-  <h3>让单行文本垂直居中：行高 line-height = 盒子的高度 height</h3>
+  <h3>⑵ 让单行文本垂直居中：行高 line-height = 盒子的高度 height</h3>
   <p>注：仅限单行文本，多行文本不能垂直居中。</p>
   <p class="single-line-text-vertical-align1">这个单行文本垂直居中显示：line-height = height = 30px</p>
-  <p class="single-line-text-vertical-align2">这个单行文本偏上：line-height ＜ height</p>
-  <p class="single-line-text-vertical-align3">这个单行文本偏下：line-height ＞ height</p>
+  <p class="single-line-text-vertical-align2">这个单行文本偏上：line-height &lt; height</p>
+  <p class="single-line-text-vertical-align3">这个单行文本偏下：line-height &gt; height</p>
+
+  <h2>字体简写属性 font：一次性设置多个字体属性</h2>
+  <p>常用于设置整体页面（body 元素）的字体大小、行高、字体族</p>
 
 
 
