@@ -118,7 +118,7 @@
     }
 
     /* 链接伪类选择器：a 标签的伪类选择器 */
-    /* 严格顺序：LVHA，分别表示：未访问链接、已访问链接、鼠标悬停链接、鼠标点击链接 */
+    /* 严格顺序：LVHA，分别表示：未访问链接、已访问链接、鼠标经过链接、鼠标点击链接 */
     /* 未访问链接 a:link 的样式*/
     .a-pesudo-class a:link {
       /* 黑色字体 */
@@ -132,7 +132,7 @@
       color: chocolate;
     }
 
-    /* 鼠标悬停链接 a:hover 的样式*/
+    /* 鼠标经过链接 a:hover 的样式*/
     .a-pesudo-class a:hover {
       color: green;
       font-weight: 700;
@@ -150,11 +150,228 @@
       text-decoration: none;
     }
 
-    /* 鼠标悬停链接 a:hover 的样式：红色、下划线*/
+    /* 鼠标经过链接 a:hover 的样式：红色、下划线*/
     .actual-development-a-pesudo a:hover {
       color: red;
       text-decoration: underline;
     }
+
+    /* 用户行为伪类选择器：根据用户的行为，选择元素。例如：鼠标经过元素、表单控件获得焦点等。 */
+
+    /* 未经过时段落的样式 */
+    .user-behavior-pesudo-class .hover-p {
+      width: 400px;
+      height: 100px;
+      background-color: lightgray;
+      text-align: center;
+
+      /* 单行文本、垂直居中 */
+      line-height: 100px;
+    }
+
+    /* 鼠标经过时段落的样式 */
+    .user-behavior-pesudo-class .hover-p:hover {
+      background-color: lightblue;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* 未获得焦点前的样式 */
+    .user-behavior-pesudo-class input {
+      width: 100px;
+      height: 30px;
+      /* 过渡效果：当元素的属性值发生变化时，会平滑地过渡到新的值，而不是立即改变 */
+      transition: all 0.5s ease-in-out;
+    }
+
+    /* 表单控件获得焦点时的样式 */
+    .user-behavior-pesudo-class input:focus {
+      width: 200px;
+      background-color: lightgray;
+
+    }
+
+    /* 结构伪类选择器：根据“元素的位置”选择元素 */
+    /* 在多同级的 li 元素中，选择第一个 li 标签，设置为红色 */
+    .structured-pseudo-class .basic li:first-child {
+      color: red;
+    }
+
+    /* 在多同级的 li 元素中，选择最后一个 li 标签，设置为绿色 */
+    .structured-pseudo-class .basic li:last-child {
+      color: green;
+    }
+
+    /* 在多同级的 li 元素中，选择第 3 个 li 标签，设置为蓝色 */
+    .structured-pseudo-class .basic li:nth-child(3) {
+      color: blue;
+    }
+
+    /* 在多同级的 li 元素中，选择第 5 个 li 标签，设置为紫色 */
+    .structured-pseudo-class .basic li:nth-child(5) {
+      color: purple;
+    }
+
+    /* 选择奇数和偶数 */
+    /* 选择奇数，nth-child(odd) 选择奇数，nth-child(even) 选择偶数 */
+    .structured-pseudo-class .odd-even li:nth-child(odd) {
+      color: red;
+    }
+
+    /* 选择偶数，nth-child(even) 选择偶数 */
+    .structured-pseudo-class .odd-even li:nth-child(even) {
+      color: green;
+    }
+
+    /* 选择倍数项，比如 选择 3 的倍数，nth-child(3n)， 选择 3,6,9…… */
+    .structured-pseudo-class .multiple li:nth-child(3n) {
+      color: blue;
+    }
+
+    /* 选择从第 n 个元素开始以及以后的所有元素，nth-child(n+5)，选择第 5 个元素以及以后的所有元素 */
+    .structured-pseudo-class .before-after-nth-child li:nth-child(n+5) {
+      color: green;
+    }
+
+    /* 选择前 n 个元素，nth-child(-n+3)，选择前 3 个元素 */
+    .structured-pseudo-class .before-after-nth-child li:nth-child(-n+3) {
+      color: red;
+    }
+
+    /* 用结构伪类选择器，设置表格的样式 */
+    /* 给表格 table、标题单元格 th、数据单元格td设置边框 */
+    .structured-pseudo-class .table,
+    .structured-pseudo-class .table th,
+    .structured-pseudo-class .table td {
+      /* 设置边框：1px 实线 灰色 */
+      border: 1px solid rgb(88, 87, 87);
+    }
+
+    /* 设置表格本身的样式 */
+    .structured-pseudo-class .table {
+
+      /* 设置表格的边框合并bocc：collapse 合并边框，让表格边框、标题单元格边框、数据单元格边框合并在一起变成一个边框 */
+      /* 所有的表格，都应该在 table 中设置为合并边框，看上会更美观 */
+      border-collapse: collapse;
+
+      /* 表格的宽度 */
+      width: 400px;
+
+      /* 设置表格在页面内水平居中 */
+      margin: 0 auto;
+
+      /* 让表格内的内容、水平居中 */
+      text-align: center;
+
+      /* 设置表格内的字体大小 */
+      font-size: 14px;
+    }
+
+    /* 设置表格内行的样式 */
+    .structured-pseudo-class .table tr {
+      /* 设置每行的高度 */
+      height: 35px;
+
+      /* 设置每行的边框：1px 实线 灰色 */
+      /* border: 1px solid rgb(88, 87, 87); */
+    }
+
+
+    /* 让表格的奇数行的背景颜色为浅灰色 */
+    .structured-pseudo-class .table tr:nth-child(odd) {
+      background-color: rgb(230, 228, 228);
+    }
+
+    /* 设置表格第一行的样式:第一行也属于奇数行，代码写在下方，覆盖上方的代码，通过结构伪类选择器 first-child 选择第一行，设置背景颜色为蓝色，文字颜色为白色 */
+    /* 注：这里的 tr 都没有写父元素 thead、tbody 进行分组，如果写在 thead、tbody 中，第一行tr:first-child 会选中两行，同时选中 thead、tbody 中的第一行，各个分组中的第一行。 */
+    .structured-pseudo-class .table tr:first-child {
+      background-color: lightblue;
+      color: #fff;
+    }
+
+    /* 设置鼠标经过行时的样式，表明鼠标在哪一行上 */
+    .structured-pseudo-class .table tr:hover {
+      background-color: rgb(170, 171, 172);
+    }
+
+    /* 表单伪类选择器 */
+    /* 设置按钮的基础样式、禁用时的样式 （:disabled） */
+    /* 按钮的基础样式：宽高、背景色、文字颜色、大小、去掉按钮的默认的边框 */
+    .form-pseudo-class button {
+      width: 150px;
+      height: 40px;
+      background-color: #ff6900;
+      font-size: 14px;
+      color: #fff;
+
+      /* 去掉按钮的默认的边框 */
+      border: none;
+    }
+
+    /* 设置按钮禁用时的样式 */
+    .form-pseudo-class button:disabled {
+      /* 修改整个按钮的不透明度：0 完全透明，1 完全不透明 */
+      /* opacity: 0.4; */
+      /* 小数点前的数字可以省略 */
+      opacity: .4;
+
+      /* 完全透明 0，直接看不见按钮了,完全不透明 1，按钮正常显示，和原来的一样 */
+      /* opacity: 0; */
+    }
+
+    /* 设置复选框被选中时，后面的一个同级元素 label 的样式：相邻兄弟选择器（+） ，选择哥哥后面的一个弟弟元素，仅选中第一个弟弟元素 */
+    .form-pseudo-class input:checked+label {
+      /* 复选框被选中时，后面的元素 label 的文字颜色为橙色 */
+      color: #ff6900;
+    }
+
+    /* 伪元素选择器（::）：选择元素的“特定部分” */
+    /* 选中第一个字母（第一个汉字）和第一行文字： ::first-letter 和 ::first-line */
+    .pseudo-element p::first-letter {
+      font-size: 24px;
+      color: green;
+
+    }
+
+    .pseudo-element p::first-line {
+      font-size: 20px;
+      color: blue;
+    }
+
+    /* 选中多行文本中的占位符 placeholder，并设置样式 */
+    .pseudo-element textarea::placeholder {
+      font-size: 14px;
+      color: #bbb;
+    }
+
+    /* 伪元素选择器，插入内容，容器 div 本身的样式，宽高背景色 */
+    .pseudo-element-before-after {
+      width: 600px;
+      height: 100px;
+      background-color: lightgreen;
+    }
+
+    /* 伪元素选择器，在元素内部插入内容，::before 插入在元素内容之前，::after 插入在元素内容之后 */
+    .pseudo-element-before-after::before {
+      /* 插入的内容 content 属性，是必须的 */
+      content: "我是::before 插入的内容";
+      color: green;
+      font-size: 20px;
+      background-color: #bbb;
+
+    }
+
+    .pseudo-element-before-after::after {
+      /* 插入的内容 content 属性，是必须的 */
+      content: "我是::after 插入的内容";
+      color: red;
+      font-size: 20px;
+      background-color: #bbb;
+    }
+
+
+
+
 
 
 
@@ -199,6 +416,8 @@
   <p class="external-style">我在 basic.css 文件中定义的样式1</p>
   <p class="external-style">我在 basic.css 文件中定义的样式2</p>
 
+  <hr>
+
   <h2>2. CSS 选择器</h2>
   <h3>2.1 基础选择器：单个选择器组成，根据元素的标签名、类名、id 、通配符来选择元素。</h3>
   <h3>⑴ 元素选择器：标签名</h3>
@@ -222,6 +441,8 @@
   <p>通配符选择器：选择所有元素。</p>
   <p>例如：* 通配符选择器，会选择所有元素，可以设置内外边距 padding 和 margin 。</p>
 
+  <hr>
+  <!-- 关系选择器 -->
   <h3>2.2 关系选择器：根据元素之间的“位置关系”选择元素。多个选择器搭配。</h3>
   <h4>⑴ 后代选择器：根据祖先，选择后代（空格分隔）</h4>
   <ul class="nav">
@@ -269,6 +490,8 @@
     <p>我是第六个 p 标签</p>
   </div>
 
+  <hr>
+
   <!-- 分组选择器 -->
   <h3>2.3 分组选择器（并集选择器）：多个选择器使用相同的样式时，分为一组，逗号隔开</h3>
   <p>下方的图片和视频，都和父元素设置一样的宽度 width：100%，并设置内边距 padding：10px。</p>
@@ -279,12 +502,15 @@
       <p>您的浏览器不支持播放视频，请使用现代浏览器，如 Chrome、Firefox、Edge 等。</p>
     </video>
   </div>
+  <hr>
 
   <!-- 伪类选择器 -->
-  <h3> 伪类选择器</h3>
-  <h4>链接伪类选择器：a 标签的伪类选择器</h4>
+  <h3>2.4 伪类选择器</h3>
+
+  <!-- 链接伪类选择器 -->
+  <h4>⑴ 链接伪类选择器：a 标签的伪类选择器</h4>
   <p>根据链接的状态，选择链接元素，设置样式。</p>
-  <p><strong>LVHA（严格顺序）</strong>：未访问链接 a:link、已访问链接 a:visited、鼠标悬停链接 a:hover、被点击链接 a:active（鼠标按下未松开）</p>
+  <p><strong>LVHA（严格顺序）</strong>：未访问链接 a:link、已访问链接 a:visited、鼠标经过链接 a:hover、被点击链接 a:active（鼠标按下未松开）</p>
   <p><strong>① 自定义 4 种状态下的链接样式</strong></p>
 
   <p class="a-pesudo-class">
@@ -299,8 +525,155 @@
     <a href="#">加入我们</a>
   </p>
 
+  <!-- 用户行为伪类选择器（动态伪类选择器）：根据用户的行为，选择元素。-->
+  <h4>⑵ 用户行为伪类选择器：根据用户的行为，选择元素。例如：鼠标经过元素、表单控件获得焦点等。</h4>
 
-  <!-- CSS 的继承性 -->
+  <div class="user-behavior-pesudo-class">
+    <p><strong>① 鼠标经过元素时的样式（:hover）</strong></p>
+    <p class="hover-p" title="悬停提示信息：鼠标悬停在段落上，才会显示 title 属性的内容，只是经过不显示">我是div的p中的内容1，设置鼠标经过我的样式</p>
+    <p class="hover-p">我是div的p中的内容2，设置鼠标经过我的样式</p>
+    <p><strong>② 设置表单控件获得焦点时的样式（:focus）</strong></p>
+    <form action="#">
+      <label for="search">搜索：</label>
+      <input type="text" id="search" name="search" placeholder="请输入搜索内容" autocomplete="off">
+    </form>
+  </div>
+  <hr>
+
+  <h4>⑶ 结构伪类选择器：根据“元素的位置”选择元素</h4>
+  <div class="structured-pseudo-class">
+    <p><strong>① 基础的结构伪类选择器：选择第一个、最后一个、指定的第 n 个元素</strong></p>
+    <ul class="basic">
+      <li>我是第一个 li 标签，用 :first-child 选择器选择</li>
+      <li>我是第二个 li 标签</li>
+      <li>我是第三个 li 标签，用 :nth-child(3) 选择器选择</li>
+      <li>我是第四个 li 标签</li>
+      <li>我是第五个 li 标签，用 :nth-child(5) 选择器选择</li>
+      <li>我是第六个 li 标签</li>
+      <li>我是第七个 li 标签，用 :last-child 选择器选择</li>
+    </ul>
+    <p><strong>② 选中奇数和偶数</strong></p>
+    <ul class="odd-even">
+      <li>我是第一个 li 标签, 用 :nth-child(odd) 选择器选择</li>
+      <li>我是第二个 li 标签, 用 :nth-child(even) 选择器选择</li>
+      <li>我是第三个 li 标签</li>
+      <li>我是第四个 li 标签</li>
+      <li>我是第五个 li 标签</li>
+      <li>我是第六个 li 标签</li>
+      <li>我是第七个 li 标签</li>
+      <li>我是第八个 li 标签</li>
+    </ul>
+
+    <p><strong>③ 选中指定的倍数，比如 选择 3 的倍数，nth-child(3n)，选择 3,6,9……</strong></p>
+    <ul class="multiple">
+      <li>我是第一个 li 标签</li>
+      <li>我是第二个 li 标签</li>
+      <li>我是第三个 li 标签</li>
+      <li>我是第四个 li 标签</li>
+      <li>我是第五个 li 标签</li>
+      <li>我是第六个 li 标签</li>
+      <li>我是第七个 li 标签</li>
+      <li>我是第八个 li 标签</li>
+      <li>我是第九个 li 标签</li>
+    </ul>
+
+    <p><strong>④ 选中从第 n 个元素开始以及以后的所有元素，nth-child(n+5)，选择第 5 个元素以及以后的所有元素</strong></p>
+    <p><strong>⑤ 选择前几个元素：nth-child(-n+3)，选择前 3 个元素</strong></p>
+    <ul class="before-after-nth-child">
+      <li>我是第一个 li 标签</li>
+      <li>我是第二个 li 标签</li>
+      <li>我是第三个 li 标签</li>
+      <li>我是第四个 li 标签</li>
+      <li>我是第五个 li 标签</li>
+      <li>我是第六个 li 标签</li>
+      <li>我是第七个 li 标签</li>
+      <li>我是第八个 li 标签</li>
+      <li>我是第九个 li 标签</li>
+    </ul>
+
+    <!-- 设置表格的样式 -->
+    <p><strong>⑥ 设置表格的样式</strong></p>
+
+    <table class="table">
+      <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+      </tr>
+      <tr>
+        <td>张三</td>
+        <td>18</td>
+        <td>男</td>
+      </tr>
+      <tr>
+        <td>李四</td>
+        <td>20</td>
+        <td>女</td>
+      </tr>
+      <tr>
+        <td>王五</td>
+        <td>22</td>
+        <td>男</td>
+      </tr>
+      <tr>
+        <td>赵六</td>
+        <td>24</td>
+        <td>女</td>
+      </tr>
+      <tr>
+        <td>周七</td>
+        <td>26</td>
+        <td>男</td>
+      </tr>
+      <tr>
+        <td>郑八</td>
+        <td>28</td>
+        <td>男</td>
+      </tr>
+    </table>
+  </div>
+
+  <hr>
+
+  <!-- 表单伪类选择器：根据“表单控件的状态”选择元素 -->
+  <h4>⑷ 表单伪类选择器：根据“表单控件的状态”选择元素</h4>
+
+  <form action="#" class="form-pseudo-class">
+    <p><strong>① 设置按钮的基础样式、禁用时的样式 （:disabled）</strong></p>
+    <button type="submit">注册</button> (未禁用的按钮)
+    <br>
+    <br>
+    <button type="submit" disabled>注册</button> (禁用的按钮；加了 disabled 属性)
+    <br>
+    <p><strong>② 设置复选框被选中时的样式 （:checked）</strong></p>
+    <p>input 的 复选框 checkbox 没办法直接更改样式，可以通过其他的方式（比如 通过一个伪元素 来做一个假按钮）来实现，样式会更好看。</p>
+    <p><strong>此处设置 复选框被选中时，后面的元素 label 的样式</strong></p>
+    <input type="checkbox" id="agree">
+    <label for="agree">同意协议</label>
+  </form>
+
+  <hr>
+
+  <h3>伪元素选择器（::）：选择元素的“特定部分”、插入内容</h3>
+  <div class="pseudo-element">
+    <h4>① 选中第一个字母（第一个汉字）和第一行文字： ::first-letter 和 ::first-line</h4>
+    <p>我是 div 的 p 中的内容1，我使用伪元素选择器 ::first-letter 选择第一个字母（第一个汉字），使用 ::first-line 选择第一行，然后设置样式。</p>
+
+    <h4>② 选中多行文本中的占位符 placeholder，并设置样式: ::placeholder</h4>
+    <form action="#">
+      <textarea name="pseudo-element-textarea" id="pseudo-element-textarea" aria-label="测试伪元素"
+        placeholder="请输入您的评论"></textarea>
+    </form>
+
+    <h4>③ 插入内容： ::before 和 ::after</h4>
+    <div class="pseudo-element-before-after">团团</div>
+
+  </div>
+
+  <hr>
+
+
+
   <h2>3. CSS 的继承性</h2>
   <p>父元素设置的部分属性，会被子元素自动继承，大部分是“字体相关属性”，比如字体大小、行高、字体族等。</p>
 
