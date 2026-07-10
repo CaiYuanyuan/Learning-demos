@@ -66,15 +66,15 @@
     }
 
     /* 上面的类名的优先级更高，所以下面这个不会生效 */
-    div p a {
-      color: green;
-    }
+    /* div p a { */
+    /* color: green; */
+    /* } */
 
     /* 设置无序列表中的链接 a 的样式;不会生效，因为下面的 .nav li a 优先级更高，类名＞元素选择器 */
-    ul li a {
+    /* ul li a {
       color: lightgreen;
       font-size: 20px;
-    }
+    } */
 
     /* 我的优先级比上面和下面的都高 */
     .nav li a {
@@ -83,10 +83,10 @@
     }
 
     /* 虽然样式在下面，但上面限定的祖先更多，下面不如上面的优先级高，所以不会生效。 */
-    ul a {
+    /* ul a {
       color: red;
       font-size: 20px;
-    }
+    } */
 
     /* 子代选择器: 根据父，选择直接子元素，> 分隔 */
     .child-style>span {
@@ -371,6 +371,40 @@
 
 
 
+    /* 选择有 title 属性的链接，设置字体颜色为绿色 */
+    .attribute-selector .specified-atrr a[title] {
+      color: green;
+    }
+
+    /* 选择 title 属性值 为 link1 的链接，设置字体颜色为红色 */
+    .attribute-selector .specified-atrr-value a[title="link1"] {
+      color: red;
+    }
+
+    /* 选择 title 属性，且值开头是 link 的链接，设置字体颜色为蓝色 */
+    .attribute-selector .specified-atrr-value-start a[title^="link"] {
+      color: darkgreen;
+    }
+
+    /* 选择 title 属性，且值结尾是 rent 的链接，设置字体颜色为红色 */
+    .attribute-selector .specified-atrr-value-end a[title$="rent"] {
+      color: red;
+    }
+
+    /* 选择 title 属性，且值中含有字母 i 的链接，设置字体颜色为绿色 */
+    .attribute-selector .specified-atrr-value-contains a[title*="i"] {
+      color: green;
+    }
+
+    /* 选择 class 属性，且空格分隔的多值中，有一个值是指定的值，设置字体颜色为红色 */
+    .attribute-selector .specified-atrr-one-of-multiple-value a[class~="different"] {
+      color: red;
+    }
+
+    /* 选择 lang 属性，且值带或不带连字符，设置字体颜色为绿色 */
+    .attribute-selector .specified-atrr-value-alternative-hyphen a[lang|=zh] {
+      color: green;
+    }
 
 
 
@@ -654,7 +688,7 @@
 
   <hr>
 
-  <h3>伪元素选择器（::）：选择元素的“特定部分”、插入内容</h3>
+  <h3> 2.5 伪元素选择器（::）：选择元素的“特定部分”、插入内容</h3>
   <div class="pseudo-element">
     <h4>① 选中第一个字母（第一个汉字）和第一行文字： ::first-letter 和 ::first-line</h4>
     <p>我是 div 的 p 中的内容1，我使用伪元素选择器 ::first-letter 选择第一个字母（第一个汉字），使用 ::first-line 选择第一行，然后设置样式。</p>
@@ -671,6 +705,95 @@
   </div>
 
   <hr>
+
+  <h3> 2.6 属性选择器：根据元素的”属性、属性值“选择元素</h3>
+
+  <div class="attribute-selector">
+    <h4>① 选择带有“指定属性”的元素：[属性名]，如选择有 title 属性的链接 </h4>
+    <div class="specified-atrr">
+      <ul>
+        <li><a href="https://www.csdn.net/">我是没有 title 属性的链接</a></li>
+        <li><a href="https://www.csdn.net/" title="link1">我是有 title 属性的链接1</a></li>
+        <li><a href="https://www.csdn.net/" title="link2">我是有 title 属性的链接2</a></li>
+        <li><a href="https://www.csdn.net/" title="link3">我是有 title 属性的链接3</a></li>
+        <li><a href="https://www.csdn.net/"> 我是没有 title 属性的链接</a></li>
+      </ul>
+    </div>
+    <h4>② 选择带有“指定属性、指定属性值” 的元素：[属性名= "属性值"] ，如选择有 title 属性值 为 link1 的链接1 </h4>
+    <div class="specified-atrr-value">
+      <ul>
+        <li><a href="https://www.csdn.net/">我是没有 title 属性的链接</a></li>
+        <li><a href="https://www.csdn.net/" title="link1">我是有 title 属性的链接1</a></li>
+        <li><a href="https://www.csdn.net/" title="link2">我是有 title 属性的链接2</a></li>
+        <li><a href="https://www.csdn.net/" title="link3">我是有 title 属性的链接3</a></li>
+        <li><a href="https://www.csdn.net/"> 我是没有 title 属性的链接</a></li>
+      </ul>
+    </div>
+
+    <h4>③ 选择带有“指定属性、指定属性值的开头” 的元素：[属性名^="属性值"] ，如选择有 title 属性，且属性值开头是 link 的链接 </h4>
+    <div class="specified-atrr-value-start">
+      <ul>
+        <li><a href="https://www.csdn.net/">我是没有 title 属性的链接</a></li>
+        <li><a href="https://www.csdn.net/" title="link1">我是有 title 属性的链接，属性值 link1</a></li>
+        <li><a href="https://www.csdn.net/" title="link2">我是有 title 属性的链接，属性值 link2</a></li>
+        <li><a href="https://www.csdn.net/" title="different">我是有 title 属性的链接，属性值 different</a></li>
+        <li><a href="https://www.csdn.net/"> 我是没有 title 属性的链接</a></li>
+      </ul>
+    </div>
+
+    <h4>④ 选择带有“指定属性、指定属性值的结尾” 的元素：[属性名$="属性值"] ，如选择有 title 属性，且属性值结尾是 rent 的链接 </h4>
+    <div class="specified-atrr-value-end">
+      <ul>
+        <li><a href="https://www.csdn.net/">我是没有 title 属性的链接</a></li>
+        <li><a href="https://www.csdn.net/" title="link1">我是有 title 属性的链接，属性值 link1</a></li>
+        <li><a href="https://www.csdn.net/" title="link2">我是有 title 属性的链接，属性值 link2</a></li>
+        <li><a href="https://www.csdn.net/" title="different">我是有 title 属性的链接，属性值 different</a></li>
+        <li><a href="https://www.csdn.net/" title="different">我是有 title 属性的链接，属性值 different</a></li>
+        <li><a href="https://www.csdn.net/"> 我是没有 title 属性的链接</a></li>
+      </ul>
+    </div>
+
+    <h4>⑤ 选择带有“指定属性、指定属性值中含有指定字符串” 的元素：[属性名*="属性值"] ，如选择有 title 属性，且属性值中含有字母 i 的链接 </h4>
+    <div class="specified-atrr-value-contains">
+      <ul>
+        <li><a href="https://www.csdn.net/">我是没有 title 属性的链接</a></li>
+        <li><a href="https://www.csdn.net/" title="link1">我是有 title 属性的链接，属性值 link1</a></li>
+        <li><a href="https://www.csdn.net/" title="link2">我是有 title 属性的链接，属性值 link2</a></li>
+        <li><a href="https://www.csdn.net/" title="different">我是有 title 属性的链接，属性值 different</a></li>
+        <li><a href="https://www.csdn.net/" title="different">我是有 title 属性的链接，属性值 different</a></li>
+        <li><a href="https://www.csdn.net/"> 我是没有 title 属性的链接</a></li>
+      </ul>
+    </div>
+
+    <h4>⑥ 选择带有“指定属性、含有指定值（多值，则是其中一个值）” 的元素：[属性名~="属性值"] ，如选择有 class 属性，且空格分隔的多值中，有一个值是指定的值 </h4>
+    <p>a[class~="different"] :选择 class 属性，且空格分隔的多值中，有一个值是指定的值</p>
+    <div class="specified-atrr-one-of-multiple-value">
+      <ul>
+        <li><a href="https://www.csdn.net/">我是没有 class 属性的链接</a></li>
+        <li><a href="https://www.csdn.net/" class="link1 different">我是有 class 属性的链接，属性值 link1 different</a></li>
+        <li><a href="https://www.csdn.net/" class="link2different">我是有 class 属性的链接，属性值 link2different(中间无空格)</a></li>
+        <li><a href="https://www.csdn.net/" class="different">我是有 class 属性的链接，属性值 different</a></li>
+        <li><a href="https://www.csdn.net/" class="different">我是有 class 属性的链接，属性值 different</a></li>
+        <li><a href="https://www.csdn.net/"> 我是没有 class 属性的链接</a></li>
+      </ul>
+    </div>
+
+    <h4>⑦ 选择“指定属性、指定属性值带或不带连字符”的元素：[属性名|="属性值"]， a[lang|=zh] ：选择 lang 属性，且值 = zh 或 zh-* 带或不带连字符的链接 </h4>
+
+    <div class="specified-atrr-value-alternative-hyphen">
+      <ul>
+        <li><a href="https://www.csdn.net/" lang="zh">我设置了 lang 属性为 zh</a></li>
+        <li><a href="https://www.csdn.net/" lang="zh">我设置了 lang 属性为 zh</a></li>
+        <li><a href="https://www.csdn.net/" lang="en">我设置了 lang 属性为 en</a></li>
+        <li><a href="https://www.csdn.net/" lang="zh-CN">我设置了 lang 属性为 zh-CN</a></li>
+        <li><a href="https://www.csdn.net/" lang="en">我设置了 lang 属性为 en</a></li>
+        <li><a href="https://www.csdn.net/"> 我没有设置 lang 属性</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+
 
 
 

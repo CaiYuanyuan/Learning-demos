@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>盒模型-边框</title>
+
+  <style>
+    /* 设置 div 的宽高背景色*/
+    .border div {
+      width: 200px;
+      height: 100px;
+      background-color: #eee;
+      /* 设置上边距，让盒子的边框之间有间隔 */
+      margin-top: 10px;
+    }
+
+    /* 设置 div 的边框 */
+    .box-solid {
+      /* 设置边框的宽度、样式、颜色，多值空格隔开 */
+      border: 5px solid red;
+    }
+
+    /* 设置虚线边框的宽度、样式、颜色 */
+    .box-dashed {
+      border: 5px dashed green;
+    }
+
+    /* 设置点线边框的宽度、样式、颜色 */
+    .box-dotted {
+      border: 5px dotted blue;
+    }
+
+    /* 设置双线边框的宽度、样式、颜色 */
+    .box-double {
+      border: 5px double red;
+    }
+
+    /* 设置雕刻效果的边框的宽度、样式、颜色 */
+    .box-groove {
+      border: 10px groove gray;
+    }
+
+    /* 设置浮雕效果的边框的宽度、样式、颜色 */
+    .box-ridge {
+      border: 10px ridge gray;
+    }
+
+    /* 设置内嵌效果的边框的宽度、样式、颜色 */
+    .box-inset {
+      border: 10px inset gray;
+    }
+
+    /* 设置凸起效果的边框的宽度、样式、颜色 */
+    .box-outset {
+      border: 10px outset gray;
+    }
+
+    /* 设置分别设置每个边框的宽度、样式、颜色 */
+    .directional-border {
+      width: 300px;
+      height: 100px;
+      background-color: #eee;
+      margin-top: 10px;
+      /* 上边框 */
+      border-top: 5px solid red;
+      /* 右边框 */
+      border-right: 5px dotted green;
+      /* 下边框 */
+      border-bottom: 5px dashed blue;
+      /* 左边框 */
+      border-left: 5px double orange;
+
+      /* 无样式 = 无边框 */
+      /* border-style: none; */
+      /* border: none; */
+
+    }
+
+    .directional-border1 {
+      width: 300px;
+      height: 100px;
+      /* background-color: lightgreen; */
+      margin-top: 10px;
+      border: 1px solid gray;
+      /* 单独设置上边框，下面的 覆盖上面统一设置的边框样式 */
+      border-top: 5px solid orange;
+
+    }
+  </style>
+</head>
+
+<body>
+  <h1>盒模型-边框</h1>
+  <!-- 设置所有边框的宽度、样式、颜色 -->
+  <h2>border 属性：设置所有边框的宽度、样式、颜色</h2>
+  <div class="border">
+    <div class="box-solid">① 实线：我是第1个div，我是实线的 5px solid red</div>
+    <div class="box-dashed">② 虚线：我是第2个div，我是虚线的 5px dashed green</div>
+    <div class="box-dotted">③ 点线：我是第3个div，我是点线的 5px dotted blue</div>
+    <div class="box-double">④ 双线：我是第4个div，我是双线的 5px double red</div>
+    <div class="box-groove">⑤ 雕刻效果：我是第5个div，我是雕刻效果的边框，样式与 ridge 相反。 10px groove gray</div>
+    <div class="box-ridge">⑥ 浮雕效果：我是第6个div，我是浮雕效果的边框，样式与 groove 相反。 10px ridge gray</div>
+    <div class="box-inset">⑦ 内嵌效果：我是第7个div，我是内嵌效果的边框，样式与 outset 相反。 10px inset gray</div>
+    <div class="box-outset">⑧ 凸起效果：我是第8个div，我是凸起效果的边框，样式与 inset 相反。 10px outset gray</div>
+  </div>
+
+  <hr>
+  <!-- 分别设置每个边框的宽度、样式、颜色 -->
+  <h2>border-方向词（top、right、bottom、left） 属性：分别设置每个边框的宽度、样式、颜色</h2>
+  <div class="directional-border">分别设置四条不同的边框：
+    我 div 元素的标签内容，通过 border-方向词（top、right、bottom、left） 属性，分别设置每个边框的宽度、样式、颜色。
+  </div>
+
+  <div class="directional-border1">设置三条相同、一条不同的边框：
+    我 div 元素的标签内容，通过 border、border-方向词（top、right、bottom、left） 属性，分别设置每个边框的宽度、样式、颜色。
+  </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSS 选择器优先级</title>
+
+  <style>
+    /* 通配符 */
+    * {
+      color: red;
+    }
+
+    /* 元素选择器 */
+    strong {
+      color: black;
+    }
+
+    div {
+      color: blue;
+      width: 300px;
+      height: 200px;
+      background-color: rgb(240, 236, 236);
+      margin: 10px;
+      /* 文本左对齐 */
+      text-align: left;
+    }
+
+    /* 类选择器 */
+    .selector-class {
+      color: green;
+    }
+
+    /* id 选择器 */
+    #selector-id {
+      color: gray;
+    }
+
+    /* 无限高的优先级 !important */
+    .important {
+      color: orange !important;
+    }
+
+    /* 选择器权重叠加 */
+    .nav ul li a {
+      color: green;
+    }
+
+    /* 选择器权重叠加 */
+    .nav ul li.special-li a {
+      color: gray;
+    }
+
+    /* 继承权重是0：给父元素设置样式，被子元素继承后，只要子元素设置有样式，子元素的样式就会覆盖父元素的样式 */
+    /* 给父元素设置样式，字体颜色为蓝色 */
+    .inherit-style {
+      color: blue;
+    }
+
+    /* 给子元素设置样式，字体颜色为绿色 */
+    .inherit-style p {
+      color: green;
+    }
+
+    /* 给父元素设置样式 */
+    header {
+      /* 字体粗细改为正常大小，子元素 h1 不会继承这个样式，而是会使用自己的默认样式 */
+      font-weight: 400;
+
+      /* 取消子元素 a 标签的默认下划线，不起作用，a 标签默认样式，优先级大于从父元素继承来的样式*/
+      text-decoration: none;
+    }
+
+    /* 给子元素 h1 设置样式 */
+    header h1 {
+      font-weight: 400;
+      color: black;
+    }
+
+    /* 给子元素 a 标签设置样式 */
+    header a {
+      /* 取消链接下划线 */
+      text-decoration: none;
+      color: black;
+
+    }
+
+    header a:hover {
+      /* 取消链接下划线 */
+      text-decoration: underline;
+      color: blue;
+    }
+  </style>
+
+
+
+</head>
+
+<body>
+  <h1>CSS 选择器优先级</h1>
+  <p><strong>⑴ 优先级：!important &gt; 内联样式（style）属性 &gt; id 选择器 &gt; 类、属性、伪类选择器 &gt; 元素、伪元素选择器 &gt; 通配符、继承</strong></p>
+
+  <div>元素选择器设置的样式：我是 div 的标签内容，用来测试选择器的优先级，我没有其他属性。</div>
+  <div class="selector-class">类选择器设置的样式：我是 div 的标签内容，用来测试选择器的优先级，我有一个类 class="selector-class"。</div>
+  <div class="selector-class" id="selector-id">id 选择器设置的样式：我是 div 的标签内容，用来测试选择器的优先级，我有一个类 class="selector-class" 和一个
+    id="selector-id"。</div>
+
+  <div class="selector-class" id="selector-id" style="color: purple;">内联样式（style）属性设置的样式：我是 div 的标签内容，用来测试选择器的优先级，我有一个类
+    class="selector-class" 和一个
+    id="selector-id"，同时还有 style="color: purple;" 属性。</div>
+  <div class="selector-class important" id="selector-id" style="color: purple;">!important 属性设置的样式：我是 div
+    的标签内容，用来测试选择器的优先级，我有一个类
+    class="selector-class" 和一个
+    id="selector-id"，同时还有 style="color: purple;" 属性，但最终使用的是.important 中设置了 !important 的 样式。</div>
+  <hr>
+
+  <!-- 权重叠加 -->
+  <p><strong>⑵ 权重叠加</strong></p>
+  <div class="nav">
+    <ul>
+      <li><a href="">我是 div 中的 ul 中的 li 中的 a 标签</a></li>
+      <li><a href="">我是 div 中的 ul 中的 li 中的 a 标签</a></li>
+      <li class="special-li"><a href="">我是 div 中的 ul 中的 li 中的 a 标签，但我的 li 带一个
+          class="special-li"</a></li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <p><strong>⑶ 继承权重是0：给父元素设置样式，被子元素继承后，只要子元素设置有样式，子元素的样式就会覆盖父元素的样式</strong></p>
+  <div class="inherit-style">
+    我是 div 的标签内容，通过 .inherit-style 类设置的样式，字体颜色为蓝色。
+    <p>我是 div 中的 p 标签，用来测试继承权重。父元素.inherit-style 类设置的样式，字体颜色为蓝色，但实际起效的是通配符 * 中设置的红色。当我单独设置 .inherit-style p
+      的颜色时，起效的是我自己设置的绿色。
+    </p>
+  </div>
+
+  <!-- 有默认样式的元素，会优先使用默认样式，而不是使用继承来的样式 -->
+  <p><strong>⑷ 有默认样式的元素（h1~h6、a），会优先使用默认样式(标题的加粗、链接的下划线)，而不是使用继承来的样式。（但字体颜色可以从父元素继承）</strong></p>
+  <p><strong>需要修改标题的加粗、链接的下划线，需要给“子元素本身”设置 font-weight 或 text-decoration 属性，而不是通过继承。</strong></p>
+
+  <header>
+    <h1>我是 header 中的 h1 标签</h1>
+    <p>我的颜色是通配符改变的，在父元素 header 中设置的 font-weight，在 h1 标签中不会生效，因为 h1~h6 标签会优先使用自己的默认样式，而不是继承来的样式。如果要改变 h1 标签的
+      font-weight，需要在 h1
+      标签中设置
+      font-weight 属性。</p>
+    <a href="">我是 header 中的 a 标签，我有默认下划线，父元素中设置取消下划线，对我不起作用，因为我有默认下划线。在我自己的 a 标签中设置 text-decoration: none; 才能取消下划线。</a>
+  </header>
+
+
+
+</body>
+
+</html>
