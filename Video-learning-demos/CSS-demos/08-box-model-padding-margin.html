@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>盒模型-内边距、外边距</title>
+
+  <style>
+    /* 设置内边框的盒子统一样式 */
+    .padding-style div {
+      width: 200px;
+      height: 150px;
+      background-color: lightblue;
+      /* 上外边距，让盒子与盒子之间有间距 */
+      margin-top: 20px;
+    }
+
+    /* 设置 一个值的内边距，使内容与边框之间有间距 */
+    .padding-style .padding-one-value {
+      padding: 10px;
+    }
+
+    /* 设置 两个值的内边距，使内容与边框之间有间距 */
+    .padding-style .padding-two-value {
+      padding: 10px 20px;
+    }
+
+    /* 设置 三个值的内边距，使内容与边框之间有间距 */
+    .padding-style .padding-three-value {
+      padding: 10px 20px 30px;
+    }
+
+    /* 设置 四个值的内边距，使内容与边框之间有间距 */
+    .padding-style .padding-four-value {
+      padding: 10px 20px 30px 40px;
+    }
+
+    /* 设置 单独指定某个方向的内边距，使内容与边框之间有间距 */
+    .padding-style .padding-left-value {
+      width: 600px;
+      height: 35px;
+      /* 行高= 高度，单行文本垂直居中 */
+      line-height: 35px;
+
+      /* 设置边框样式 */
+      border: 1px solid #bbb;
+      border-top: 3px solid rgb(250, 164, 5);
+
+
+      /* 背景色 */
+      background-color: #fff;
+
+      /* 左边距 */
+      padding-left: 10px;
+    }
+
+    /* 设置外边距的盒子统一样式 */
+    .margin-style div {
+      width: 200px;
+      height: 150px;
+      background-color: lightgreen;
+      border: 1px solid #bbb;
+    }
+
+    /* 设置 一个值的外边距，使盒子与盒子之间有间距 */
+    .margin-style .margin-one-value {
+      margin: 10px;
+    }
+
+    /* 设置 两个值的外边距，使盒子与盒子之间有间距 */
+    .margin-style .margin-two-value {
+      margin: 10px 20px;
+    }
+
+    /* 设置 三个值的外边距，使盒子与盒子之间有间距 */
+    .margin-style .margin-three-value {
+      margin: 10px 20px 30px;
+    }
+
+    /* 设置 四个值的外边距，使盒子与盒子之间有间距 */
+    .margin-style .margin-four-value {
+      margin: 10px 20px 30px 40px;
+    }
+
+    /* 设置 单独指定某个方向的外边距，使盒子与盒子之间有间距 */
+    .margin-style .margin-left-value {
+      margin-left: 50px;
+    }
+
+    /* 行内元素 span、外边距 */
+    .margin-style .inline-element span {
+      /* 1. 行内元素设置宽高无效，大小由内容决定，下方的宽高不会生效，背景色会生效 */
+      width: 100px;
+      height: 100px;
+      background-color: lightblue;
+
+      /* 2. 给行内元素 span 设置外边距，只有左右外边距有效（margin-left、margin-right），上下外边距无效 */
+      /* 上下外边距 10px，左右外边距 20px */
+      margin: 10px 20px;
+
+      /* 3. 行内元素，内边距、边框生效 */
+      padding: 10px;
+      border: 2px solid #bbb;
+    }
+
+    /* 设置块级元素、水平居中显示 */
+    .margin-style .margin-block-element-center {
+      /* 块级盒子本身有宽度，不是占满父元素宽度的通栏 */
+      width: 300px;
+
+      /* 块级元素的左右外边距 设置为 auto，浏览器会均分左右外边距，即可水平居中显示。 */
+      /* 上下外边距不重要，可以不写，也不一定必须是 0 。块级元素水平居中，主要看左右外边距。 */
+      /* 下方的三个方法，都能保证块级元素的左右外边距为 auto，从而实现水平居中显示。 */
+      /* 方法1：设置上下外边距为 0，左右外边距为 auto，即可水平居中显示。 */
+      margin: 0 auto;
+
+      /* 方法2：设置上下左右外边距都为 auto，即可水平居中显示。 */
+      margin: auto;
+
+      /* 方法3：分别设置左右外边距都为 auto，即可水平居中显示。 */
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* 行内元素，无法直接通过左右外边距 auto 实现水平居中显示，可以把它放在块级元素中，再设置左右外边距 auto 实现水平居中显示 */
+    .margin-style .margin-inline-element-center {
+      /* 行内元素，设置宽度无效，大小由内容决定 */
+      width: 300px;
+
+      /* 行内元素 span 的左右外边距 设置为 auto，也无法居中显示。 */
+      margin: 0 auto;
+      background-color: lightblue;
+    }
+
+    /* 外边距的 auto 属性值：浏览器自动计算，一般是占满一边的剩余空间*/
+    .margin-style .margin-left-auto {
+      /* 左外边距 auto，一般紧贴右边，左外边距 auto = 自动占满左边剩余空间 */
+      margin-left: auto;
+    }
+
+    .margin-style .margin-right-auto {
+      /* 右外边距 auto，一般紧贴左边，右外边距 auto = 自动占满右边剩余空间 */
+      margin-right: auto;
+    }
+
+    .margin-style .margin-left-right-auto {
+      /* 左右外边距 auto，内容靠中间，左右外边距 auto = 自动占满左右剩余空间，均分左右剩余空间 */
+      margin: auto;
+    }
+
+    /* 外边距的合并（折叠）：上下外边距合并，左右外边距不合并 */
+    /* 设置盒子的统一样式 */
+    div[class*="margin-merge"] {
+      width: 300px;
+      height: 150px;
+      background-color: lightblue;
+      border: 1px solid #bbb;
+    }
+
+    /* 上面的盒子（哥哥）：margin-bottom: 50px; */
+    .margin-merge1 {
+      /* 下外边距 50px */
+      margin-bottom: 50px;
+    }
+
+    /* 下面的盒子（弟弟）：margin-top: 100px; */
+    .margin-merge2 {
+      /* 上外边距 100px */
+      margin-top: 100px;
+    }
+
+
+    /* 设置外边距塌陷相关盒子的统一样式 */
+    /* 选出类名中包含字符串 margin-collapse 的盒子 */
+    div[class*="margin-collapse"] {
+      width: 300px;
+      height: 150px;
+      background-color: lightblue;
+      /* border: 1px solid #bbb; */
+    }
+
+    /* 设置父盒子的样式 */
+    div.margin-collapse-father {
+      width: 500px;
+      height: 300px;
+      background-color: lightpink;
+
+      /* 解决父子块级元素的上下外边距塌陷问题（重要） */
+      /* 方法1：父元素设置边框（上边框），可以防止塌陷，不会跟着子元素的上下外边距移动 */
+      /* border: 1px solid #bbb; */
+
+      /* 透明的上边框 */
+      /* border-top: 1px solid transparent; */
+
+      /* 方法2：父元素设置内边距（上内边距），可以防止塌陷，父元素不会跟着子元素的上下外边距移动 */
+      /* 内边距 */
+      /* padding: 10px; */
+      /* 只设置上内边距，可以防止塌陷 */
+      /* padding-top: 1px; */
+
+      /* 方法3：给父元素设置 overflow: hidden; 可以防止塌陷 */
+      /* overflow: hidden; */
+
+
+    }
+
+    /* 设置子盒子的样式 */
+    div.margin-collapse-son {
+
+      /* 设置子元素的上下外边距 */
+      margin-top: 50px;
+      background-color: lightgreen;
+      /* margin-bottom: 50px; */
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>盒模型-内边距、外边距</h1>
+  <h2>1. 内边距 padding：设置元素的内边距，即元素内容与边框之间的距离</h2>
+  <div class="padding-style">
+    <h3>⑴ 内边距的取值方式：1~4个值，分别对应的内边距</h3>
+    <div><strong>未设置内边距</strong>：我是 div 标签的内容，没有设置内边距</div>
+    <div class="padding-one-value"><strong>设置一个值：padding: 10px;</strong> 所有方向（四条边）的内边距都相同</div>
+    <div class="padding-two-value"><strong>设置两个值：padding: 10px 20px;</strong> 1=上下内边距、2=左右内边距。
+    </div>
+    <div class="padding-three-value"> <strong>设置三个值：padding: 10px 20px 30px; </strong>
+      1=上边距、2=左右边距（相同）、3=下边距。
+    </div>
+    <div class="padding-four-value"><strong>设置四个值：padding: 10px 20px 30px 40px; </strong> 顺时针：
+      1=上边距、2=右边距、3=下边距、4=左边距。
+    </div>
+
+    <hr>
+
+    <h3>⑵ 单独指定某个方向的内边距：padding-方向词</h3>
+    <p>padding-top、padding-bottom、padding-left、padding-right</p>
+    <div class="padding-left-value"><strong>设置左边距：padding-left: 10px;</strong> 左边方向的内边距为 10px</div>
+
+  </div>
+
+  <hr>
+
+  <h2>2. 外边距 margin：设置元素的外边距，边框外的空白，即元素与元素之间的距离</h2>
+  <div class="margin-style">
+    <h3>⑴ 外边距的取值方式：1~4个值，分别对应的外边距</h3>
+    <div><strong>未设置外边距</strong>：我是 div 标签的外容，没有设置外边距</div>
+    <div class="margin-one-value"><strong>设置一个值：margin: 10px;</strong> 所有方向（四条边）的外边距都相同</div>
+    <div><strong>未设置外边距</strong>：我是 div 标签的外容，没有设置外边距</div>
+    <div class="margin-two-value"><strong>设置两个值：margin: 10px 20px;</strong> 1=上下外边距、2=左右外边距。
+    </div>
+    <div><strong>未设置外边距</strong>：我是 div 标签的外容，没有设置外边距</div>
+    <div class="margin-three-value"> <strong>设置三个值：margin: 10px 20px 30px; </strong>
+      1=上边距、2=左右边距（相同）、3=下边距。
+    </div>
+    <div><strong>未设置外边距</strong>：我是 div 标签的外容，没有设置外边距</div>
+    <div class="margin-four-value"><strong>设置四个值：margin: 10px 20px 30px 40px; </strong> 顺时针：
+      1=上边距、2=右边距、3=下边距、4=左边距。
+    </div>
+    <div><strong>未设置外边距</strong>：我是 div 标签的外容，没有设置外边距</div>
+
+    <hr>
+
+    <h3>⑵ 单独指定某个方向的外边距：margin-方向词</h3>
+    <p>margin-top、margin-bottom、margin-left、margin-right</p>
+    <div class="margin-left-value"><strong>设置左边距：margin-left: 50px;</strong> 左边方向的外边距为 50px</div>
+
+    <hr>
+
+    <h3>⑶ 行内元素：只有左右外边距有效（margin-left、margin-right），上下外边距、宽高都无效</h3>
+    <p>行内元素：内边距、边框有效（多行文字时，上下内边距有效，但可能会导致重叠问题）</p>
+    <p class="inline-element">
+      <span>行内元素 span 1</span>
+      <span>行内元素 span 2</span>
+    </p>
+
+    <hr>
+    <h3>⑷ 块级元素、水平居中显示：块级盒子 本身有宽度≠父元素宽度、 左右外边距 auto，如 margin: 0 auto;</h3>
+    <p>① <strong>块级盒子本身必须有宽度（小于父元素宽度）</strong>：否则和父元素一样宽，看不出来是否居中显示。</p>
+    <p>② <strong>块级盒子的左右外边距 设置为 auto</strong>：浏览器会均分左右外边距，即可水平居中显示。上下外边距不重要，可以不写，也不一定必须是 0 。块级元素水平居中，主要看左右外边距。</p>
+    <p><strong>③ 常用的三种写法（确保左右外边距为 auto）</strong>：❶ margin: 0 auto; ❷ margin: auto; ❸ margin-left: auto; margin-right:
+      auto;</p>
+    <div class="margin-block-element-center">
+      我是需要水平居中的显示的块级盒子
+    </div>
+
+    <!-- 行内元素无法通过左右外边距 auto 实现水平居中显示 -->
+    <p><strong>④ 行内元素无法通过左右外边距 auto 实现水平居中显示（可以放在块级元素中，再设置左右外边距 auto 实现水平居中显示）</strong></p>
+    <span class="margin-inline-element-center">我是行内元素 span，我设置左右外边距 = auto也无法水平居中显示</span>
+
+    <hr>
+    <h3>⑸ margin 的 auto 属性值：浏览器自动计算，一般是占满一边的剩余空间</h3>
+    <div class="margin-left-auto">
+      <strong>① 左外边距为 auto = 内容靠右，自动占满“左边剩余空间”；</strong>
+      margin-left: auto;
+    </div>
+    <div class="margin-right-auto">
+      <strong>② 右外边距为 auto = 内容靠左，自动占满“右边剩余空间”；</strong>
+      margin-right: auto;
+    </div>
+    <div class="margin-left-right-auto">
+      <strong>③ 左右外边距为 auto = 内容靠中间，自动占满“左右剩余空间”、两边均分剩余空间；</strong>
+      margin-left: auto; / margin-right: 0 auto;
+    </div>
+
+    <hr>
+  </div>
+
+  <!-- 外边距的合并（折叠）：并列的块级元素（兄弟）、上下外边距合并 = 较大那个的外边距 -->
+  <h3>⑹ 外边距的合并（折叠）：并列的块级元素（兄弟）、上下外边距合并 = 较大那个的外边距</h3>
+  <p><strong> 并列的块级元素、上下外边距合并，合并后的外边距 = 较大的那个外边距</strong></p>
+  <div class="margin-merge1">
+    上面的盒子（哥哥）：margin-bottom: 50px;
+  </div>
+  <div class="margin-merge2">
+    下面的盒子（弟弟）：margin-top: 100px;
+  </div>
+
+  <hr>
+
+  <!-- 外边距塌陷 -->
+  <h3>⑺ 外边距塌陷：父子的块级元素，子元素设置上下外边距，会让父元素跟着塌陷移动</h3>
+  <p><strong>3 种解决方案（重要）</strong>：给<strong>“父元素”</strong>设置 ❶ 上边框（边框）、❷ 上内边距（内边距）、❸ 隐藏溢出 overflow: hidden</p>
+  <p>注：主要是父元素要有 上边框 border-top、上内边距 padding-top、隐藏溢出 overflow: hidden，才能防止塌陷。</p>
+  <p>解决方案代码：写在父元素中，是注释状态。下方是外边距塌陷状态（子元素的上外边距带着父元素一起移动了）。</p>
+  <div class="margin-collapse-brother">
+    哥哥：div1
+  </div>
+  <div class="margin-collapse-father">
+    <div class="margin-collapse-son">div2 中的 div，我是 div2 的子元素的内容</div>
+    弟弟：div2
+  </div>
+
+
+</body>
+
+</html>

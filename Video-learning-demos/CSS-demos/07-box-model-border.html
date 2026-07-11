@@ -88,13 +88,85 @@
       border-top: 5px solid orange;
 
     }
+
+    /* 统一设置边框圆角的 div 的宽高、背景色 */
+    .border-radius div {
+      width: 100px;
+      height: 100px;
+      background-color: lightblue;
+    }
+
+    /* 边框圆角：圆形 */
+    .border-radius .border-radius-circle {
+      /* 圆角边框：半径 = 宽高的一半= 圆形，或 50%（不用计算，直接是宽高的一半） */
+      /* 圆角边框：半径 = 宽高的一半 = width=height/2 */
+      /* border-radius: 100px; */
+      border-radius: 50%;
+    }
+
+    /* 边框圆角：小圆角 */
+    .border-radius .border-radius-little-radius {
+      /* 圆角边框：半径 = 宽高的一半 = width=height/2 */
+      border-radius: 10px;
+    }
+
+    /* 边框圆角：胶囊按钮 */
+    .border-radius .border-radius-landscape-pill {
+      /* 胶囊按钮：垂直半径 = 水平半径 = 宽度或高度的一半 = width/2 或 height/2 */
+      /* 增大宽度看得更清楚 */
+      width: 300px;
+
+      /* 横着的胶囊按钮：垂直半径 = 水平半径 = 高度的一半 = height/2，如果是竖着的胶囊形状，则是宽度的一半 */
+      border-radius: 50px;
+    }
+
+    /* 边框圆角：竖着的胶囊按钮 */
+    .border-radius .border-radius-portrait-pill {
+      /* 垂直半径 = 水平半径 = 宽度的一半 = width/2 */
+      /* 增大高度看得更清楚 */
+      height: 300px;
+      border-radius: 50px;
+    }
+
+
+
+    /* 给图片设置圆角 */
+    .border-radius .border-radius-img {
+      width: 150px;
+      border-radius: 50%;
+    }
+
+    /* 给 class 中包含 value 的 div 添加边框宽度、样式、颜色 */
+    .border-radius div[class*="value"] {
+      border: 1px solid green;
+    }
+
+    /* 边框圆角：1个值 */
+    .border-radius .border-radius-one-value {
+      border-radius: 10px;
+    }
+
+    /* 边框圆角：2个值 */
+    .border-radius .border-radius-two-values {
+      border-radius: 20px 0;
+    }
+
+    /* 边框圆角：3个值 */
+    .border-radius .border-radius-three-values {
+      border-radius: 10px 30px 0;
+    }
+
+    /* 边框圆角：4个值 */
+    .border-radius .border-radius-four-values {
+      border-radius: 10px 0 30px 60px;
+    }
   </style>
 </head>
 
 <body>
   <h1>盒模型-边框</h1>
   <!-- 设置所有边框的宽度、样式、颜色 -->
-  <h2>border 属性：设置所有边框的宽度、样式、颜色</h2>
+  <h2>1. border 属性：设置所有边框的宽度、样式、颜色</h2>
   <div class="border">
     <div class="box-solid">① 实线：我是第1个div，我是实线的 5px solid red</div>
     <div class="box-dashed">② 虚线：我是第2个div，我是虚线的 5px dashed green</div>
@@ -108,13 +180,59 @@
 
   <hr>
   <!-- 分别设置每个边框的宽度、样式、颜色 -->
-  <h2>border-方向词（top、right、bottom、left） 属性：分别设置每个边框的宽度、样式、颜色</h2>
+  <h2>2. border-方向词（top、right、bottom、left） 属性：分别设置每个边框的宽度、样式、颜色</h2>
   <div class="directional-border">分别设置四条不同的边框：
     我 div 元素的标签内容，通过 border-方向词（top、right、bottom、left） 属性，分别设置每个边框的宽度、样式、颜色。
   </div>
 
   <div class="directional-border1">设置三条相同、一条不同的边框：
     我 div 元素的标签内容，通过 border、border-方向词（top、right、bottom、left） 属性，分别设置每个边框的宽度、样式、颜色。
+  </div>
+
+  <hr>
+
+  <!-- 圆角边框 -->
+  <h2>3. 边框圆角</h2>
+  <h3>⑴ border-radius 属性：设置边框圆角（半径）</h3>
+
+  <div class="border-radius">
+    <p><strong>① 圆形</strong>： 正方形，圆角为宽高的一半⇒ border-radius: 50%; </p>
+    <p>半径 = 宽高的一半（半径 = width=height/2，或 50% = 不用计算，直接是宽高的一半）</p>
+    <div class="border-radius-circle"></div>
+
+    <p><strong>② 小圆角</strong>: ② 四个角一样的半径，小尺寸，border-radius: 10px;</p>
+    <div class="border-radius-little-radius"></div>
+
+    <p><strong>③ 横着或竖着的胶囊按钮</strong>：宽度或高度中，较小值的一半。</p>
+    <p>矩形框的两端是半圆，垂直半径 = 水平半径 = 宽度或高度的一半 = width/2 或 height/2</p>
+    <div class="border-radius-landscape-pill"></div>
+    <div class="border-radius-portrait-pill"></div>
+
+    <!-- 给图片设置圆角 -->
+    <p><strong>④ 给图片设置圆角</strong>：直接给图片设置圆角，需要在图片标签中添加 border-radius 属性。</p>
+    <img src="img/cat.webp" alt="猫咪" class="border-radius-img">
+    <img src="img/dog.webp" alt="萨摩耶" class="border-radius-img">
+
+
+    <hr>
+
+    <h3>⑵ 边框圆角的取值：1~4个值，分别对应的角</h3>
+    <p>1个值：border-radius: 10px; 所有角的圆角半径都相同</p>
+    <div class="border-radius-one-value"></div>
+
+    <p>2个值：border-radius: 20px 0; </p>
+    <p>1 = 主对角线（左上角、右下角）的圆角半径相同，2 = 次对角线（右上角、左下角）的圆角半径也相同</p>
+    <div class="border-radius-two-values"></div>
+
+    <p>3个值：border-radius: 10px 30px 0; </p>
+    <p>1、3 = 主对角线（左上角、右下角），2 = 次对角线（右上角、左下角）的圆角半径也相同</p>
+    <div class="border-radius-three-values"></div>
+
+    <p>4个值：border-radius: 10px 0 30px 60px; </p>
+    <p>顺时针设置：1、2、3、4 的圆角半径，分别对应 左上角、右上角、右下角、左下角 的圆角半径</p>
+    <div class="border-radius-four-values"></div>
+
+
   </div>
 
 
