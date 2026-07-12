@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>盒模型-尺寸计算</title>
+
+  <style>
+    /* 清除默认的内外边距；设置盒子尺寸 = 边框盒，宽高= 内容区宽高 + 内边距 + 边框 */
+    /*     * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+ */
+    /* 设置所有盒子的宽度和高度 */
+    .actual-box-sizing div {
+      width: 300px;
+      height: 200px;
+    }
+
+    .only-width-height {
+      background-color: lightgreen;
+      margin-bottom: 10px;
+    }
+
+    /* 默认 宽高 = 内容区宽高（不含内边距和边框） box-sizing: content-box;（内容盒子 = 内容区） */
+    .width-height-padding-border {
+      background-color: lightblue;
+      padding: 20px;
+      border: 20px solid black
+    }
+
+    /* 设置宽高的指定区域 = 边框盒子 = 边框及以内的区域 = 边框 + 内边距 + 内容区 */
+    .box-sizing-border-box {
+      background-color: lightcoral;
+      padding: 20px;
+      border: 20px solid black;
+
+      /* 设置宽高的指定区域 = 边框盒子 = 边框及以内的区域 = 边框 + 内边距 + 内容区 */
+      box-sizing: border-box;
+    }
+  </style>
+
+
+  </style>
+
+
+</head>
+
+<body>
+  <h1>盒模型-尺寸计算 box-sizing</h1>
+
+  <div class="actual-box-sizing">
+    <p> ① <strong>width、heght = 内容区宽高（不含内边距和边框）</strong> ⇒ 默认 box-sizing: content-box;（内容盒子 = 内容区）</p>
+    <div class="only-width-height">我设置了盒子的宽度 width: 300px，高度 height: 200px</div>
+    <div class="width-height-padding-border">我设置了盒子的宽度 width: 300px，高度 height: 200px，内边距为20px，边框为20px
+    </div>
+
+    <!-- 设置宽高 = 内容区宽高 + 内边距 + 边框 -->
+
+    <p>② <strong>设置 height = 内容区宽高 + 内边距 + 边框</strong> ⇒ box-sizing: border-box;（边框盒子 = 边框及以内的区域）
+    </p>
+    <div class="box-sizing-border-box">盒子的宽度 width: 300px，高度 height:
+      200px，内边距为20px，边框为20px，同时设置了box-sizing: border-box;
+    </div>
+
+    <hr>
+
+    <p><strong>一个简单的盒子：设置了宽高、内边距、边框、外边距</strong></p>
+    <div class="box-model">
+      我设置了盒子的宽度 width: 300px，高度 height: 200px，内边距为20px，边框为210px，外边距为20px
+    </div>
+
+    <style>
+      .box-model {
+        width: 300px;
+        height: 200px;
+        padding: 20px;
+        border: 30px solid black;
+        margin: 40px;
+      }
+    </style>
+
+
+  </div>
+
+
+
+
+</body>
+
+</html>

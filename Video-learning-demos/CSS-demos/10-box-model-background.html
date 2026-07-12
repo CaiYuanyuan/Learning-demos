@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>盒模型-背景</title>
+
+  <style>
+    .background-color div {
+      width: 300px;
+      height: 200px;
+      background-color: lightblue;
+      margin-bottom: 10px;
+    }
+
+    .background-color .background-color-border {
+      /* 设置透明边框，透明度为0.1 */
+      border: 10px dashed rgba(0, 0, 0, 0.1);
+    }
+
+    .background-color .background-color-image {
+      /* 设置背景图片 */
+      background-image: url(img/four-leaf-clover.png);
+      background-repeat: no-repeat;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>盒模型-背景 background</h1>
+  <h2>背景颜色 background-color</h2>
+  <p>① <strong>背景色 background-color：只能设置纯色</strong></p>
+  <div class="background-color">
+    <!-- 设置纯色背景 -->
+    <div>背景颜色：我设置了盒子的背景颜色为淡蓝色 background-color: lightblue;</div>
+
+
+    <!-- 设置纯色背景 + 透明的虚线边框 -->
+    <p>② <strong>背景颜色 + 透明边框：背景色范围 = 到“边框区内”</strong></p>
+    <div class="background-color-border">
+      <p>背景颜色 + 透明边框：我设置了盒子的背景颜色为淡蓝色 background-color: lightblue; </p>
+      <p>
+        透明边框，透明度为0.1 ，border: 10px dashed rgba(0, 0, 0,
+        0.1);能看出来背景色从边框下面透出来，如果设置为 0，则边框完全就是背景色。
+      </p>
+    </div>
+
+    <!-- 背景色、背景图片：上图下色 -->
+    <p>③ <strong>背景颜色+背景图片：上图下色</strong>
+      。背景图片在背景颜色上方。</p>
+    <div class="background-color-image">背景颜色+背景图片：上图下色。背景图片在背景颜色上方。</div>
+  </div>
+
+
+
+</body>
+
+</html>
